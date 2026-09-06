@@ -4,27 +4,124 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Política de Privacidade · Privacy Policy — DICOM Pro</title>
+<meta name="description" content="Política de privacidade do DICOM Pro: nenhum dado é coletado, transmitido ou compartilhado. Todo o processamento acontece no aparelho." />
+<link rel="canonical" href="https://oakappware.com/privacidade.html" />
+<meta name="theme-color" content="#0B0F0C" />
+<meta name="color-scheme" content="dark" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Oak Appware" />
+<meta property="og:title" content="Política de Privacidade · Privacy Policy — DICOM Pro" />
+<meta property="og:description" content="O DICOM Pro não coleta, não transmite e não compartilha nenhum dado." />
+<meta property="og:url" content="https://oakappware.com/privacidade.html" />
+<meta property="og:image" content="https://oakappware.com/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Símbolo da Oak Appware sobre fundo escuro" />
+<meta property="og:locale" content="pt_BR" />
+<meta property="og:locale:alternate" content="en_US" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Política de Privacidade · Privacy Policy — DICOM Pro" />
+<meta name="twitter:description" content="O DICOM Pro não coleta, não transmite e não compartilha nenhum dado." />
+<meta name="twitter:image" content="https://oakappware.com/assets/og-image.png" />
+<link rel="icon" href="assets/favicon.ico" sizes="16x16 32x32 48x48" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<link rel="apple-touch-icon" href="assets/apple-touch-icon-180.png" />
+<link rel="manifest" href="assets/site.webmanifest" />
 <style>
-  :root { --bg:#161826; --surface:#232532; --text:#e9e9ed; --muted:#9397ab; --accent:#9184d9; --border:#3f424d; }
+  @font-face { font-family:"Inter"; font-weight:400; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-400-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-400-normal.woff") format("woff"); }
+  @font-face { font-family:"Inter"; font-weight:500; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-500-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-500-normal.woff") format("woff"); }
+  @font-face { font-family:"Inter"; font-weight:600; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-600-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-600-normal.woff") format("woff"); }
+  @font-face { font-family:"Inter"; font-weight:800; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-800-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-800-normal.woff") format("woff"); }
+
+  :root {
+    color-scheme:dark;
+    --bg:#0B0F0C; --border:#233029;
+    --text:#F3F6F4; --muted:#A6B3A9; --faint:#7B8B80;
+    --green:#2FD37A; --green-deep:#168A4E; --surface-2:#161C18;
+  }
   * { box-sizing:border-box; margin:0; }
-  body { background:var(--bg); color:var(--text); font:16px/1.7 "Inter",system-ui,-apple-system,sans-serif; }
-  main { max-width:680px; margin:0 auto; padding:48px 24px 72px; }
-  a { color:#d2cefd; }
-  .back { font-size:14px; text-decoration:none; }
-  h1 { font-size:24px; margin:18px 0 4px; }
-  .version { color:var(--muted); font-size:14px; margin-bottom:26px; }
-  h2 { font-size:16px; color:var(--accent); margin:26px 0 6px; }
+  body { background:var(--bg); color:var(--text); font:16px/1.7 "Inter",system-ui,-apple-system,"Segoe UI",sans-serif; -webkit-font-smoothing:antialiased; }
+  /* Coluna de leitura de 680px alinhada à esquerda da faixa de 880px do
+     cabeçalho e do rodapé — as bordas esquerdas coincidem em todas as páginas. */
+  main { max-width:880px; margin:0 auto; padding:30px 24px 56px; }
+  main > * { max-width:680px; }
+  .wrap { max-width:880px; margin:0 auto; padding:0 24px; }
+
+  /* Cabeçalho e rodapé padrão do site — mesma marcação das outras páginas.
+     Só marcação e estilo: o texto legal abaixo não é tocado. */
+  header { border-bottom:1px solid var(--border); }
+  .bar { display:flex; align-items:center; justify-content:space-between; gap:12px 16px; padding:18px 24px; flex-wrap:wrap; }
+  .brand { display:flex; align-items:center; }
+  .brand:hover { text-decoration:none; }
+  .brand img { height:34px; width:auto; display:block; }
+  header nav { display:flex; gap:22px; font-size:14.5px; font-weight:500; }
+  header nav a { color:var(--muted); white-space:nowrap; }
+  header nav a:hover { color:var(--text); text-decoration:none; }
+  footer { border-top:1px solid var(--border); padding:28px 0 44px; color:var(--faint); font-size:13px; line-height:1.85; }
+  .foot-brand { display:block; margin-bottom:14px; }
+  .foot-brand img { height:26px; width:auto; display:block; }
+  footer a { color:var(--muted); }
+  .foot-links { margin-top:10px; display:flex; gap:8px 18px; flex-wrap:wrap; }
+  @media (max-width:640px) { header nav { gap:14px; font-size:14px; } }
+
+  a { color:var(--green); text-decoration:none; }
+  a:hover, a:focus-visible { color:var(--green); text-decoration:underline; text-underline-offset:3px; }
+  a:focus-visible, .skip:focus { outline:2px solid var(--green); outline-offset:3px; border-radius:2px; }
+  .skip { position:absolute; left:-9999px; }
+  .skip:focus { left:0; right:0; top:0; width:auto; z-index:20; background:var(--bg); border:0; border-radius:0; outline:2px solid var(--green); outline-offset:-2px; padding:14px 24px; color:var(--text); font-weight:600; }
+  .crumbs { font-size:14px; color:var(--faint); display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .crumbs a { color:var(--muted); font-weight:500; }
+  .crumbs svg { width:14px; height:16px; }
+  h1, .doc-title { font-size:26px; font-weight:600; letter-spacing:-.01em; color:var(--text); text-transform:none; margin:22px 0 4px; }
+  .version { color:var(--muted); font-size:14px; margin-bottom:8px; }
+  .version + .version { margin-bottom:26px; }
+  h2, h3 { font-size:13px; letter-spacing:.12em; text-transform:uppercase; font-weight:600; color:var(--green); margin:28px 0 6px; }
   p { margin:8px 0; }
   .en-block { border-top:1px solid var(--border); margin-top:48px; padding-top:32px; }
-  .lang-note { color:var(--muted); font-size:13px; letter-spacing:.1em; text-transform:uppercase; }
+  .lang-note { color:var(--faint); font-size:13px; letter-spacing:.14em; text-transform:uppercase; font-weight:600; }
+  .doc-foot { border-top:1px solid var(--border); margin-top:48px; padding-top:24px; font-size:14px; color:var(--muted); display:flex; flex-wrap:wrap; gap:6px 16px; }
+  .doc-foot a { font-weight:500; }
+
+  @media print {
+    body { background:#fff; color:#111; font-size:11pt; }
+    main, main > * { max-width:none; padding:0; }
+    a { color:#111; text-decoration:underline; }
+    h1, .doc-title, h2, h3, footer a { color:#111; }
+    .version, .lang-note, .doc-foot { color:#333; }
+    .crumbs, .skip, header, .foot-links, .foot-brand { display:none; }
+    footer { border-top:1px solid #ccc; color:#333; padding:16px 0 0; }
+    .wrap { max-width:none; padding:0; }
+    .en-block { border-top:1px solid #ccc; break-before:page; page-break-before:always; }
+    .doc-foot { border-top:1px solid #ccc; }
+    h1, .doc-title, h2, h3 { break-after:avoid; page-break-after:avoid; }
+    p { orphans:3; widows:3; }
+  }
 </style>
 </head>
 <body>
-<main>
-  <a class="back" href="dicompro.html">← DICOM Pro</a> <span style="color:#75798c">· <a class="back" href="index.html">Oak Appware</a></span>
+<a class="skip" href="#conteudo">Pular para o conteúdo · <span lang="en">Skip to content</span></a>
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="/" aria-label="Oak Appware — início">
+      <img src="assets/logo.svg" width="171" height="34" alt="Oak Appware" />
+    </a>
+    <nav aria-label="Principal">
+      <a href="/#apps">Apps</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="suporte.html">Suporte</a>
+      <a href="legal.html" aria-current="page">Legal</a>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo">
+  <nav class="crumbs" aria-label="Navegação">
+    <svg viewBox="0 0 16 18" aria-hidden="true"><path fill="#2FD37A" d="M8 0l7.8 4.5v9L8 18 .2 13.5v-9z"/></svg>
+    <a href="index.html">Oak Appware</a> · <a href="dicompro.html">DICOM Pro</a>
+  </nav>
   <h1>Política de Privacidade</h1>
-  <p class="version">Versão de 5 de setembro de 2026 · <a href="#english">English below</a></p>
-  <p class="version">Desenvolvido por <strong>OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA</strong> (CNPJ 68.923.016/0001-00) — Brasília/DF, Brasil. Contato: contato@oakappware.com</p>
+  <p class="version">Versão de 5 de setembro de 2026 · <a href="#english" lang="en">English below</a></p>
+  <p class="version">Desenvolvido por <strong>OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA</strong> (<span style="white-space:nowrap">CNPJ 68.923.016/0001-00</span>) — Brasília/DF, Brasil. Contato: contato@oakappware.com</p>
 
   <h2>Resumo</h2>
   <p><strong>O DICOM Pro não coleta, não transmite e não compartilha nenhum dado.</strong>
@@ -62,18 +159,18 @@
   <p>Se esta política mudar, a nova versão será apresentada no app e publicada
   nesta página.</p>
 
-  <div class="en-block" id="english">
+  <div class="en-block" id="english" lang="en">
     <p class="lang-note">English</p>
-    <h1>Privacy Policy</h1>
+    <h2 class="doc-title">Privacy Policy</h2>
     <p class="version">Version of September 5, 2026</p>
-    <p class="version">Developed by <strong>OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA</strong> (Brazilian company registry 68.923.016/0001-00) — Brasília/DF, Brazil. Contact: contato@oakappware.com</p>
+    <p class="version">Developed by <strong>OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA</strong> (Brazilian company registry <span style="white-space:nowrap">68.923.016/0001-00</span>) — Brasília/DF, Brazil. Contact: contato@oakappware.com</p>
 
-    <h2>Summary</h2>
+    <h3>Summary</h3>
     <p><strong>DICOM Pro does not collect, transmit or share any data.</strong>
     There is no server, no user account, no ads, no trackers or analytics. All
     processing happens on the device.</p>
 
-    <h2>Exams and patient data</h2>
+    <h3>Exams and patient data</h3>
     <p>The exams you open are read directly from the device storage (or from
     your personal cloud, such as iCloud or Google Drive, upon your action) and
     processed only in local memory. When you use "Save exam", the files are
@@ -81,29 +178,53 @@
     backup on iOS — and can be removed by you at any time in "Saved exams". The
     developer has no access to these files.</p>
 
-    <h2>What is stored on the device</h2>
+    <h3>What is stored on the device</h3>
     <p>Only local preferences (language, display mode, terms acceptance) and the
     list of saved exams (patient name as present in the exam, date and the
     description you typed). None of this leaves the device.</p>
 
-    <h2>Permissions</h2>
+    <h3>Permissions</h3>
     <p>The app accesses only the files and folders you choose through the system
     picker. It does not access camera, microphone, location or contacts.</p>
 
-    <h2>Purchases</h2>
+    <h3>Purchases</h3>
     <p>If you subscribe, payment is processed by the App Store or Google Play.
     The app does not receive or store payment data.</p>
 
-    <h2>Your rights</h2>
+    <h3>Your rights</h3>
     <p>Since data remains on your device, you delete it directly: by removing
     saved exams, clearing the app's data or uninstalling it. For questions about
     this policy, contact:
     <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>.</p>
 
-    <h2>Changes</h2>
+    <h3>Changes</h3>
     <p>If this policy changes, the new version will be presented in the app and
     published on this page.</p>
   </div>
+
+  <nav class="doc-foot" aria-label="Documentos e contato">
+    <a href="termos.html">Termos de Uso · <span lang="en">Terms of Use</span></a>
+    <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>
+    <a href="index.html">Oak Appware</a>
+  </nav>
 </main>
+
+<footer>
+  <div class="wrap">
+    <a class="foot-brand" href="/" aria-label="Oak Appware — início">
+      <img src="assets/logo.svg" width="131" height="26" alt="Oak Appware" />
+    </a>
+    OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA — <span style="white-space:nowrap">CNPJ 68.923.016/0001-00</span><br/>
+    SGAS 915, Conjunto B, Bloco D, Sala 103 (Parte CH 528) — Asa Sul, Brasília/DF, CEP 70.390-150<br/>
+    oakappware.com · <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>
+    <nav class="foot-links" aria-label="Rodapé">
+      <a href="/#apps">Apps</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="suporte.html">Suporte</a>
+      <a href="legal.html">Legal</a>
+    </nav>
+  </div>
+</footer>
+
 </body>
 </html>

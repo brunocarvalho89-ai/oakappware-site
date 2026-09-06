@@ -4,72 +4,624 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>DICOM Pro — Visualizador de exames DICOM para estudo</title>
-<meta name="description" content="Visualizador DICOM para estudo: MPR em três planos, medições e filtros. Nenhum dado sai do aparelho. Um aplicativo Oak Appware." />
+<meta name="description" content="Para ensino, estudo e referência. MPR em três planos, medições e filtros — processamento no próprio aparelho. Um aplicativo Oak Appware." />
+<link rel="canonical" href="https://oakappware.com/dicompro.html" />
+<meta name="theme-color" content="#0B0F0C" />
+<meta name="color-scheme" content="dark" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Oak Appware" />
+<meta property="og:title" content="DICOM Pro — Visualizador de exames DICOM para estudo" />
+<meta property="og:description" content="Para ensino, estudo e referência. MPR em três planos, medições e filtros — processamento no próprio aparelho." />
+<meta property="og:url" content="https://oakappware.com/dicompro.html" />
+<meta property="og:image" content="https://oakappware.com/assets/og-dicompro.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Fundo preto com o nome DICOM Pro, a assinatura “um app Oak Appware” e a linha “Visualizador de exames DICOM para ensino, estudo e referência”; à direita, numa moldura de aparelho inclinada, a tela do app com as três janelas de reconstrução." />
+<meta property="og:locale" content="pt_BR" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="DICOM Pro — Visualizador de exames DICOM para estudo" />
+<meta name="twitter:description" content="Para ensino, estudo e referência. MPR em três planos, medições e filtros — processamento no próprio aparelho." />
+<meta name="twitter:image" content="https://oakappware.com/assets/og-dicompro.png" />
+<meta name="twitter:image:alt" content="Fundo preto com o nome DICOM Pro, a assinatura “um app Oak Appware” e a linha “Visualizador de exames DICOM para ensino, estudo e referência”; à direita, numa moldura de aparelho inclinada, a tela do app com as três janelas de reconstrução." />
+<link rel="icon" href="assets/favicon.ico" sizes="16x16 32x32 48x48" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<link rel="apple-touch-icon" href="assets/apple-touch-icon-180.png" />
+<link rel="manifest" href="assets/site.webmanifest" />
 <style>
-  :root { --bg:#161826; --surface:#232532; --text:#e9e9ed; --muted:#9397ab; --accent:#9184d9; --accent-soft:#2b2741; --border:#3f424d; }
+  @font-face { font-family:"Inter"; font-weight:400; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-400-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-400-normal.woff") format("woff"); }
+  @font-face { font-family:"Inter"; font-weight:500; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-500-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-500-normal.woff") format("woff"); }
+  @font-face { font-family:"Inter"; font-weight:600; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-600-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-600-normal.woff") format("woff"); }
+  @font-face { font-family:"Inter"; font-weight:800; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-800-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-800-normal.woff") format("woff"); }
+
+  :root {
+    color-scheme:dark;
+    --bg:#0B0F0C; --surface-2:#161C18; --border:#233029;
+    --text:#F3F6F4; --muted:#A6B3A9; --faint:#7B8B80;
+    --green:#2FD37A; --green-deep:#168A4E; --broto:#8AF5B4;
+    --nocturne-accent:#9184d9; --nocturne-soft:#2b2741; --nocturne-border:#5d5294;
+  }
   * { box-sizing:border-box; margin:0; }
-  body { background:var(--bg); color:var(--text); font:16px/1.65 "Inter",system-ui,-apple-system,sans-serif; }
-  main { max-width:640px; margin:0 auto; padding:56px 24px 48px; }
-  .back { font-size:14px; text-decoration:none; color:#d2cefd; }
-  .wordmark { font-weight:600; letter-spacing:.14em; font-size:28px; margin-top:18px; }
-  .wordmark span { color:var(--accent); letter-spacing:normal; margin-left:.18em; }
-  .tagline { color:var(--muted); margin-top:6px; }
-  .card { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:22px 24px; margin-top:28px; }
-  .card h2 { font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:10px; }
+  body { background:var(--bg); color:var(--text); font:16px/1.65 "Inter",system-ui,-apple-system,"Segoe UI",sans-serif; -webkit-font-smoothing:antialiased; }
+  a { color:var(--green); text-decoration:none; }
+  a:hover, a:focus-visible { color:var(--broto); text-decoration:underline; text-underline-offset:3px; }
+  a:focus-visible { outline:2px solid var(--green); outline-offset:3px; border-radius:2px; }
+  img { max-width:100%; }
+  /* Mesma grade das demais páginas de cartão (sobre/suporte/legal): faixa de
+     880px com 24px de recuo — conteúdo de 832px, alinhado ao cabeçalho e ao
+     rodapé nas duas bordas. A medida de leitura fica nos parágrafos, em em. */
+  main { max-width:880px; margin:0 auto; padding:34px 24px 8px; }
+  main > * { max-width:832px; }
+  .wrap { max-width:880px; margin:0 auto; padding:0 24px; }
+  .skip { position:absolute; left:-9999px; }
+  .skip:focus { left:0; right:0; top:0; width:auto; z-index:20; background:var(--bg); border:0; border-radius:0; outline:2px solid var(--green); outline-offset:-2px; padding:14px 24px; color:var(--text); font-weight:600; }
+
+  /* Topo — bloco padrão do site (idêntico ao de index.html) */
+  header { border-bottom:1px solid var(--border); }
+  .bar { display:flex; align-items:center; justify-content:space-between; gap:12px 16px; padding:18px 24px; flex-wrap:wrap; }
+  .brand { display:flex; align-items:center; }
+  .brand:hover { text-decoration:none; }
+  .brand img { height:34px; width:auto; display:block; }
+  header nav { display:flex; gap:22px; font-size:14.5px; font-weight:500; }
+  header nav a { color:var(--muted); white-space:nowrap; }
+  header nav a:hover { color:var(--text); text-decoration:none; }
+  header nav a[aria-current="page"] { color:var(--text); border-bottom:2px solid var(--green); padding-bottom:2px; }
+
+  .phead { display:flex; align-items:center; gap:18px; margin-top:28px; }
+  .ptile { flex:0 0 64px; height:64px; border-radius:15px; background:linear-gradient(160deg,#2f2a4d,#1a1c2e 58%,#121422); border:1px solid #3f424d; display:flex; align-items:center; justify-content:center; }
+  .ptile svg { width:38px; height:38px; }
+  h1.wordmark { font-weight:600; letter-spacing:.14em; font-size:28px; line-height:1.2; }
+  h1.wordmark span { color:var(--nocturne-accent); letter-spacing:normal; }
+  .tagline { color:var(--muted); margin-top:16px; max-width:44em; }
+  .en { color:var(--muted); font-size:14px; margin-top:8px; }
+
+  .card { background:var(--surface-2); border:1px solid var(--border); border-radius:14px; padding:22px 24px; margin-top:22px; }
+  .card h2 { font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--green); margin-bottom:10px; font-weight:600; }
   ul { padding-left:20px; }
   li { margin:6px 0; }
-  .disclaimer { border-color:#5d5294; background:var(--accent-soft); }
-  a { color:#d2cefd; }
-  .links { display:flex; gap:18px; flex-wrap:wrap; margin-top:30px; }
-  .links a { display:inline-block; padding:10px 18px; border:1px solid var(--accent); border-radius:999px; text-decoration:none; color:#e7e5fe; }
-  footer { color:var(--muted); font-size:12.5px; margin-top:44px; line-height:1.8; border-top:1px solid var(--border); padding-top:18px; }
-  .en { color:var(--muted); font-size:14px; margin-top:8px; }
+  .card p, .card li { max-width:46em; }
+  .note { color:var(--muted); font-size:13.5px; margin-top:12px; }
+
+  /* Aviso regulatório — reforçado: fica acima da dobra e não é o texto mais apagado da página */
+  .disclaimer { border-color:var(--nocturne-border); border-left-width:4px; background:var(--nocturne-soft); }
+  .disclaimer h2 { color:#d2cefd; display:flex; align-items:center; gap:8px; }
+  .disclaimer h2 svg { width:15px; height:15px; flex:0 0 auto; }
+  .disclaimer p { color:var(--text); }
+  .disclaimer .en { color:var(--muted); }
+
+  /* Badges de loja — hoje desabilitados. Rótulos neutros, sem as marcas oficiais. */
+  .badges { display:flex; gap:12px; flex-wrap:wrap; margin-top:22px; }
+  .badge { display:inline-flex; flex-direction:column; justify-content:center; min-width:196px;
+           padding:10px 18px; border:1px solid var(--border); border-radius:12px;
+           background:var(--surface-2); }
+  .badge .store { font-size:15px; font-weight:600; color:var(--text); letter-spacing:.01em; }
+  .badge .state { font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-top:2px; }
+  a.badge:hover, a.badge:focus-visible { border-color:var(--green); text-decoration:none; }
+  a.badge .store { color:var(--text); }
+
+  /* Capturas do app — faixa rolável na horizontal. A moldura de aparelho é só
+     CSS (cantos arredondados + 1px na cor de borda do site), sem imagem extra.
+     O papel de "região rolável" (role + tabindex + aria-label) é aplicado por
+     script apenas quando a faixa realmente rola — abaixo de 640px ela vira
+     coluna única e não rolaria, e uma parada de tabulação inerte ali só
+     atrapalha. Cada captura também é um link para a ampliação NA PRÓPRIA
+     PÁGINA (#captura-1 … #captura-5): sem isso as telas de texto denso (menu e
+     guia) não comunicam nada na miniatura, e o link garante navegação por
+     teclado mesmo sem script. O alvo nunca é o arquivo .webp cru — ver o
+     comentário da seção de ampliações. */
+  .shots-card .lead { color:var(--muted); font-size:14px; margin-bottom:16px; }
+  .shots-card .lead .en { display:block; margin-top:4px; }
+  /* O esmaecimento da borda direita é uma camada por cima (não uma máscara no
+     próprio rolador): máscara recortaria o anel de foco do teclado. */
+  .shots-wrap { position:relative; }
+  .shots-wrap::after { content:""; position:absolute; top:0; right:0; bottom:0; width:52px;
+                       pointer-events:none;
+                       background:linear-gradient(to right,rgba(22,28,24,0),var(--surface-2) 82%); }
+  /* A folga de 6px do rolador é o que cabe o anel de foco do teclado da
+     PRIMEIRA captura (outline de 2px com offset de 3px = 5px além da moldura);
+     com os 2px de antes, o anel do primeiro item era recortado à esquerda e no
+     topo. Nos demais itens o gap de 16px já dava a folga. */
+  .shots { display:flex; gap:16px; overflow-x:auto; padding:6px 6px 14px;
+           scroll-snap-type:x proximity; scroll-padding-left:6px;
+           scroll-behavior:smooth; -webkit-overflow-scrolling:touch;
+           scrollbar-width:thin; scrollbar-color:#38493F transparent; }
+  .shots:focus-visible { outline:2px solid var(--green); outline-offset:4px; border-radius:8px; }
+  /* Respiro final: a última captura nunca encosta no corte da faixa. */
+  .shots::after { content:""; flex:0 0 46px; }
+  .shots::-webkit-scrollbar { height:8px; }
+  .shots::-webkit-scrollbar-thumb { background:#38493F; border-radius:999px; }
+  .shot { flex:0 0 300px; margin:0; scroll-snap-align:start; }
+  /* O link envolve a moldura inteira: a captura é clicável e é uma parada de
+     tabulação com nome acessível curto e próprio, dado por aria-label — assim o
+     alt da imagem volta a ser lido como descrição de imagem, e não como rótulo
+     de link. O position:relative é obrigatório: sem ele, qualquer filho
+     posicionado do link se ancora em .shots-wrap, que está FORA do rolador
+     .shots, escapa do overflow e faz a PÁGINA INTEIRA rolar na horizontal. */
+  .shot-zoom { display:block; color:inherit; position:relative; }
+  .shot-zoom:hover, .shot-zoom:focus-visible { text-decoration:none; }
+  .shot .frame { position:relative; border:1px solid var(--border); border-radius:20px; padding:5px;
+                 background:#0E1310; overflow:hidden; display:block; }
+  .shot-zoom:hover .frame { border-color:var(--green-deep); }
+  .shot-zoom:focus-visible { outline:none; }
+  .shot-zoom:focus-visible .frame { outline:2px solid var(--green); outline-offset:3px; }
+  .shot img { display:block; width:100%; height:auto; border-radius:15px; background:#0E1310; }
+  /* Selo de ampliar — só pista visual (aria-hidden; o nome do link vem do
+     aria-label). Bilíngue, como todo texto visível da página. */
+  .zoom-chip { position:absolute; right:12px; bottom:12px; pointer-events:none;
+               display:inline-flex; align-items:center; gap:5px;
+               padding:4px 9px; border-radius:999px;
+               background:rgba(11,15,12,.86); border:1px solid var(--border);
+               color:var(--text); font-size:11.5px; font-weight:500; line-height:1.4;
+               backdrop-filter:blur(2px); }
+  .zoom-chip svg { width:11px; height:11px; flex:0 0 auto; }
+  .shot-zoom:hover .zoom-chip, .shot-zoom:focus-visible .zoom-chip { border-color:var(--green); color:var(--broto); }
+  .shot figcaption { color:var(--muted); font-size:12.5px; margin-top:10px; line-height:1.5; }
+  /* Altura fixa da linha em português: as linhas em inglês ficam alinhadas
+     mesmo quando uma legenda ocupa duas linhas. */
+  .shot figcaption .pt { display:block; min-height:3em; }
+  .shot figcaption .en { display:block; color:var(--faint); font-size:12px; margin-top:0; }
+  .shots-hint { color:var(--faint); font-size:12px; margin-top:2px; }
+  @media (prefers-reduced-motion:reduce) { .shots { scroll-behavior:auto; } }
+
+  /* Ampliações — as mesmas cinco telas em tamanho grande, DENTRO da página.
+     O "Ver maior" não pode apontar para o .webp cru: essa URL abre uma imagem
+     de tomografia em tela cheia sem cabeçalho, sem o Aviso, sem a assinatura
+     Oak Appware — ou seja, sem nada do enquadramento educacional que a página
+     inteira sustenta. (O robots.txt tira o diretório do índice de imagens do
+     Google; ainda assim o link da página aponta para a âncora, não para o
+     binário — robots.txt não impede que alguém copie e repasse a URL.)
+     A ampliação ocupa a largura útil do cartão: 770px a partir de 880px de
+     viewport, servindo o arquivo de 800w a ~1:1 — que é a resolução em que as
+     telas de texto denso (menu e guia) ficam legíveis. Menos que isso e a
+     seção não cumpre o motivo pelo qual existe. */
+  .mini-notice { border:1px solid var(--nocturne-border); border-left-width:4px;
+                 background:var(--nocturne-soft); border-radius:10px;
+                 padding:12px 15px; margin-bottom:22px; max-width:46em; }
+  .mini-notice p { font-size:13.5px; line-height:1.55; }
+  .mini-notice .en { color:var(--muted); font-size:12.5px; margin-top:5px; }
+  .big { margin:0 0 28px; scroll-margin-top:18px; }
+  .big:last-of-type { margin-bottom:4px; }
+  .big .frame { display:block; max-width:none; border:1px solid var(--border);
+                border-radius:20px; padding:5px; background:#0E1310; }
+  .big img { display:block; width:100%; height:auto; border-radius:15px; background:#0E1310; }
+  .big figcaption { color:var(--muted); font-size:13.5px; margin-top:11px; }
+  .big figcaption .en { display:block; color:var(--faint); font-size:12.5px; margin-top:1px; }
+  .big-back { display:inline-block; font-size:12.5px; margin-top:7px; }
+
+  .links { display:flex; gap:14px; flex-wrap:wrap; margin-top:30px; }
+  .links a { display:inline-block; padding:10px 18px; border:1px solid var(--green-deep); border-radius:999px; color:var(--text); font-size:14.5px; font-weight:500; }
+  .links a:hover { border-color:var(--green); text-decoration:none; color:var(--broto); }
+
+  footer { border-top:1px solid var(--border); margin-top:48px; padding:28px 0 44px; color:var(--faint); font-size:13px; line-height:1.85; }
+  footer a { color:var(--muted); }
+  .foot-brand { display:block; margin-bottom:14px; }
+  .foot-brand img { height:26px; width:auto; display:block; }
+  .foot-links { margin-top:10px; display:flex; gap:8px 18px; flex-wrap:wrap; }
+
+  @media (max-width:640px) {
+    header nav { gap:14px; font-size:14px; }
+    .shots { display:grid; grid-template-columns:1fr; gap:22px; overflow:visible; padding:0; }
+    .shots::after, .shots-wrap::after { content:none; }
+    /* Coluna única, e a MINIATURA CONTINUA MINIATURA: com teto de 200px ela
+       exibe 188px, contra os 280px da ampliação num aparelho de 390px — 1,5×.
+       Sem esse teto a miniatura tomava a largura inteira do cartão, ficava
+       do mesmo tamanho da ampliação e o "Ver maior" não entregava aumento
+       nenhum. Centralizada, para não deixar vão de cartão vazio à direita.
+       O 44vw segura a proporção nos aparelhos mais estreitos: com teto fixo de
+       200px, a 320px de viewport a ampliação renderia 210px contra 188px da
+       miniatura — 1,12×, aumento que ninguém enxerga. */
+    .shot { flex:none; width:100%; max-width:min(200px, 44vw); margin-inline:auto; }
+    .shot figcaption .pt { min-height:0; }
+    /* Com a miniatura menor, o selo no tamanho do desktop encostava nas duas
+       bordas da moldura a 320px de viewport. */
+    .zoom-chip { right:8px; bottom:8px; padding:3px 7px; gap:4px; font-size:10.5px; }
+    .shots-hint { display:none; }
+  }
+
+  /* Impressão / salvar em PDF: o corpo é claro sobre escuro; sem isto o Chrome
+     (que imprime sem "gráficos de segundo plano") devolve texto branco no papel. */
+  @media print {
+    body { background:#fff; color:#111; }
+    main, main > * { max-width:none; padding:0; }
+    a { color:#111; text-decoration:underline; }
+    h1, h2, h1.wordmark span, .card h2 { color:#111; }
+    .card { border-color:#ccc; background:#fff; break-inside:avoid; page-break-inside:avoid; }
+    .disclaimer { border-color:#111; background:#fff; }
+    .disclaimer h2, .disclaimer p, .disclaimer p strong, footer a { color:#111; }
+    .disclaimer .en { color:#333; }
+    .ptile { background:#fff; border-color:#ccc; }
+    .tagline, .en, .note, .badge .store, .badge .state, footer { color:#333; }
+    .shots { display:flex; flex-wrap:wrap; gap:12px; overflow:visible; padding:0; }
+    .shots::after, .shots-wrap::after { content:none; }
+    .shot figcaption .pt { min-height:0; }
+    .shots-hint { display:none; }
+    .shots::after { content:none; }
+    .shot { flex:0 0 130px; break-inside:avoid; page-break-inside:avoid; }
+    .shot .frame { border-color:#ccc; background:#fff; }
+    .zoom-chip { display:none; }
+    .shot figcaption, .shot figcaption .en, .shots-card .lead { color:#333; }
+    .badge { border-color:#ccc; background:#fff; }
+    .links a { border-color:#999; color:#111; }
+    /* No papel, a faixa de miniaturas já mostra as cinco telas; repetir as
+       ampliações gastaria cinco páginas. Os links "Ver maior" viram âncoras
+       mortas na impressão, o que é preferível. */
+    #ampliacoes { display:none; }
+    header, .foot-links, .skip, .badges, .foot-brand { display:none; }
+    footer { border-top:1px solid #ccc; margin-top:24px; }
+  }
 </style>
 </head>
 <body>
-<main>
-  <a class="back" href="index.html">← Oak Appware</a>
-  <div class="wordmark">DICOM<span>Pro</span></div>
-  <p class="tagline">Visualizador de exames DICOM para estudo — no seu tablet ou celular.<br/>
-  <span class="en">DICOM exam viewer for study — on your tablet or phone.</span></p>
+
+<a class="skip" href="#conteudo">Pular para o conteúdo · <span lang="en">Skip to content</span></a>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="/" aria-label="Oak Appware — início">
+      <img src="assets/logo.svg" width="171" height="34" alt="Oak Appware" />
+    </a>
+    <nav aria-label="Principal">
+      <a href="/#apps">Apps</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="suporte.html">Suporte</a>
+      <a href="legal.html">Legal</a>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo">
+
+  <div class="phead">
+    <div class="ptile">
+      <svg viewBox="0 0 1024 1024" aria-hidden="true">
+        <path fill="#b5abfc" d="M 400 639.5 C 402 689.45 408 752.72 408 806 C 408 864.56 378 910.92 336 928 L 688 928 C 646 910.92 616 864.56 616 806 C 616 752.72 614 689.45 624 639.5 Z"/>
+        <path fill="#b5abfc" d="M362.76 186L484 256L484 396L362.76 466L241.51 396L241.51 256Z"/>
+        <path fill="#d2cefd" d="M688.74 138.37L809.99 208.37L809.99 348.37L688.74 418.37L567.5 348.37L567.5 208.37Z"/>
+        <path fill="#b5abfc" fill-rule="evenodd" d="M213.51 444.5L334.76 514.5L334.76 654.5L213.51 724.5L92.27 654.5L92.27 514.5ZM213.51 532.26L258.76 558.38L258.76 610.62L213.51 636.74L168.27 610.62L168.27 558.38Z"/>
+        <path fill="#b5abfc" d="M512 444.5L633.24 514.5L633.24 654.5L512 724.5L390.76 654.5L390.76 514.5Z"/>
+        <path fill="#b5abfc" d="M810.49 444.5L931.73 514.5L931.73 654.5L810.49 724.5L689.24 654.5L689.24 514.5Z"/>
+      </svg>
+    </div>
+    <h1 class="wordmark">DICOM<span>&nbsp;Pro</span></h1>
+  </div>
+
+  <p class="tagline">Visualizador de exames DICOM para ensino, estudo e referência — no seu tablet ou celular.<br/>
+  <span class="en" lang="en">DICOM exam viewer for teaching, study and reference — on your tablet or phone.</span></p>
+
+  <div class="card disclaimer">
+    <h2>
+      <svg viewBox="0 0 20 18" aria-hidden="true"><path fill="#d2cefd" d="M10 0l10 18H0L10 0zm-1 6v6h2V6H9zm0 8v2h2v-2H9z"/></svg>
+      Aviso · Notice
+    </h2>
+    <p>O DICOM Pro destina-se a <strong>ensino, estudo e referência</strong>. Não se
+    destina a diagnóstico, laudo ou decisão clínica.</p>
+    <p class="en" lang="en">DICOM Pro is intended for teaching, study and reference. It is
+    not intended for diagnosis, reporting or clinical decisions.</p>
+  </div>
 
   <div class="card">
     <h2>O que ele faz · What it does</h2>
     <ul>
       <li>Reconstrução multiplanar (axial, sagital e coronal) com eixos móveis</li>
       <li>Medições em milímetros, janelamentos prontos e filtros de cor</li>
-      <li>Rastreio de possíveis metais (alta densidade)</li>
+      <li>Realce de regiões de alta densidade</li>
       <li>Exames salvos no aparelho para reabrir em segundos</li>
       <li>Português e inglês · Guia ilustrado</li>
     </ul>
+    <p class="note">As medidas em milímetros vêm da calibração do próprio exame — ver
+    <a href="termos.html">Termos de Uso</a>, item 3.<br/>
+    <span lang="en">Measurements in millimeters come from the exam's own calibration — see Terms of Use, item 3.</span></p>
   </div>
 
-  <div class="card disclaimer">
-    <h2>Aviso · Notice</h2>
-    <p>O DICOM Pro destina-se a <strong>ensino, estudo e referência</strong>. Não se
-    destina a diagnóstico, laudo ou decisão clínica.</p>
-    <p class="en">DICOM Pro is intended for teaching, study and reference. It is
-    not intended for diagnosis, reporting or clinical decisions.</p>
+  <!--
+    Capturas da interface. Os arquivos ficam em assets/apps/dicompro/web/, em
+    WebP: as miniaturas usam 400w e 800w; as ampliações têm ainda o 1080w, que
+    é a resolução nativa da captura (1080×1920).
+    Tamanhos exibidos, e é o que os atributos sizes declaram para o navegador
+    não baixar arquivo maior do que precisa:
+      · miniatura — 288px acima de 640px de viewport (moldura de 300px menos
+        1px de borda e 5px de recuo de cada lado); abaixo disso o CSS limita a
+        moldura a min(200px, 44vw), o que dá 188px de 455px para cima e
+        calc(44vw - 12px) nas telas mais estreitas — é o que mantém a miniatura
+        menor que a ampliação;
+      · ampliação — 770px a partir de 880px de viewport (largura útil do
+        cartão), e calc(100vw - 110px) abaixo disso.
+      Em nenhuma faixa a ampliação é menor que ~1,4× a miniatura; conferir
+      sempre com currentSrc e getBoundingClientRect, não com o src do HTML.
+    A série em inglês (sufixo -en) NÃO fica em assets/: espera em _src/, fora
+    do deploy, até a página em inglês existir — publicada sem página, cada
+    arquivo seria uma URL de imagem de tomografia sem legenda e sem o Aviso.
+    Quando a versão em inglês existir, é ela que troca as imagens; esta página
+    é pt-BR com legendas bilíngues e não troca por idioma automaticamente.
+    Legendas e textos alternativos descrevem a INTERFACE e a FUNÇÃO — nunca
+    anatomia, nunca achado (posicionamento educacional, ver o Aviso acima).
+    Cada captura é um link para a sua ampliação NA PRÓPRIA PÁGINA (#captura-1
+    … #captura-5, logo abaixo): na miniatura, as telas de texto denso (o menu e
+    o guia) não são legíveis, e sem lightbox nem JS a âncora interna é o
+    caminho mais simples para ver a tela inteira sem largar o enquadramento
+    educacional da página. O nome do link vem de um aria-label curto e só em
+    português: atributo não aceita marcação lang, e um rótulo "pt · en" faria o
+    leitor de tela em pt-BR pronunciar a metade inglesa com fonemas
+    portugueses. O texto visível continua bilíngue. Assim o alt também volta a
+    ser lido como descrição de imagem, e não como rótulo de link.
+  -->
+  <section class="card shots-card" id="capturas" aria-labelledby="capturas-titulo">
+    <h2 id="capturas-titulo">Capturas · Screenshots</h2>
+    <p class="lead">Telas do aplicativo em português, num aparelho de tela estreita. Toque numa captura para vê-la em tamanho maior.
+      <span class="en" lang="en">App screens in Portuguese, on a narrow-screen device. Tap a screenshot to see it larger.</span></p>
+
+    <div class="shots-wrap">
+    <div class="shots">
+
+      <figure class="shot">
+        <a class="shot-zoom" href="#captura-1" aria-label="Ver maior: Reconstrução nos três planos">
+          <span class="frame">
+            <img src="assets/apps/dicompro/web/1-mpr-pt-400.webp"
+                 srcset="assets/apps/dicompro/web/1-mpr-pt-400.webp 400w,
+                         assets/apps/dicompro/web/1-mpr-pt-800.webp 800w"
+                 sizes="(min-width:641px) 288px, (min-width:455px) 188px, calc(44vw - 12px)"
+                 width="400" height="711" decoding="async"
+                 alt="Tela principal do aplicativo: três janelas de reconstrução, rotuladas AXIAL, SAGITAL e CORONAL, com as linhas de eixo coloridas que ligam um plano ao outro, a barra de ferramentas à esquerda e, à direita, o painel do exame com os parâmetros técnicos." />
+            <span class="zoom-chip" aria-hidden="true">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M7 1.8a5.2 5.2 0 1 1 0 10.4A5.2 5.2 0 0 1 7 1.8zM10.9 10.9l3.3 3.3M4.6 7h4.8M7 4.6v4.8"/></svg>Ver maior · <span lang="en">Larger</span></span>
+          </span>
+        </a>
+        <figcaption><span class="pt">Reconstrução nos três planos</span>
+          <span class="en" lang="en">Three-plane reconstruction</span></figcaption>
+      </figure>
+
+      <figure class="shot">
+        <a class="shot-zoom" href="#captura-2" aria-label="Ver maior: Filtro de raio-X invertido">
+          <span class="frame">
+            <img src="assets/apps/dicompro/web/2-raiox-invertido-pt-400.webp"
+                 srcset="assets/apps/dicompro/web/2-raiox-invertido-pt-400.webp 400w,
+                         assets/apps/dicompro/web/2-raiox-invertido-pt-800.webp 800w"
+                 sizes="(min-width:641px) 288px, (min-width:455px) 188px, calc(44vw - 12px)"
+                 width="400" height="711" loading="lazy" decoding="async"
+                 alt="As três janelas de reconstrução com o filtro de raio-X invertido aplicado: a escala de cinza aparece invertida, com a imagem clara sobre o fundo escuro da interface." />
+            <span class="zoom-chip" aria-hidden="true">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M7 1.8a5.2 5.2 0 1 1 0 10.4A5.2 5.2 0 0 1 7 1.8zM10.9 10.9l3.3 3.3M4.6 7h4.8M7 4.6v4.8"/></svg>Ver maior · <span lang="en">Larger</span></span>
+          </span>
+        </a>
+        <figcaption><span class="pt">Filtro de raio-X invertido</span>
+          <span class="en" lang="en">Inverted X-ray filter</span></figcaption>
+      </figure>
+
+      <figure class="shot">
+        <a class="shot-zoom" href="#captura-3" aria-label="Ver maior: Regiões de alta densidade em destaque">
+          <span class="frame">
+            <img src="assets/apps/dicompro/web/3-metais-pt-400.webp"
+                 srcset="assets/apps/dicompro/web/3-metais-pt-400.webp 400w,
+                         assets/apps/dicompro/web/3-metais-pt-800.webp 800w"
+                 sizes="(min-width:641px) 288px, (min-width:455px) 188px, calc(44vw - 12px)"
+                 width="400" height="711" loading="lazy" decoding="async"
+                 alt="As três janelas de reconstrução com a ferramenta de realce ligada: as regiões de altíssima densidade aparecem pintadas de verde sobre a imagem em cinza, sem mexer no enquadramento." />
+            <span class="zoom-chip" aria-hidden="true">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M7 1.8a5.2 5.2 0 1 1 0 10.4A5.2 5.2 0 0 1 7 1.8zM10.9 10.9l3.3 3.3M4.6 7h4.8M7 4.6v4.8"/></svg>Ver maior · <span lang="en">Larger</span></span>
+          </span>
+        </a>
+        <figcaption><span class="pt">Regiões de alta densidade em destaque</span>
+          <span class="en" lang="en">High-density regions highlighted</span></figcaption>
+      </figure>
+
+      <figure class="shot">
+        <a class="shot-zoom" href="#captura-4" aria-label="Ver maior: Janelamentos e filtros">
+          <span class="frame">
+            <img src="assets/apps/dicompro/web/4-menu-pt-400.webp"
+                 srcset="assets/apps/dicompro/web/4-menu-pt-400.webp 400w,
+                         assets/apps/dicompro/web/4-menu-pt-800.webp 800w"
+                 sizes="(min-width:641px) 288px, (min-width:455px) 188px, calc(44vw - 12px)"
+                 width="400" height="711" loading="lazy" decoding="async"
+                 alt="Menu aberto sobre a tela do exame, com as seções Janelamentos específicos, Eixos, Filtros, Ajuda, Desempenho do aparelho e Idioma · Language; o item em uso aparece marcado." />
+            <span class="zoom-chip" aria-hidden="true">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M7 1.8a5.2 5.2 0 1 1 0 10.4A5.2 5.2 0 0 1 7 1.8zM10.9 10.9l3.3 3.3M4.6 7h4.8M7 4.6v4.8"/></svg>Ver maior · <span lang="en">Larger</span></span>
+          </span>
+        </a>
+        <figcaption><span class="pt">Janelamentos e filtros</span>
+          <span class="en" lang="en">Windowing and filters</span></figcaption>
+      </figure>
+
+      <figure class="shot">
+        <a class="shot-zoom" href="#captura-5" aria-label="Ver maior: Guia rápido ilustrado">
+          <span class="frame">
+            <img src="assets/apps/dicompro/web/5-guia-pt-400.webp"
+                 srcset="assets/apps/dicompro/web/5-guia-pt-400.webp 400w,
+                         assets/apps/dicompro/web/5-guia-pt-800.webp 800w"
+                 sizes="(min-width:641px) 288px, (min-width:455px) 188px, calc(44vw - 12px)"
+                 width="400" height="711" loading="lazy" decoding="async"
+                 alt="Guia rápido em uma folha sobre a tela, com as seções Como funciona, Janelas e eixos, Gestos e Ferramentas; no meio, três desenhos explicando as alças de mover, angular e espessura." />
+            <span class="zoom-chip" aria-hidden="true">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M7 1.8a5.2 5.2 0 1 1 0 10.4A5.2 5.2 0 0 1 7 1.8zM10.9 10.9l3.3 3.3M4.6 7h4.8M7 4.6v4.8"/></svg>Ver maior · <span lang="en">Larger</span></span>
+          </span>
+        </a>
+        <figcaption><span class="pt">Guia rápido ilustrado</span>
+          <span class="en" lang="en">Illustrated quick guide</span></figcaption>
+      </figure>
+
+    </div>
+    </div>
+    <p class="shots-hint">Role para o lado para ver as cinco · Scroll sideways to see all five</p>
+  </section>
+
+  <!--
+    Ampliações. O "Ver maior" de cada miniatura aponta para uma destas âncoras,
+    NUNCA para o arquivo .webp cru: um link direto ao binário abre uma imagem de
+    tomografia em tela cheia sem cabeçalho, sem o cartão Aviso, sem a assinatura
+    Oak Appware — solta do enquadramento educacional que sustenta a página
+    inteira (RDC 657/2022). Aqui a ampliação vem acompanhada do Aviso repetido e
+    do caminho de volta.
+    O robots.txt já tira assets/apps/dicompro/web/ do índice do Googlebot-Image,
+    e a série em inglês nem entra no deploy — mas isso vale para buscadores, não
+    para uma URL copiada e repassada. Por isso o link continua sendo a âncora.
+    As imagens daqui levam alt="" de propósito: são as MESMAS cinco telas da
+    faixa de miniaturas, com a mesma descrição. Repetir os cinco textos
+    alternativos palavra por palavra faria o leitor de tela percorrer duas vezes
+    a mesma descrição de ~40 palavras sem nenhuma informação nova; a figcaption
+    logo abaixo nomeia cada figura, e a descrição completa continua na faixa.
+    Como sempre: legenda e alt descrevem a INTERFACE e a FUNÇÃO, nunca anatomia
+    e nunca achado.
+  -->
+  <section class="card" id="ampliacoes" aria-labelledby="ampliacoes-titulo">
+    <h2 id="ampliacoes-titulo">Capturas em tamanho maior · Screenshots, larger</h2>
+
+    <div class="mini-notice">
+      <p><strong>Aviso ·</strong> Material educacional. O DICOM Pro destina-se a ensino,
+      estudo e referência; não se destina a diagnóstico, laudo ou decisão clínica.</p>
+      <p class="en" lang="en"><strong>Notice ·</strong> Educational material. DICOM Pro is
+      intended for teaching, study and reference; it is not intended for diagnosis,
+      reporting or clinical decisions.</p>
+    </div>
+
+      <figure class="big" id="captura-1">
+        <span class="frame">
+          <img src="assets/apps/dicompro/web/1-mpr-pt-800.webp"
+               srcset="assets/apps/dicompro/web/1-mpr-pt-400.webp 400w,
+                       assets/apps/dicompro/web/1-mpr-pt-800.webp 800w,
+                       assets/apps/dicompro/web/1-mpr-pt-1080.webp 1080w"
+               sizes="(min-width:880px) 770px, calc(100vw - 110px)"
+               width="800" height="1422" loading="lazy" decoding="async"
+               alt="" />
+        </span>
+        <figcaption><span class="pt">Reconstrução nos três planos</span>
+          <span class="en" lang="en">Three-plane reconstruction</span></figcaption>
+        <a class="big-back" href="#capturas">Voltar às capturas · <span lang="en">Back to screenshots</span></a>
+      </figure>
+
+      <figure class="big" id="captura-2">
+        <span class="frame">
+          <img src="assets/apps/dicompro/web/2-raiox-invertido-pt-800.webp"
+               srcset="assets/apps/dicompro/web/2-raiox-invertido-pt-400.webp 400w,
+                       assets/apps/dicompro/web/2-raiox-invertido-pt-800.webp 800w,
+                       assets/apps/dicompro/web/2-raiox-invertido-pt-1080.webp 1080w"
+               sizes="(min-width:880px) 770px, calc(100vw - 110px)"
+               width="800" height="1422" loading="lazy" decoding="async"
+               alt="" />
+        </span>
+        <figcaption><span class="pt">Filtro de raio-X invertido</span>
+          <span class="en" lang="en">Inverted X-ray filter</span></figcaption>
+        <a class="big-back" href="#capturas">Voltar às capturas · <span lang="en">Back to screenshots</span></a>
+      </figure>
+
+      <figure class="big" id="captura-3">
+        <span class="frame">
+          <img src="assets/apps/dicompro/web/3-metais-pt-800.webp"
+               srcset="assets/apps/dicompro/web/3-metais-pt-400.webp 400w,
+                       assets/apps/dicompro/web/3-metais-pt-800.webp 800w,
+                       assets/apps/dicompro/web/3-metais-pt-1080.webp 1080w"
+               sizes="(min-width:880px) 770px, calc(100vw - 110px)"
+               width="800" height="1422" loading="lazy" decoding="async"
+               alt="" />
+        </span>
+        <figcaption><span class="pt">Regiões de alta densidade em destaque</span>
+          <span class="en" lang="en">High-density regions highlighted</span></figcaption>
+        <a class="big-back" href="#capturas">Voltar às capturas · <span lang="en">Back to screenshots</span></a>
+      </figure>
+
+      <figure class="big" id="captura-4">
+        <span class="frame">
+          <img src="assets/apps/dicompro/web/4-menu-pt-800.webp"
+               srcset="assets/apps/dicompro/web/4-menu-pt-400.webp 400w,
+                       assets/apps/dicompro/web/4-menu-pt-800.webp 800w,
+                       assets/apps/dicompro/web/4-menu-pt-1080.webp 1080w"
+               sizes="(min-width:880px) 770px, calc(100vw - 110px)"
+               width="800" height="1422" loading="lazy" decoding="async"
+               alt="" />
+        </span>
+        <figcaption><span class="pt">Janelamentos e filtros</span>
+          <span class="en" lang="en">Windowing and filters</span></figcaption>
+        <a class="big-back" href="#capturas">Voltar às capturas · <span lang="en">Back to screenshots</span></a>
+      </figure>
+
+      <figure class="big" id="captura-5">
+        <span class="frame">
+          <img src="assets/apps/dicompro/web/5-guia-pt-800.webp"
+               srcset="assets/apps/dicompro/web/5-guia-pt-400.webp 400w,
+                       assets/apps/dicompro/web/5-guia-pt-800.webp 800w,
+                       assets/apps/dicompro/web/5-guia-pt-1080.webp 1080w"
+               sizes="(min-width:880px) 770px, calc(100vw - 110px)"
+               width="800" height="1422" loading="lazy" decoding="async"
+               alt="" />
+        </span>
+        <figcaption><span class="pt">Guia rápido ilustrado</span>
+          <span class="en" lang="en">Illustrated quick guide</span></figcaption>
+        <a class="big-back" href="#capturas">Voltar às capturas · <span lang="en">Back to screenshots</span></a>
+      </figure>
+
+  </section>
+
+  <div class="badges" role="group" aria-label="Disponibilidade nas lojas">
+    <span class="badge" aria-disabled="true">
+      <span class="store">App Store</span>
+      <span class="state">Em breve · Coming soon</span>
+    </span>
+    <span class="badge" aria-disabled="true">
+      <span class="store">Google Play</span>
+      <span class="state">Em breve · Coming soon</span>
+    </span>
   </div>
 
   <div class="card">
     <h2>Privacidade · Privacy</h2>
-    <p><strong>Nenhum dado sai do aparelho.</strong> Sem conta, sem nuvem do
-    desenvolvedor, sem anúncios, sem rastreadores.</p>
-    <p class="en">No data ever leaves the device. No account, no developer cloud,
-    no ads, no trackers.</p>
+    <p><strong>O app não envia dados para servidores da Oak Appware.</strong> Sem conta,
+    sem nuvem do desenvolvedor, sem anúncios, sem rastreadores.</p>
+    <p class="en" lang="en">The app does not send data to Oak Appware servers. No account,
+    no developer cloud, no ads, no trackers.</p>
   </div>
 
   <div class="links">
+    <a href="suporte.html#dicompro">Suporte · Support</a>
     <a href="privacidade.html">Política de Privacidade · Privacy Policy</a>
     <a href="termos.html">Termos de Uso · Terms of Use</a>
   </div>
 
-  <footer>
-    Suporte · Support: <a href="mailto:contato@oakappware.com">contato@oakappware.com</a><br/>
-    Um aplicativo <a href="index.html">Oak Appware</a><br/>
-    OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA — CNPJ 68.923.016/0001-00
-  </footer>
 </main>
+
+<footer>
+  <div class="wrap">
+    <a class="foot-brand" href="/" aria-label="Oak Appware — início">
+      <img src="assets/logo.svg" width="131" height="26" alt="Oak Appware" />
+    </a>
+    OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA — <span style="white-space:nowrap">CNPJ 68.923.016/0001-00</span><br/>
+    SGAS 915, Conjunto B, Bloco D, Sala 103 (Parte CH 528) — Asa Sul, Brasília/DF, CEP 70.390-150<br/>
+    oakappware.com · <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>
+    <nav class="foot-links" aria-label="Rodapé">
+      <a href="/#apps">Apps</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="suporte.html">Suporte</a>
+      <a href="legal.html">Legal</a>
+      <a href="legal.html#privacidade-site">Privacidade do site</a>
+    </nav>
+  </div>
+</footer>
+
+<!--
+  A faixa de capturas só é uma "região rolável" quando de fato rola. Abaixo de
+  640px o CSS a transforma em coluna única (overflow visível), e ali um
+  role="region" + tabindex="0" fixos no HTML criariam uma parada de tabulação
+  inerte, um anel de foco de milhares de pixels e um anúncio de rolagem que não
+  existe. Sem script, a faixa continua rolável no mouse e no toque, e o teclado
+  percorre as capturas pelos próprios links "Ver maior".
+-->
+<script>
+(function () {
+  var s = document.querySelector('.shots');
+  if (!s) return;
+  var rotulo = 'Faixa rolável com cinco capturas de tela do DICOM Pro';
+  function sincroniza() {
+    if (s.scrollWidth > s.clientWidth + 1) {
+      s.setAttribute('role', 'region');
+      s.setAttribute('tabindex', '0');
+      s.setAttribute('aria-label', rotulo);
+    } else {
+      s.removeAttribute('role');
+      s.removeAttribute('tabindex');
+      s.removeAttribute('aria-label');
+    }
+  }
+  sincroniza();
+  window.addEventListener('load', sincroniza);
+  window.addEventListener('resize', sincroniza);
+})();
+</script>
 </body>
 </html>

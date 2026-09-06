@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Suporte — Oak Appware</title>
+<meta name="description" content="Suporte dos aplicativos Oak Appware: como falar com a gente, o que informar e perguntas frequentes do DICOM Pro, em português e inglês." />
+<link rel="canonical" href="https://oakappware.com/suporte.html" />
+<meta name="theme-color" content="#0B0F0C" />
+<meta name="color-scheme" content="dark" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Oak Appware" />
+<meta property="og:title" content="Suporte — Oak Appware" />
+<meta property="og:description" content="Contato e perguntas frequentes dos apps Oak Appware. Contact and FAQ for Oak Appware apps." />
+<meta property="og:url" content="https://oakappware.com/suporte.html" />
+<meta property="og:image" content="https://oakappware.com/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="pt_BR" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Suporte — Oak Appware" />
+<meta name="twitter:description" content="Contato e perguntas frequentes dos apps Oak Appware." />
+<meta name="twitter:image" content="https://oakappware.com/assets/og-image.png" />
+<link rel="icon" href="assets/favicon.ico" sizes="16x16 32x32 48x48" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<link rel="apple-touch-icon" href="assets/apple-touch-icon-180.png" />
+<link rel="manifest" href="assets/site.webmanifest" />
+<style>
+  @font-face { font-family:"Inter"; font-weight:400; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-400-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-400-normal.woff") format("woff"); }
+  @font-face { font-family:"Inter"; font-weight:500; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-500-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-500-normal.woff") format("woff"); }
+  @font-face { font-family:"Inter"; font-weight:600; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-600-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-600-normal.woff") format("woff"); }
+  @font-face { font-family:"Inter"; font-weight:800; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-800-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-800-normal.woff") format("woff"); }
+
+  :root {
+    color-scheme:dark;
+    --bg:#0B0F0C; --surface-2:#161C18; --border:#233029;
+    --text:#F3F6F4; --muted:#A6B3A9; --faint:#7B8B80;
+    --green:#2FD37A; --green-deep:#168A4E; --broto:#8AF5B4;
+    --nocturne-accent:#9184d9; --nocturne-border:#3f424d;
+  }
+  * { box-sizing:border-box; margin:0; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--bg); color:var(--text); font:16px/1.65 "Inter",system-ui,-apple-system,"Segoe UI",sans-serif; -webkit-font-smoothing:antialiased; }
+  a { color:var(--green); text-decoration:none; }
+  a:hover, a:focus-visible { color:var(--broto); text-decoration:underline; text-underline-offset:3px; }
+  a:focus-visible { outline:2px solid var(--green); outline-offset:3px; border-radius:2px; }
+  .wrap { max-width:880px; margin:0 auto; padding:0 24px; }
+  .skip { position:absolute; left:-9999px; }
+  .skip:focus { left:0; right:0; top:0; width:auto; z-index:20; background:var(--bg); border:0; border-radius:0; outline:2px solid var(--green); outline-offset:-2px; padding:14px 24px; color:var(--text); font-weight:600; }
+
+  /* Topo */
+  header { border-bottom:1px solid var(--border); }
+  .bar { display:flex; align-items:center; justify-content:space-between; gap:12px 16px; padding:18px 24px; flex-wrap:wrap; }
+  .brand { display:flex; align-items:center; }
+  .brand:hover { text-decoration:none; }
+  .brand img { height:34px; width:auto; display:block; }
+  header nav { display:flex; gap:22px; font-size:14.5px; font-weight:500; }
+  header nav a { color:var(--muted); white-space:nowrap; }
+  header nav a:hover { color:var(--text); text-decoration:none; }
+  header nav a[aria-current="page"] { color:var(--text); border-bottom:2px solid var(--green); padding-bottom:2px; }
+
+  /* Cabeçalho da página */
+  .pagehead { padding:58px 24px 12px; position:relative; overflow:hidden; }
+  .pagehead::before { content:""; position:absolute; inset:0; pointer-events:none;
+    background:radial-gradient(560px 300px at 20% 24%, rgba(47,211,122,.07), transparent 70%); }
+  .pagehead > * { position:relative; }
+  h1 { font-size:clamp(29px,4.6vw,42px); font-weight:800; letter-spacing:.03em; line-height:1.12; text-wrap:balance; }
+  h1 span { font-weight:600; letter-spacing:.06em; color:var(--green); }
+  .lead { color:var(--text); font-size:18px; font-weight:500; margin-top:16px; max-width:34em; text-wrap:balance; }
+  .lead-en { color:var(--faint); font-size:15px; margin-top:6px; font-style:italic; max-width:34em; }
+
+  /* Seções */
+  main section { padding:4px 0 18px; }
+  .label { display:flex; align-items:flex-start; gap:10px; font-size:13px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--green); margin:34px 0 16px; }
+  .label svg { width:13px; height:15px; flex:0 0 auto; margin-top:3px; }
+
+  /* Cartões */
+  .card { background:var(--surface-2); border:1px solid var(--border); border-radius:14px; padding:22px 24px; }
+  .card + .card { margin-top:14px; }
+  .card h3 { font-size:17px; font-weight:600; line-height:1.4; letter-spacing:.01em; }
+  .card h3 .en { font-weight:500; display:inline-block; margin-top:2px; }
+  .card p { max-width:46em; }
+  .card h3 + p { margin-top:8px; }
+  .card p + p { margin-top:10px; }
+  .en { color:var(--faint); font-size:14.5px; }
+  .en strong { color:var(--muted); font-weight:600; }
+  .card strong { color:var(--text); font-weight:600; }
+  .soon { border-style:dashed; }
+  .soon h3, .soon p { color:var(--muted); }
+  .prose { color:var(--muted); font-size:15.5px; max-width:44em; }
+  .prose + .prose { margin-top:10px; }
+  .prose strong { color:var(--text); font-weight:600; }
+  .datacard { line-height:1.8; }
+  .datacard .co { color:var(--text); font-weight:600; }
+  .links { margin-top:16px; display:flex; gap:8px 18px; flex-wrap:wrap; font-size:15px; }
+  .doclist { list-style:none; padding:0; }
+  .doclist li { position:relative; padding-left:20px; margin:10px 0; }
+  .doclist li::before { content:""; position:absolute; left:0; top:.6em; width:9px; height:10px; background:var(--green); clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%); }
+  .doclist .when { color:var(--faint); font-size:13.5px; }
+
+  /* Rodapé */
+  footer { border-top:1px solid var(--border); margin-top:48px; padding:28px 0 44px; color:var(--faint); font-size:13px; line-height:1.85; }
+  .foot-brand { display:block; margin-bottom:14px; }
+  .foot-brand img { height:26px; width:auto; display:block; }
+  footer a { color:var(--muted); }
+  .foot-links { margin-top:10px; display:flex; gap:8px 18px; flex-wrap:wrap; }
+
+  @media (max-width:640px) {
+    .pagehead { padding:44px 24px 8px; }
+    header nav { gap:14px; font-size:14px; }
+    .card { padding:20px 20px; }
+  }
+  /* Impressão / salvar em PDF: o corpo é claro sobre escuro; sem isto o Chrome
+     (que imprime sem "gráficos de segundo plano") devolve texto branco no papel. */
+  @media print {
+    body { background:#fff; color:#111; }
+    a { color:#111; text-decoration:underline; }
+    h1, h2, h3, .label, h1 span, .datacard .co, footer a { color:#111; }
+    .pagehead::before { display:none; }
+    .pagehead { padding:0 0 8px; }
+    .card { border-color:#ccc; background:#fff; break-inside:avoid; page-break-inside:avoid; }
+    .en, .lead, .lead-en, .prose, .soon h3, .soon p, .doclist .when, footer { color:#333; }
+    .en strong, .prose strong, .card strong { color:#111; }
+    .doclist li::before { background:#111; }
+    .label svg { display:none; }
+    header, .foot-links, .skip, .foot-brand { display:none; }
+    footer { border-top:1px solid #ccc; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#conteudo">Pular para o conteúdo · <span lang="en">Skip to content</span></a>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="/" aria-label="Oak Appware — início">
+      <img src="assets/logo.svg" width="171" height="34" alt="Oak Appware" />
+    </a>
+    <nav aria-label="Principal">
+      <a href="/#apps">Apps</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="suporte.html" aria-current="page">Suporte</a>
+      <a href="legal.html">Legal</a>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo">
+  <div class="wrap pagehead">
+    <h1>Suporte · <span>Support</span></h1>
+    <p class="lead">Precisa de ajuda com um app da Oak Appware? Escreva para
+    <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>. Atendemos
+    em português ou inglês e respondemos todas as mensagens.</p>
+    <p class="lead-en" lang="en">Need help with an Oak Appware app? Write to
+    <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>. We answer in
+    Portuguese or English, and we reply to every message.</p>
+  </div>
+
+  <div class="wrap">
+    <section id="contato">
+      <h2 class="label">
+        <svg viewBox="0 0 16 18" aria-hidden="true"><path fill="#2FD37A" d="M8 0l7.8 4.5v9L8 18 .2 13.5v-9z"/></svg>
+        O que informar · What to include
+      </h2>
+      <div class="card">
+        <p>Ajuda muito dizer: o <strong>app e a versão</strong>, o <strong>aparelho e o
+        sistema</strong> (ex.: iPhone 13, iOS 18) e o que aconteceu.
+        <strong>Nunca envie exames, imagens médicas ou dados de pacientes por e-mail —
+        não precisamos deles para ajudar você.</strong></p>
+        <p class="en" lang="en">It helps a lot to tell us: the app and version, the device and OS
+        (e.g. iPhone 13, iOS 18) and what happened. <strong>Never send exams, medical images or
+        patient data by email — we do not need them to help you.</strong></p>
+      </div>
+    </section>
+
+    <section id="dicompro">
+      <h2 class="label">
+        <svg viewBox="0 0 16 18" aria-hidden="true"><path fill="#2FD37A" d="M8 0l7.8 4.5v9L8 18 .2 13.5v-9z"/></svg>
+        DICOM Pro — Perguntas frequentes · FAQ
+      </h2>
+      <div class="card">
+        <h3>O DICOM Pro serve para dar diagnóstico?<br/><span class="en" lang="en">Can DICOM Pro be used for diagnosis?</span></h3>
+        <p>Não. Ele é um app de <strong>ensino, estudo e referência</strong> e não se destina a diagnóstico, laudo ou decisão clínica. Avaliação com finalidade clínica deve ser feita por profissional habilitado, em equipamento e software adequados a esse fim.</p>
+        <p class="en" lang="en">No. It is a <strong>teaching, study and reference</strong> app and is not intended for diagnosis, reporting or clinical decision-making. Evaluation for clinical purposes must be performed by a licensed professional using equipment and software fit for that purpose.</p>
+      </div>
+      <div class="card">
+        <h3>Como abro um exame e que arquivos o app aceita?<br/><span class="en" lang="en">How do I open an exam, and what files does it accept?</span></h3>
+        <p>Abra o app e escolha o exame pelo seletor de arquivos do sistema: o app lê exames no padrão DICOM guardados no aparelho ou vindos da sua nuvem pessoal, como iCloud ou Google Drive, mediante a sua ação. O app acessa somente os arquivos e pastas que você escolhe.</p>
+        <p class="en" lang="en">Open the app and pick the exam through the system file picker: it reads DICOM exams stored on the device or coming from your personal cloud, such as iCloud or Google Drive, by your own action. The app only accesses the files and folders you choose.</p>
+      </div>
+      <div class="card">
+        <h3>Meus exames vão para algum servidor?<br/><span class="en" lang="en">Do my exams go to a server?</span></h3>
+        <p>Não. O app não envia dados para servidores da Oak Appware: não há servidor do desenvolvedor, não há conta de usuário, não há anúncios nem rastreadores. O processamento acontece no próprio aparelho.</p>
+        <p class="en" lang="en">No. The app does not send data to Oak Appware servers: no developer server, no user account, no ads, no trackers. Processing happens on your device.</p>
+      </div>
+      <div class="card">
+        <h3>As medições são exatas?<br/><span class="en" lang="en">Are the measurements accurate?</span></h3>
+        <p>As medições em milímetros vêm dos metadados de calibração do próprio exame, produzidos pelo equipamento de origem. A exatidão depende dessa calibração e da resolução com que o exame foi aberto no aparelho — elas servem para estudo, não para laudo.</p>
+        <p class="en" lang="en">Measurements in millimeters come from the calibration metadata in the exam itself, produced by the source equipment. Accuracy depends on that calibration and on the resolution at which the exam was opened on the device — they are for study, not for reporting.</p>
+      </div>
+      <div class="card">
+        <h3>Em que idiomas o app está disponível?<br/><span class="en" lang="en">Which languages does the app support?</span></h3>
+        <p>Português e inglês. O app acompanha o idioma do aparelho e o idioma escolhido fica guardado como preferência local, no próprio aparelho.</p>
+        <p class="en" lang="en">Portuguese and English. The app follows the device language, and the chosen language is kept as a local preference on the device itself.</p>
+      </div>
+      <div class="card">
+        <h3>Quanto custa? Como assino e como cancelo?<br/><span class="en" lang="en">How much does it cost? How do I subscribe and cancel?</span></h3>
+        <p>O app pode oferecer uma modalidade gratuita com limites de uso e uma assinatura paga que remove esses limites. Preço, período e renovação automática são informados na App Store ou no Google Play antes da compra, conforme as regras da loja. A assinatura é contratada e cancelada na própria loja, nas configurações de assinatura da sua conta — o app não recebe nem armazena dados de pagamento.</p>
+        <p class="en" lang="en">The app may offer a free tier with usage limits and a paid subscription that removes those limits. Price, period and automatic renewal are shown in the App Store or Google Play before purchase, according to the store’s rules. The subscription is purchased and cancelled in the store itself, in your account’s subscription settings — the app does not receive or store payment data.</p>
+      </div>
+      <div class="card">
+        <h3>Como apago meus exames salvos?<br/><span class="en" lang="en">How do I delete my saved exams?</span></h3>
+        <p>Em “Exames salvos”, remova os itens; ou limpe os dados do app, ou desinstale-o. Como tudo fica no aparelho, a exclusão é imediata e não depende de nós.</p>
+        <p class="en" lang="en">In “Saved exams”, remove the items; or clear the app’s data, or uninstall it. Since everything stays on the device, deletion is immediate and does not depend on us.</p>
+      </div>
+      <div class="links">
+        <a href="dicompro.html">Sobre o DICOM Pro · About DICOM Pro</a>
+        <a href="privacidade.html">Política de Privacidade · Privacy Policy</a>
+        <a href="termos.html">Termos de Uso · Terms of Use</a>
+      </div>
+    </section>
+
+    <section id="outros-apps">
+      <h2 class="label">
+        <svg viewBox="0 0 16 18" aria-hidden="true"><path fill="#2FD37A" d="M8 0l7.8 4.5v9L8 18 .2 13.5v-9z"/></svg>
+        Outros aplicativos · Other apps
+      </h2>
+      <div class="card soon">
+        <h3>Em breve · Coming soon</h3>
+        <p>Cada novo aplicativo da Oak Appware ganha aqui a sua própria seção de
+        perguntas frequentes, com endereço fixo no formato
+        <strong>oakappware.com/suporte.html#nome-do-app</strong>. Até lá, o canal de
+        suporte é o mesmo:
+        <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>.</p>
+        <p class="en" lang="en">Every new Oak Appware app gets its own FAQ section here, with a
+        stable address in the form <strong>oakappware.com/suporte.html#app-name</strong>. Until
+        then, the support channel is the same: contato@oakappware.com.</p>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="foot-brand" href="/" aria-label="Oak Appware — início">
+      <img src="assets/logo.svg" width="131" height="26" alt="Oak Appware" />
+    </a>
+    OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA — <span style="white-space:nowrap">CNPJ 68.923.016/0001-00</span><br/>
+    SGAS 915, Conjunto B, Bloco D, Sala 103 (Parte CH 528) — Asa Sul, Brasília/DF, CEP 70.390-150<br/>
+    oakappware.com · <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>
+    <nav class="foot-links" aria-label="Rodapé">
+      <a href="/#apps">Apps</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="suporte.html">Suporte</a>
+      <a href="legal.html">Legal</a>
+      <a href="legal.html#privacidade-site">Privacidade do site</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>

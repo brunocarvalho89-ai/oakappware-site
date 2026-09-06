@@ -4,27 +4,124 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Termos de Uso · Terms of Use — DICOM Pro</title>
+<meta name="description" content="Termos de uso do DICOM Pro, visualizador de exames DICOM destinado a ensino, estudo e referência." />
+<link rel="canonical" href="https://oakappware.com/termos.html" />
+<meta name="theme-color" content="#0B0F0C" />
+<meta name="color-scheme" content="dark" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Oak Appware" />
+<meta property="og:title" content="Termos de Uso · Terms of Use — DICOM Pro" />
+<meta property="og:description" content="Termos de uso do DICOM Pro — visualizador DICOM para ensino, estudo e referência." />
+<meta property="og:url" content="https://oakappware.com/termos.html" />
+<meta property="og:image" content="https://oakappware.com/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Símbolo da Oak Appware sobre fundo escuro" />
+<meta property="og:locale" content="pt_BR" />
+<meta property="og:locale:alternate" content="en_US" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Termos de Uso · Terms of Use — DICOM Pro" />
+<meta name="twitter:description" content="Termos de uso do DICOM Pro — visualizador DICOM para ensino, estudo e referência." />
+<meta name="twitter:image" content="https://oakappware.com/assets/og-image.png" />
+<link rel="icon" href="assets/favicon.ico" sizes="16x16 32x32 48x48" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<link rel="apple-touch-icon" href="assets/apple-touch-icon-180.png" />
+<link rel="manifest" href="assets/site.webmanifest" />
 <style>
-  :root { --bg:#161826; --surface:#232532; --text:#e9e9ed; --muted:#9397ab; --accent:#9184d9; --border:#3f424d; }
+  @font-face { font-family:"Inter"; font-weight:400; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-400-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-400-normal.woff") format("woff"); }
+  @font-face { font-family:"Inter"; font-weight:500; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-500-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-500-normal.woff") format("woff"); }
+  @font-face { font-family:"Inter"; font-weight:600; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-600-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-600-normal.woff") format("woff"); }
+  @font-face { font-family:"Inter"; font-weight:800; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-800-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-800-normal.woff") format("woff"); }
+
+  :root {
+    color-scheme:dark;
+    --bg:#0B0F0C; --border:#233029;
+    --text:#F3F6F4; --muted:#A6B3A9; --faint:#7B8B80;
+    --green:#2FD37A; --green-deep:#168A4E; --surface-2:#161C18;
+  }
   * { box-sizing:border-box; margin:0; }
-  body { background:var(--bg); color:var(--text); font:16px/1.7 "Inter",system-ui,-apple-system,sans-serif; }
-  main { max-width:680px; margin:0 auto; padding:48px 24px 72px; }
-  a { color:#d2cefd; }
-  .back { font-size:14px; text-decoration:none; }
-  h1 { font-size:24px; margin:18px 0 4px; }
-  .version { color:var(--muted); font-size:14px; margin-bottom:26px; }
-  h2 { font-size:16px; color:var(--accent); margin:26px 0 6px; }
+  body { background:var(--bg); color:var(--text); font:16px/1.7 "Inter",system-ui,-apple-system,"Segoe UI",sans-serif; -webkit-font-smoothing:antialiased; }
+  /* Coluna de leitura de 680px alinhada à esquerda da faixa de 880px do
+     cabeçalho e do rodapé — as bordas esquerdas coincidem em todas as páginas. */
+  main { max-width:880px; margin:0 auto; padding:30px 24px 56px; }
+  main > * { max-width:680px; }
+  .wrap { max-width:880px; margin:0 auto; padding:0 24px; }
+
+  /* Cabeçalho e rodapé padrão do site — mesma marcação das outras páginas.
+     Só marcação e estilo: o texto legal abaixo não é tocado. */
+  header { border-bottom:1px solid var(--border); }
+  .bar { display:flex; align-items:center; justify-content:space-between; gap:12px 16px; padding:18px 24px; flex-wrap:wrap; }
+  .brand { display:flex; align-items:center; }
+  .brand:hover { text-decoration:none; }
+  .brand img { height:34px; width:auto; display:block; }
+  header nav { display:flex; gap:22px; font-size:14.5px; font-weight:500; }
+  header nav a { color:var(--muted); white-space:nowrap; }
+  header nav a:hover { color:var(--text); text-decoration:none; }
+  footer { border-top:1px solid var(--border); padding:28px 0 44px; color:var(--faint); font-size:13px; line-height:1.85; }
+  .foot-brand { display:block; margin-bottom:14px; }
+  .foot-brand img { height:26px; width:auto; display:block; }
+  footer a { color:var(--muted); }
+  .foot-links { margin-top:10px; display:flex; gap:8px 18px; flex-wrap:wrap; }
+  @media (max-width:640px) { header nav { gap:14px; font-size:14px; } }
+
+  a { color:var(--green); text-decoration:none; }
+  a:hover, a:focus-visible { color:var(--green); text-decoration:underline; text-underline-offset:3px; }
+  a:focus-visible, .skip:focus { outline:2px solid var(--green); outline-offset:3px; border-radius:2px; }
+  .skip { position:absolute; left:-9999px; }
+  .skip:focus { left:0; right:0; top:0; width:auto; z-index:20; background:var(--bg); border:0; border-radius:0; outline:2px solid var(--green); outline-offset:-2px; padding:14px 24px; color:var(--text); font-weight:600; }
+  .crumbs { font-size:14px; color:var(--faint); display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .crumbs a { color:var(--muted); font-weight:500; }
+  .crumbs svg { width:14px; height:16px; }
+  h1, .doc-title { font-size:26px; font-weight:600; letter-spacing:-.01em; color:var(--text); text-transform:none; margin:22px 0 4px; }
+  .version { color:var(--muted); font-size:14px; margin-bottom:8px; }
+  .version + .version { margin-bottom:26px; }
+  h2, h3 { font-size:13px; letter-spacing:.12em; text-transform:uppercase; font-weight:600; color:var(--green); margin:28px 0 6px; }
   p { margin:8px 0; }
   .en-block { border-top:1px solid var(--border); margin-top:48px; padding-top:32px; }
-  .lang-note { color:var(--muted); font-size:13px; letter-spacing:.1em; text-transform:uppercase; }
+  .lang-note { color:var(--faint); font-size:13px; letter-spacing:.14em; text-transform:uppercase; font-weight:600; }
+  .doc-foot { border-top:1px solid var(--border); margin-top:48px; padding-top:24px; font-size:14px; color:var(--muted); display:flex; flex-wrap:wrap; gap:6px 16px; }
+  .doc-foot a { font-weight:500; }
+
+  @media print {
+    body { background:#fff; color:#111; font-size:11pt; }
+    main, main > * { max-width:none; padding:0; }
+    a { color:#111; text-decoration:underline; }
+    h1, .doc-title, h2, h3, footer a { color:#111; }
+    .version, .lang-note, .doc-foot { color:#333; }
+    .crumbs, .skip, header, .foot-links, .foot-brand { display:none; }
+    footer { border-top:1px solid #ccc; color:#333; padding:16px 0 0; }
+    .wrap { max-width:none; padding:0; }
+    .en-block { border-top:1px solid #ccc; break-before:page; page-break-before:always; }
+    .doc-foot { border-top:1px solid #ccc; }
+    h1, .doc-title, h2, h3 { break-after:avoid; page-break-after:avoid; }
+    p { orphans:3; widows:3; }
+  }
 </style>
 </head>
 <body>
-<main>
-  <a class="back" href="dicompro.html">← DICOM Pro</a> <span style="color:#75798c">· <a class="back" href="index.html">Oak Appware</a></span>
+<a class="skip" href="#conteudo">Pular para o conteúdo · <span lang="en">Skip to content</span></a>
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="/" aria-label="Oak Appware — início">
+      <img src="assets/logo.svg" width="171" height="34" alt="Oak Appware" />
+    </a>
+    <nav aria-label="Principal">
+      <a href="/#apps">Apps</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="suporte.html">Suporte</a>
+      <a href="legal.html" aria-current="page">Legal</a>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo">
+  <nav class="crumbs" aria-label="Navegação">
+    <svg viewBox="0 0 16 18" aria-hidden="true"><path fill="#2FD37A" d="M8 0l7.8 4.5v9L8 18 .2 13.5v-9z"/></svg>
+    <a href="index.html">Oak Appware</a> · <a href="dicompro.html">DICOM Pro</a>
+  </nav>
   <h1>Termos de Uso</h1>
-  <p class="version">Versão de 5 de setembro de 2026 · <a href="#english">English below</a></p>
-  <p class="version">Desenvolvido por <strong>OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA</strong> (CNPJ 68.923.016/0001-00) — Brasília/DF, Brasil. Contato: contato@oakappware.com</p>
+  <p class="version">Versão de 5 de setembro de 2026 · <a href="#english" lang="en">English below</a></p>
+  <p class="version">Desenvolvido por <strong>OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA</strong> (<span style="white-space:nowrap">CNPJ 68.923.016/0001-00</span>) — Brasília/DF, Brasil. Contato: contato@oakappware.com</p>
 
   <h2>1. O que é o DICOM Pro</h2>
   <p>O DICOM Pro é um visualizador de exames de imagem no padrão DICOM destinado
@@ -78,20 +175,20 @@
   <p>Aplica-se a legislação brasileira. Fica eleito o foro do domicílio do
   usuário para dirimir controvérsias, quando o usuário for consumidor.</p>
 
-  <div class="en-block" id="english">
+  <div class="en-block" id="english" lang="en">
     <p class="lang-note">English</p>
-    <h1>Terms of Use</h1>
+    <h2 class="doc-title">Terms of Use</h2>
     <p class="version">Version of September 5, 2026</p>
-    <p class="version">Developed by <strong>OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA</strong> (Brazilian company registry 68.923.016/0001-00) — Brasília/DF, Brazil. Contact: contato@oakappware.com</p>
+    <p class="version">Developed by <strong>OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA</strong> (Brazilian company registry <span style="white-space:nowrap">68.923.016/0001-00</span>) — Brasília/DF, Brazil. Contact: contato@oakappware.com</p>
 
-    <h2>1. What DICOM Pro is</h2>
+    <h3>1. What DICOM Pro is</h3>
     <p>DICOM Pro is a viewer for DICOM imaging exams intended for
     <strong>teaching, study and reference purposes</strong>. It opens exams stored
     on the device itself, provides multiplanar reconstruction (axial, sagittal
     and coronal), windowing, color filters, linear measurements and highlighting
     of high-density regions.</p>
 
-    <h2>2. What DICOM Pro is not</h2>
+    <h3>2. What DICOM Pro is not</h3>
     <p>DICOM Pro is <strong>not intended for primary diagnosis, reporting or
     clinical decision-making</strong>. Displayed images undergo processing
     (resampling, windowing, filters and, on low-memory devices, resolution
@@ -99,40 +196,64 @@
     purposes must be performed by a licensed professional using equipment and
     software fit for that purpose.</p>
 
-    <h2>3. Measurements</h2>
+    <h3>3. Measurements</h3>
     <p>Measurements in millimeters are computed from the calibration metadata
     present in the exam itself (produced by the source equipment). Accuracy
     depends on that calibration and on the resolution at which the exam was
     opened on this device.</p>
 
-    <h2>4. User responsibilities</h2>
+    <h3>4. User responsibilities</h3>
     <p>Exams opened or saved in the app remain on the device, under the user's
     control. The user is responsible for: (a) having authorization to access and
     store the exams and the personal data they contain, in compliance with
     applicable law; (b) protecting the device with a screen lock; (c) removing
     saved exams when no longer needed.</p>
 
-    <h2>5. Limitation of liability</h2>
+    <h3>5. Limitation of liability</h3>
     <p>The app is provided "as is", without warranties of fitness for a
     particular purpose. To the maximum extent permitted by law, the developer is
     not liable for damages arising from use of the app in breach of these terms,
     in particular for diagnostic or clinical use.</p>
 
-    <h2>6. Free tier and subscription</h2>
+    <h3>6. Free tier and subscription</h3>
     <p>The app may offer a free tier with usage limits and a paid subscription
     that removes those limits. Price, period, automatic renewal and cancellation
     are presented before purchase and processed exclusively by the app store
     (App Store or Google Play) under the store's rules. Cancellation is done in
     the store's own subscription settings.</p>
 
-    <h2>7. Changes</h2>
+    <h3>7. Changes</h3>
     <p>These terms may be updated. Relevant changes will be presented in the app
     for renewed acceptance. The current version is always available in the
     menu.</p>
 
-    <h2>8. Governing law</h2>
+    <h3>8. Governing law</h3>
     <p>Brazilian law applies.</p>
   </div>
+
+  <nav class="doc-foot" aria-label="Documentos e contato">
+    <a href="privacidade.html">Política de Privacidade · <span lang="en">Privacy Policy</span></a>
+    <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>
+    <a href="index.html">Oak Appware</a>
+  </nav>
 </main>
+
+<footer>
+  <div class="wrap">
+    <a class="foot-brand" href="/" aria-label="Oak Appware — início">
+      <img src="assets/logo.svg" width="131" height="26" alt="Oak Appware" />
+    </a>
+    OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA — <span style="white-space:nowrap">CNPJ 68.923.016/0001-00</span><br/>
+    SGAS 915, Conjunto B, Bloco D, Sala 103 (Parte CH 528) — Asa Sul, Brasília/DF, CEP 70.390-150<br/>
+    oakappware.com · <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>
+    <nav class="foot-links" aria-label="Rodapé">
+      <a href="/#apps">Apps</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="suporte.html">Suporte</a>
+      <a href="legal.html">Legal</a>
+    </nav>
+  </div>
+</footer>
+
 </body>
 </html>

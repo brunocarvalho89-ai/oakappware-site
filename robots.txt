@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# As capturas do DICOM Pro so fazem sentido dentro da pagina, junto do cartao
+# Aviso e das legendas que sustentam o uso educacional (RDC 657/2022). Fora do
+# indice de imagens: o arquivo solto nao carrega esse enquadramento.
+User-agent: Googlebot-Image
+Disallow: /assets/apps/dicompro/web/
+
+Sitemap: https://oakappware.com/sitemap.xml

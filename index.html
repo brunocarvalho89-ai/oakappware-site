@@ -4,72 +4,278 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Oak Appware — Aplicativos para saúde e educação</title>
-<meta name="description" content="Oak Appware desenvolve aplicativos para saúde e educação. Criadora do DICOM Pro, visualizador de exames DICOM para estudo." />
+<meta name="description" content="Oak Appware desenvolve aplicativos para saúde, educação e o dia a dia. Criadora do DICOM Pro, visualizador de exames DICOM para ensino, estudo e referência." />
+<link rel="canonical" href="https://oakappware.com/" />
+<meta name="theme-color" content="#0B0F0C" />
+<meta name="color-scheme" content="dark" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Oak Appware" />
+<meta property="og:title" content="Oak Appware — Aplicativos para saúde e educação" />
+<meta property="og:description" content="Aplicativos para saúde, educação e o dia a dia. Apps for health, education and everyday life." />
+<meta property="og:url" content="https://oakappware.com/" />
+<meta property="og:image" content="https://oakappware.com/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Símbolo da Oak Appware sobre fundo escuro" />
+<meta property="og:locale" content="pt_BR" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Oak Appware — Aplicativos para saúde e educação" />
+<meta name="twitter:description" content="Aplicativos para saúde, educação e o dia a dia." />
+<meta name="twitter:image" content="https://oakappware.com/assets/og-image.png" />
+<link rel="icon" href="assets/favicon.ico" sizes="16x16 32x32 48x48" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<link rel="apple-touch-icon" href="assets/apple-touch-icon-180.png" />
+<link rel="manifest" href="assets/site.webmanifest" />
 <style>
-  :root { --bg:#161826; --surface:#232532; --text:#e9e9ed; --muted:#9397ab; --accent:#9184d9; --accent-2:#d2cefd; --border:#3f424d; }
+  @font-face { font-family:"Inter"; font-weight:400; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-400-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-400-normal.woff") format("woff"); }
+  @font-face { font-family:"Inter"; font-weight:500; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-500-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-500-normal.woff") format("woff"); }
+  @font-face { font-family:"Inter"; font-weight:600; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-600-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-600-normal.woff") format("woff"); }
+  @font-face { font-family:"Inter"; font-weight:800; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-800-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-800-normal.woff") format("woff"); }
+
+  :root {
+    color-scheme:dark;
+    --bg:#0B0F0C; --surface-2:#161C18; --border:#233029;
+    --text:#F3F6F4; --muted:#A6B3A9; --faint:#7B8B80;
+    --green:#2FD37A; --green-deep:#168A4E; --broto:#8AF5B4;
+    --nocturne-bg:#161826; --nocturne-accent:#9184d9; --nocturne-border:#3f424d;
+  }
   * { box-sizing:border-box; margin:0; }
-  body { background:var(--bg); color:var(--text); font:16px/1.65 "Inter",system-ui,-apple-system,sans-serif; }
-  main { max-width:720px; margin:0 auto; padding:64px 24px 48px; }
-  .brand { display:flex; align-items:center; gap:14px; }
-  .brand svg { width:44px; height:44px; }
-  .wordmark { font-weight:600; letter-spacing:.10em; font-size:26px; }
-  .wordmark span { color:var(--accent); }
-  .tagline { color:var(--muted); margin-top:14px; max-width:34em; }
-  h2 { font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin:44px 0 14px; }
-  .product { display:flex; gap:20px; align-items:flex-start; background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:22px 24px; text-decoration:none; color:inherit; }
-  .product:hover { border-color:var(--accent); }
-  .ptile { flex:0 0 64px; height:64px; border-radius:15px; background:linear-gradient(160deg,#2f2a4d,#1a1c2e 58%,#121422); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; }
-  .ptile svg { width:38px; height:38px; }
-  .pname { font-weight:600; font-size:18px; }
-  .pname span { color:var(--accent); }
-  .pdesc { color:var(--muted); font-size:14.5px; margin-top:4px; }
-  .plinks { margin-top:10px; font-size:14px; display:flex; gap:14px; flex-wrap:wrap; }
-  .plinks a { color:var(--accent-2); }
-  .contact { color:var(--muted); font-size:15px; }
-  .contact a { color:var(--accent-2); }
-  footer { border-top:1px solid var(--border); margin-top:56px; padding-top:20px; color:var(--muted); font-size:12.5px; line-height:1.8; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--bg); color:var(--text); font:16px/1.65 "Inter",system-ui,-apple-system,"Segoe UI",sans-serif; -webkit-font-smoothing:antialiased; }
+  a { color:var(--green); text-decoration:none; }
+  a:hover, a:focus-visible { color:var(--broto); text-decoration:underline; text-underline-offset:3px; }
+  a:focus-visible { outline:2px solid var(--green); outline-offset:3px; border-radius:2px; }
+  img { max-width:100%; }
+  .wrap { max-width:880px; margin:0 auto; padding:0 24px; }
+  .skip { position:absolute; left:-9999px; }
+  .skip:focus { left:0; right:0; top:0; width:auto; z-index:20; background:var(--bg); border:0; border-radius:0; outline:2px solid var(--green); outline-offset:-2px; padding:14px 24px; color:var(--text); font-weight:600; }
+
+  /* Topo — lockup aprovado (assets/logo.svg = brand/final/lockup-horizontal.svg) */
+  header { border-bottom:1px solid var(--border); }
+  .bar { display:flex; align-items:center; justify-content:space-between; gap:12px 16px; padding:18px 24px; flex-wrap:wrap; }
+  .brand { display:flex; align-items:center; }
+  .brand:hover { text-decoration:none; }
+  .brand img { height:34px; width:auto; display:block; }
+  header nav { display:flex; gap:22px; font-size:14.5px; font-weight:500; }
+  header nav a { color:var(--muted); white-space:nowrap; }
+  header nav a:hover { color:var(--text); text-decoration:none; }
+  header nav a[aria-current="page"] { color:var(--text); border-bottom:2px solid var(--green); padding-bottom:2px; }
+
+  /* Hero */
+  .hero { padding:76px 24px 68px; position:relative; overflow:hidden; }
+  .hero::before { content:""; position:absolute; inset:0; pointer-events:none;
+    background:radial-gradient(560px 320px at 24% 30%, rgba(47,211,122,.07), transparent 70%); }
+  .hero-inner { position:relative; display:flex; align-items:center; gap:40px; flex-wrap:wrap; }
+  .hero-symbol { width:148px; flex:0 0 auto; }
+  .hero-symbol svg { width:100%; height:auto; display:block; }
+  .hero h1 { font-size:clamp(34px,6vw,52px); font-weight:800; letter-spacing:.05em; line-height:1.08; text-wrap:balance; }
+  .hero h1 span { font-weight:600; letter-spacing:.08em; color:var(--green); }
+  .tagline { color:var(--text); font-size:19px; font-weight:500; margin-top:16px; max-width:30em; text-wrap:balance; }
+  .tagline-en { color:var(--muted); font-size:15px; margin-top:6px; font-style:italic; }
+
+  /* Seções */
+  section { padding:8px 0 40px; }
+  .label { display:flex; align-items:center; gap:10px; font-size:13px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--green); margin:36px 0 18px; }
+  .label svg { width:13px; height:15px; flex:0 0 auto; }
+
+  /* Grade de apps — acrescentar um app = colar um <article class="product"> */
+  .grid-apps { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:18px; align-items:start; }
+  .product { display:grid; grid-template-columns:auto 1fr; gap:10px 22px; background:var(--surface-2); border:1px solid var(--border); border-radius:16px; padding:24px 26px; height:100%; }
+  .ptile { flex:0 0 68px; width:68px; height:68px; border-radius:16px; background:linear-gradient(160deg,#2f2a4d,#1a1c2e 58%,#121422); border:1px solid var(--nocturne-border); display:flex; align-items:center; justify-content:center; }
+  .ptile svg { width:40px; height:40px; }
+  .pbody { min-width:0; }
+  .pname { font-weight:600; font-size:19px; letter-spacing:.02em; }
+  .pname span { color:var(--nocturne-accent); margin-left:.04em; }
+  .pdesc { color:var(--muted); font-size:15px; margin-top:6px; max-width:44em; }
+  .pdesc em { color:var(--faint); font-size:13.5px; }
+  /* Enquadramento educacional — slot fixo do card de app; todo app novo herda este padrão. */
+  .pnote { margin-top:12px; padding-left:12px; border-left:2px solid var(--green-deep);
+           color:var(--muted); font-size:13.5px; line-height:1.6; max-width:44em; }
+  .pnote em { color:var(--muted); }
+  .plinks { margin-top:14px; font-size:14px; display:flex; gap:8px 18px; flex-wrap:wrap; }
+  .assina { color:var(--faint); font-size:13.5px; margin-top:18px; }
+
+  .about { color:var(--muted); font-size:15.5px; max-width:44em; margin-bottom:10px; }
+  .about strong { color:var(--text); font-weight:600; }
+  .about-en { color:var(--faint); font-size:14px; font-style:italic; max-width:44em; }
+  .about-link { margin-top:14px; font-size:14.5px; }
+
+  .contact { color:var(--muted); font-size:15.5px; max-width:38em; }
+
+  /* Rodapé */
+  footer { border-top:1px solid var(--border); margin-top:48px; padding:28px 0 44px; color:var(--faint); font-size:13px; line-height:1.85; }
+  .foot-brand { display:block; margin-bottom:14px; }
+  .foot-brand img { height:26px; width:auto; display:block; }
+  footer a { color:var(--muted); }
+  .foot-links { margin-top:10px; display:flex; gap:8px 18px; flex-wrap:wrap; }
+
+  @media (max-width:640px) {
+    .hero { padding:56px 24px 48px; }
+    .hero-inner { gap:28px; }
+    .hero-symbol { width:110px; }
+    .product { grid-template-columns:1fr; }
+    header nav { gap:14px; font-size:14px; }
+  }
+  @media (prefers-reduced-motion:no-preference) {
+    .product { transition:border-color .18s ease; }
+  }
+  .product:hover { border-color:var(--green-deep); }
+
+  /* Impressão / salvar em PDF: o corpo é claro sobre escuro; sem isto o Chrome
+     (que imprime sem "gráficos de segundo plano") devolve texto branco no papel. */
+  @media print {
+    body { background:#fff; color:#111; }
+    a { color:#111; text-decoration:underline; }
+    h1, h2, h3, .label, .pname { color:#111; }
+    .hero h1 span, .pname span, .about strong, .card strong, footer a { color:#111; }
+    .hero::before { display:none; }
+    .product { border-color:#ccc; background:#fff; break-inside:avoid; page-break-inside:avoid; }
+    .ptile { background:#fff; border-color:#ccc; }
+    .tagline, .tagline-en, .pdesc, .pdesc em, .pnote, .pnote em,
+    .about, .about-en, .contact, .assina, footer { color:#333; }
+    .pnote { border-left-color:#999; }
+    header, .foot-links, .skip, .foot-brand { display:none; }
+    .hero { padding:0 0 24px; }
+    footer { border-top:1px solid #ccc; }
+  }
 </style>
 </head>
 <body>
-<main>
-  <div class="brand">
-    <!-- folha de carvalho estilizada -->
-    <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
-      <path d="M24 4 C28 10 36 10 38 16 C40 22 34 24 36 29 C38 34 32 36 30 40 C28 44 20 44 18 40 C16 36 10 34 12 29 C14 24 8 22 10 16 C12 10 20 10 24 4 Z"
-        fill="#2b2741" stroke="#9184d9" stroke-width="2" stroke-linejoin="round"/>
-      <path d="M24 12 L24 38 M24 20 L31 15 M24 26 L16 20 M24 32 L32 27" stroke="#d2cefd" stroke-width="2" stroke-linecap="round"/>
-    </svg>
-    <div class="wordmark">OAK<span>APPWARE</span></div>
-  </div>
-  <p class="tagline">Desenvolvemos aplicativos para saúde e educação — feitos com cuidado,
-  privacidade em primeiro lugar e foco em quem usa.<br/>
-  <em style="color:#75798c; font-size:14px;">We build health &amp; education apps — privacy-first.</em></p>
 
-  <h2>Nossos aplicativos · Our apps</h2>
-  <div class="product">
-    <div class="ptile">
-      <svg viewBox="0 0 100 100" aria-hidden="true"><path fill="#b5abfc" fill-rule="evenodd" d="M50,9 C31.5,9 18,22 18,39 C18,47.5 21.5,53.5 26.5,57.5 C28.5,59 29.5,61 29.5,63.5 L29.5,68 C29.5,72.5 33,76 37.5,76 L39.5,76 L39.5,83 C39.5,86.5 42,89 45.5,89 L54.5,89 C58,89 60.5,86.5 60.5,83 L60.5,76 L62.5,76 C67,76 70.5,72.5 70.5,68 L70.5,63.5 C70.5,61 71.5,59 73.5,57.5 C78.5,53.5 82,47.5 82,39 C82,22 68.5,9 50,9 Z M30,42.5 a7.5,7.5 0 1,0 15,0 a7.5,7.5 0 1,0 -15,0 Z M55,42.5 a7.5,7.5 0 1,0 15,0 a7.5,7.5 0 1,0 -15,0 Z M50,50.5 C47.8,54.5 45.8,57.8 45.8,60.5 C45.8,62.9 47.6,64.5 50,64.5 C52.4,64.5 54.2,62.9 54.2,60.5 C54.2,57.8 52.2,54.5 50,50.5 Z M45.9,77 L47.7,77 L47.7,87.6 L45.9,87.6 Z M52.3,77 L54.1,77 L54.1,87.6 L52.3,87.6 Z"/></svg>
-    </div>
-    <div>
-      <div class="pname">DICOM<span>Pro</span></div>
-      <p class="pdesc">Visualizador de exames DICOM para estudo: reconstrução multiplanar em três
-      planos, medições e filtros — tudo no aparelho, nada na nuvem.<br/>
-      <em>DICOM exam viewer for study — 3-plane MPR, measurements and filters, fully on-device.</em></p>
-      <div class="plinks">
-        <a href="dicompro.html">Conheça · Learn more</a>
-        <a href="privacidade.html">Privacidade · Privacy</a>
-        <a href="termos.html">Termos · Terms</a>
+<a class="skip" href="#conteudo">Pular para o conteúdo · <span lang="en">Skip to content</span></a>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="/" aria-label="Oak Appware — início">
+      <img src="assets/logo.svg" width="171" height="34" alt="Oak Appware" />
+    </a>
+    <nav aria-label="Principal">
+      <a href="/#apps">Apps</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="suporte.html">Suporte</a>
+      <a href="legal.html">Legal</a>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo">
+  <div class="wrap hero">
+    <div class="hero-inner">
+      <div class="hero-symbol">
+        <svg viewBox="0 0 1024 1024" role="img" aria-label="Símbolo da Oak Appware: carvalho de módulos hexagonais">
+          <path fill="#F3F6F4" d="M 426 663.67 C 428 706.37 433 760.46 433 806 C 433 864.56 403 910.92 358 928 L 666 928 C 621 910.92 591 864.56 591 806 C 591 760.46 589 706.37 598 663.67 Z"/>
+          <path fill="#2FD37A" fill-rule="evenodd" d="M296.26 152L381.13 201L381.13 299L296.26 348L211.39 299L211.39 201ZM296.26 209.74L331.13 229.87L331.13 270.13L296.26 290.26L261.39 270.13L261.39 229.87Z"/>
+          <path fill="#2FD37A" d="M512 152L596.87 201L596.87 299L512 348L427.13 299L427.13 201Z"/>
+          <path fill="#8AF5B4" d="M759.74 96.57L844.61 145.57L844.61 243.57L759.74 292.57L674.87 243.57L674.87 145.57Z"/>
+          <path fill="#2FD37A" fill-rule="evenodd" d="M188.39 338.84L273.26 387.84L273.26 485.84L188.39 534.84L103.52 485.84L103.52 387.84ZM188.39 396.57L223.26 416.7L223.26 456.97L188.39 477.1L153.52 456.97L153.52 416.7Z"/>
+          <path fill="#2FD37A" d="M404.13 338.84L489 387.84L489 485.84L404.13 534.84L319.26 485.84L319.26 387.84Z"/>
+          <path fill="#2FD37A" d="M619.87 338.84L704.74 387.84L704.74 485.84L619.87 534.84L535 485.84L535 387.84Z"/>
+          <path fill="#2FD37A" fill-rule="evenodd" d="M835.61 338.84L920.48 387.84L920.48 485.84L835.61 534.84L750.74 485.84L750.74 387.84ZM835.61 396.57L870.48 416.7L870.48 456.97L835.61 477.1L800.74 456.97L800.74 416.7Z"/>
+          <path fill="#2FD37A" d="M296.26 525.67L381.13 574.67L381.13 672.67L296.26 721.67L211.39 672.67L211.39 574.67Z"/>
+          <path fill="#F3F6F4" d="M512 525.67L596.87 574.67L596.87 672.67L512 721.67L427.13 672.67L427.13 574.67Z"/>
+          <path fill="#2FD37A" d="M727.74 525.67L812.61 574.67L812.61 672.67L727.74 721.67L642.87 672.67L642.87 574.67Z"/>
+        </svg>
+      </div>
+      <div>
+        <h1>OAK <span>APPWARE</span></h1>
+        <p class="tagline">Aplicativos para saúde, educação e o dia a dia — feitos com cuidado,
+        privacidade em primeiro lugar e foco em quem usa.</p>
+        <p class="tagline-en" lang="en">Apps for health, education and everyday life — privacy-first.</p>
       </div>
     </div>
   </div>
 
-  <h2>Contato · Contact</h2>
-  <p class="contact">Suporte e dúvidas: <a href="mailto:contato@oakappware.com">contato@oakappware.com</a></p>
+  <div class="wrap">
+    <section id="apps">
+      <h2 class="label">
+        <svg viewBox="0 0 16 18" aria-hidden="true"><path fill="#2FD37A" d="M8 0l7.8 4.5v9L8 18 .2 13.5v-9z"/></svg>
+        Nossos aplicativos · Our apps
+      </h2>
 
-  <footer>
-    OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA — CNPJ 68.923.016/0001-00<br/>
-    SGAS 915, Conj. B, Sala 103 — Asa Sul, Brasília/DF, CEP 70.390-150 · oakappware.com
-  </footer>
+      <div class="grid-apps">
+
+        <article class="product">
+          <div class="ptile">
+            <svg viewBox="0 0 1024 1024" aria-hidden="true">
+              <path fill="#b5abfc" d="M 400 639.5 C 402 689.45 408 752.72 408 806 C 408 864.56 378 910.92 336 928 L 688 928 C 646 910.92 616 864.56 616 806 C 616 752.72 614 689.45 624 639.5 Z"/>
+              <path fill="#b5abfc" d="M362.76 186L484 256L484 396L362.76 466L241.51 396L241.51 256Z"/>
+              <path fill="#d2cefd" d="M688.74 138.37L809.99 208.37L809.99 348.37L688.74 418.37L567.5 348.37L567.5 208.37Z"/>
+              <path fill="#b5abfc" fill-rule="evenodd" d="M213.51 444.5L334.76 514.5L334.76 654.5L213.51 724.5L92.27 654.5L92.27 514.5ZM213.51 532.26L258.76 558.38L258.76 610.62L213.51 636.74L168.27 610.62L168.27 558.38Z"/>
+              <path fill="#b5abfc" d="M512 444.5L633.24 514.5L633.24 654.5L512 724.5L390.76 654.5L390.76 514.5Z"/>
+              <path fill="#b5abfc" d="M810.49 444.5L931.73 514.5L931.73 654.5L810.49 724.5L689.24 654.5L689.24 514.5Z"/>
+            </svg>
+          </div>
+          <div class="pbody">
+            <h3 class="pname">DICOM<span>&nbsp;Pro</span></h3>
+            <p class="pdesc">Visualizador de exames DICOM para estudo: reconstrução multiplanar em três
+            planos, medições e filtros — processamento no próprio aparelho.<br/>
+            <em lang="en">DICOM exam viewer for study — 3-plane MPR, measurements and filters, processed on your device.</em></p>
+            <p class="pnote">Para ensino, estudo e referência — não se destina a diagnóstico, laudo
+            ou decisão clínica.<br/>
+            <em lang="en">For teaching, study and reference — not intended for diagnosis, reporting
+            or clinical decision-making.</em></p>
+            <div class="plinks">
+              <a href="dicompro.html">Conheça · Learn more</a>
+              <a href="suporte.html#dicompro">Suporte · Support</a>
+              <a href="privacidade.html">Privacidade · Privacy</a>
+              <a href="termos.html">Termos · Terms</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <p class="assina">Cada app tem identidade própria e leva a assinatura "um app Oak Appware".<br/>
+      <em lang="en">Every app has its own identity and carries the "an Oak Appware app" signature.</em></p>
+    </section>
+
+    <section id="sobre">
+      <h2 class="label">
+        <svg viewBox="0 0 16 18" aria-hidden="true"><path fill="#2FD37A" d="M8 0l7.8 4.5v9L8 18 .2 13.5v-9z"/></svg>
+        Sobre · About
+      </h2>
+      <p class="about">A Oak Appware é uma desenvolvedora de software brasileira, sediada em
+      Brasília/DF. Publicamos aplicativos próprios para saúde, educação e o dia a dia.</p>
+      <p class="about"><strong>Privacidade por padrão:</strong> sempre que possível, nossos apps
+      processam tudo no próprio aparelho — sem conta, sem nuvem do desenvolvedor, sem anúncios e
+      sem rastreadores.</p>
+      <p class="about"><strong>Finalidade educacional:</strong> nossos aplicativos da área de saúde
+      são ferramentas de ensino, estudo e referência. Não são dispositivos médicos e não se destinam
+      a diagnóstico, laudo ou decisão clínica.</p>
+      <p class="about-en" lang="en">Oak Appware is a Brazilian software company based in Brasília.
+      Privacy by default, and health-related apps built for teaching, study and reference — not
+      medical devices.</p>
+      <p class="about-link"><a href="sobre.html">Conheça a empresa · About the company</a></p>
+    </section>
+
+    <section id="contato">
+      <h2 class="label">
+        <svg viewBox="0 0 16 18" aria-hidden="true"><path fill="#2FD37A" d="M8 0l7.8 4.5v9L8 18 .2 13.5v-9z"/></svg>
+        Contato · Contact
+      </h2>
+      <p class="contact">Suporte e dúvidas: <a href="mailto:contato@oakappware.com">contato@oakappware.com</a><br/>
+      Perguntas frequentes e canais de atendimento em <a href="suporte.html">Suporte · Support</a>.</p>
+    </section>
+  </div>
 </main>
+
+<footer>
+  <div class="wrap">
+    <a class="foot-brand" href="/" aria-label="Oak Appware — início">
+      <img src="assets/logo.svg" width="131" height="26" alt="Oak Appware" />
+    </a>
+    OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA — <span style="white-space:nowrap">CNPJ 68.923.016/0001-00</span><br/>
+    SGAS 915, Conjunto B, Bloco D, Sala 103 (Parte CH 528) — Asa Sul, Brasília/DF, CEP 70.390-150<br/>
+    oakappware.com · <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>
+    <nav class="foot-links" aria-label="Rodapé">
+      <a href="/#apps">Apps</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="suporte.html">Suporte</a>
+      <a href="legal.html">Legal</a>
+      <a href="legal.html#privacidade-site">Privacidade do site</a>
+    </nav>
+  </div>
+</footer>
+
 </body>
 </html>
