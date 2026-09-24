@@ -1,6 +1,6 @@
 {
-  "name": "Oak Appware",
-  "short_name": "Oak Appware",
+  "name": "OakAppWare",
+  "short_name": "OakAppWare",
   "description": "Aplicativos para saúde, educação e o dia a dia.",
   "start_url": "/",
   "display": "standalone",
