@@ -89,7 +89,7 @@
   .disclaimer p { color:var(--text); }
   .disclaimer .en { color:var(--muted); }
 
-  /* Badges de loja — hoje desabilitados. Rótulos neutros, sem as marcas oficiais. */
+  /* Badges de loja — rótulos neutros, sem as marcas oficiais. Sem link = desabilitado. */
   .badges { display:flex; gap:12px; flex-wrap:wrap; margin-top:22px; }
   .badge { display:inline-flex; flex-direction:column; justify-content:center; min-width:196px;
            padding:10px 18px; border:1px solid var(--border); border-radius:12px;
@@ -547,10 +547,10 @@
       <span class="store">App Store</span>
       <span class="state">Em breve · Coming soon</span>
     </span>
-    <span class="badge" aria-disabled="true">
+    <a class="badge" href="https://play.google.com/store/apps/details?id=com.dicompro.app">
       <span class="store">Google Play</span>
-      <span class="state">Em breve · Coming soon</span>
-    </span>
+      <span class="state">Disponível · Available</span>
+    </a>
   </div>
 
   <div class="card">

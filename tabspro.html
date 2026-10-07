@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tabs Pro: Afinador e Cifras — app em andamento · OakAppWare</title>
+<meta name="description" content="Tabs Pro, o app de violão da OakAppWare: afinador cromático em tempo real, e cifra e tablatura geradas a partir do áudio, com todo o processamento no próprio aparelho." />
+<link rel="canonical" href="https://oakappware.com/tabspro.html" />
+<meta name="theme-color" content="#0B0F0C" />
+<meta name="color-scheme" content="dark" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="OakAppWare" />
+<meta property="og:title" content="Tabs Pro: Afinador e Cifras — app em andamento · OakAppWare" />
+<meta property="og:description" content="Tabs Pro, o app de violão da OakAppWare: afinador cromático em tempo real, e cifra e tablatura geradas a partir do áudio, com todo o processamento no próprio aparelho." />
+<meta property="og:url" content="https://oakappware.com/tabspro.html" />
+<meta property="og:image" content="https://oakappware.com/assets/og-tabspro.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Logotipo do Tabs Pro — palheta laranja com onda de áudio recortada, sobre fundo grafite" />
+<meta property="og:locale" content="pt_BR" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Tabs Pro: Afinador e Cifras — app em andamento · OakAppWare" />
+<meta name="twitter:description" content="Tabs Pro, o app de violão da OakAppWare: afinador cromático em tempo real, e cifra e tablatura geradas a partir do áudio, com todo o processamento no próprio aparelho." />
+<meta name="twitter:image" content="https://oakappware.com/assets/og-tabspro.png" />
+<link rel="icon" href="assets/favicon.ico" sizes="16x16 32x32 48x48" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<link rel="apple-touch-icon" href="assets/apple-touch-icon-180.png" />
+<link rel="manifest" href="assets/site.webmanifest" />
+<style>
+  @font-face { font-family:"Inter"; font-weight:400; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-400-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-400-normal.woff") format("woff"); }
+  @font-face { font-family:"Inter"; font-weight:500; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-500-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-500-normal.woff") format("woff"); }
+  @font-face { font-family:"Inter"; font-weight:600; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-600-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-600-normal.woff") format("woff"); }
+  @font-face { font-family:"Inter"; font-weight:800; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-800-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-800-normal.woff") format("woff"); }
+
+  :root {
+    color-scheme:dark;
+    --bg:#0B0F0C; --surface-2:#161C18; --border:#233029;
+    --text:#F3F6F4; --muted:#A6B3A9; --faint:#7B8B80;
+    --green:#2FD37A; --green-deep:#168A4E; --broto:#8AF5B4;
+    --app-accent:#F0905A; --app-border:#7a4424; --app-soft:#21170F; --tile-bg:#15171C;
+  }
+  * { box-sizing:border-box; margin:0; }
+  body { background:var(--bg); color:var(--text); font:16px/1.65 "Inter",system-ui,-apple-system,"Segoe UI",sans-serif; -webkit-font-smoothing:antialiased; }
+  a { color:var(--green); text-decoration:none; }
+  a:hover, a:focus-visible { color:var(--broto); text-decoration:underline; text-underline-offset:3px; }
+  a:focus-visible { outline:2px solid var(--green); outline-offset:3px; border-radius:2px; }
+  main { max-width:880px; margin:0 auto; padding:34px 24px 8px; }
+  main > * { max-width:832px; }
+  .wrap { max-width:880px; margin:0 auto; padding:0 24px; }
+  .skip { position:absolute; left:-9999px; }
+  .skip:focus { left:0; right:0; top:0; width:auto; z-index:20; background:var(--bg); border:0; border-radius:0; outline:2px solid var(--green); outline-offset:-2px; padding:14px 24px; color:var(--text); font-weight:600; }
+
+  header { border-bottom:1px solid var(--border); }
+  .bar { display:flex; align-items:center; justify-content:space-between; gap:12px 16px; padding:18px 24px; flex-wrap:wrap; }
+  .brand { display:flex; align-items:center; }
+  .brand:hover { text-decoration:none; }
+  .brand img { height:34px; width:auto; display:block; }
+  header nav { display:flex; gap:22px; font-size:14.5px; font-weight:500; }
+  header nav a { color:var(--muted); white-space:nowrap; }
+  header nav a:hover { color:var(--text); text-decoration:none; }
+
+  .phead { display:flex; align-items:center; gap:18px; margin-top:28px; }
+  .ptile { flex:0 0 64px; height:64px; border-radius:15px; background:var(--tile-bg); border:1px solid var(--app-border); display:flex; align-items:center; justify-content:center; }
+  .ptile svg { width:38px; height:38px; }
+  h1.appname { font-weight:600; font-size:28px; line-height:1.2; letter-spacing:.01em; text-wrap:balance; }
+  h1.appname span { color:var(--app-accent); }
+  .pstatus { display:inline-block; margin-top:8px; padding:2px 10px; border:1px solid var(--app-border); border-radius:10px;
+             color:var(--app-accent); font-size:11.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; }
+  .pstatus .nw { white-space:nowrap; }
+  .tagline { color:var(--muted); margin-top:18px; max-width:44em; }
+  .en { color:var(--muted); font-size:14px; margin-top:8px; }
+
+  .card { background:var(--surface-2); border:1px solid var(--border); border-radius:14px; padding:22px 24px; margin-top:22px; }
+  .card h2 { font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--green); margin-bottom:10px; font-weight:600; }
+  .card h3 { font-size:16px; font-weight:600; line-height:1.4; }
+  .card h3 .en { display:block; font-weight:500; margin-top:0; }
+  .card h3 + p { margin-top:6px; }
+  .card p, .card li { max-width:46em; }
+  .card p + p { margin-top:10px; }
+  .card strong { font-weight:600; }
+  .item + .item { margin-top:18px; padding-top:18px; border-top:1px solid var(--border); }
+  ul { padding-left:20px; }
+  li { margin:8px 0; }
+  li .en { display:block; margin-top:0; font-size:13.5px; color:var(--faint); }
+
+  /* Aviso — fica acima da dobra, nas cores do app */
+  .notice { border-color:var(--app-border); border-left-width:4px; background:var(--app-soft); }
+  .notice h2 { color:var(--app-accent); display:flex; align-items:center; gap:8px; }
+  .notice h2 svg { width:15px; height:15px; flex:0 0 auto; }
+  .notice p { color:var(--text); }
+  .notice .en { color:var(--muted); }
+
+  .links { display:flex; gap:14px; flex-wrap:wrap; margin-top:30px; }
+  .links a { display:inline-block; padding:10px 18px; border:1px solid var(--green-deep); border-radius:999px; color:var(--text); font-size:14.5px; font-weight:500; }
+  .links a:hover { border-color:var(--green); text-decoration:none; color:var(--broto); }
+
+  footer { border-top:1px solid var(--border); margin-top:48px; padding:28px 0 44px; color:var(--faint); font-size:13px; line-height:1.85; }
+  footer a { color:var(--muted); }
+  .foot-brand { display:block; margin-bottom:14px; }
+  .foot-brand img { height:26px; width:auto; display:block; }
+  .foot-links { margin-top:10px; display:flex; gap:8px 18px; flex-wrap:wrap; }
+
+  @media (max-width:640px) {
+    header nav { gap:14px; font-size:14px; }
+    h1.appname { font-size:24px; }
+    .card { padding:20px 20px; }
+  }
+
+  @media print {
+    body { background:#fff; color:#111; }
+    main, main > * { max-width:none; padding:0; }
+    a { color:#111; text-decoration:underline; }
+    h1, h2, h3, h1.appname span, .card h2, .notice h2, .notice p, footer a { color:#111; }
+    .card { border-color:#ccc; background:#fff; break-inside:avoid; page-break-inside:avoid; }
+    .notice { border-color:#111; background:#fff; }
+    .ptile { background:#fff; border-color:#ccc; }
+    .pstatus { color:#333; border-color:#ccc; }
+    .tagline, .en, li .en, .notice .en, footer { color:#333; }
+    .links a { border-color:#999; color:#111; }
+    header, .foot-links, .skip, .foot-brand { display:none; }
+    footer { border-top:1px solid #ccc; margin-top:24px; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#conteudo">Pular para o conteúdo · <span lang="en">Skip to content</span></a>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="/" aria-label="OakAppWare — início">
+      <img src="assets/logo.svg" width="171" height="34" alt="OakAppWare" />
+    </a>
+    <nav aria-label="Principal">
+      <a href="/#apps">Apps</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="suporte.html">Suporte</a>
+      <a href="legal.html">Legal</a>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo">
+
+  <div class="phead">
+    <div class="ptile">
+      <svg viewBox="64 64 896 896" aria-hidden="true"><defs><clipPath id="tabspro-palheta"><path d="M512 152C706 152 874 216 868 368C860 536 636 766 556 852Q512 900 470 846C392 756 158 528 156 356C154 206 330 152 512 152Z"/></clipPath><mask id="tabspro-onda"><rect width="1024" height="1024" fill="#fff"/><path fill="#000" d="M296.0 377.0H296.0A33.0 33.0 0 0 1 329.0 410.0V494.0A33.0 33.0 0 0 1 296.0 527.0H296.0A33.0 33.0 0 0 1 263.0 494.0V410.0A33.0 33.0 0 0 1 296.0 377.0Z"/><path fill="#000" d="M404.0 317.0H404.0A33.0 33.0 0 0 1 437.0 350.0V554.0A33.0 33.0 0 0 1 404.0 587.0H404.0A33.0 33.0 0 0 1 371.0 554.0V350.0A33.0 33.0 0 0 1 404.0 317.0Z"/><path fill="#000" d="M512.0 262.0H512.0A33.0 33.0 0 0 1 545.0 295.0V609.0A33.0 33.0 0 0 1 512.0 642.0H512.0A33.0 33.0 0 0 1 479.0 609.0V295.0A33.0 33.0 0 0 1 512.0 262.0Z"/><path fill="#000" d="M620.0 317.0H620.0A33.0 33.0 0 0 1 653.0 350.0V554.0A33.0 33.0 0 0 1 620.0 587.0H620.0A33.0 33.0 0 0 1 587.0 554.0V350.0A33.0 33.0 0 0 1 620.0 317.0Z"/><path fill="#000" d="M728.0 377.0H728.0A33.0 33.0 0 0 1 761.0 410.0V494.0A33.0 33.0 0 0 1 728.0 527.0H728.0A33.0 33.0 0 0 1 695.0 494.0V410.0A33.0 33.0 0 0 1 728.0 377.0Z"/></mask></defs><g transform="rotate(-16 512 512)"><g clip-path="url(#tabspro-palheta)" mask="url(#tabspro-onda)"><rect width="1024" height="1024" fill="#E8702A"/><path d="M296 0H1024V712Z" fill="#F0905A"/></g></g></svg>
+    </div>
+    <div>
+      <h1 class="appname">Tabs<span>&nbsp;Pro</span>: Afinador e Cifras</h1>
+      <p class="pstatus"><span class="nw">Em andamento</span> · <span class="nw" lang="en">In progress</span></p>
+    </div>
+  </div>
+
+  <p class="tagline">Do áudio à cifra, sem sair do seu aparelho.<br/>
+  <span class="en" lang="en">From audio to chords, without leaving your device.</span></p>
+
+  <div class="card notice">
+    <h2><svg viewBox="0 0 20 18" aria-hidden="true"><path fill="currentColor" d="M10 0l10 18H0L10 0zm-1 6v6h2V6H9zm0 8v2h2v-2H9z"/></svg> Em andamento · <span lang="en">In progress</span></h2>
+    <p>O Tabs Pro está em desenvolvimento e ainda não foi publicado nas lojas. Quer um aviso
+    quando sair? Escreva para <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>.</p>
+    <p class="en" lang="en">Tabs Pro is under development and has not been published in the stores
+    yet. Want a heads-up when it ships? Write to contato@oakappware.com.</p>
+  </div>
+
+  <div class="card">
+    <h2>O que é · <span lang="en">What it is</span></h2>
+    <p>O Tabs Pro é o app de violão da OakAppWare para iOS e Android. Ele faz duas coisas que todo violonista
+    precisa e que normalmente estão separadas em apps diferentes: afina o instrumento e transforma uma
+    música em cifra e tablatura. O afinador é cromático e funciona em tempo real, mostrando a nota, a
+    frequência em Hz e o desvio em cents enquanto a corda ainda está soando. A geração de cifras parte
+    do microfone ou de um arquivo de áudio do aparelho: o app identifica as notas, reconhece os acordes
+    e escreve a tablatura de seis linhas — e quando o trecho é dedilhado, a transcrição sai nota a nota,
+    com corda e casa.</p>
+    <p class="en" lang="en">Tabs Pro is OakAppWare’s guitar app for iOS and Android. It does two things every
+    guitarist needs, which usually live in separate apps: it tunes the instrument and turns a song into
+    chords and tablature. The tuner is chromatic and works in real time, showing the note, the
+    frequency in Hz and the deviation in cents while the string is still ringing. Chord generation
+    starts from the microphone or from an audio file on the device: the app identifies the notes,
+    recognizes the chords and writes six-line tablature — and when a passage is fingerpicked, the
+    transcription comes out note by note, with string and fret.</p>
+    <p>Somos diretos sobre o estágio do produto. O Tabs Pro está em pré-lançamento e o vocabulário atual
+    cobre acordes maiores, menores e com sétima. Por isso a cifra gerada é tratada como rascunho
+    editável: qualquer acorde é corrigido com um toque, a velocidade de reprodução é ajustável e o som
+    de violão sintetizado deixa você conferir de ouvido antes de salvar.</p>
+    <p class="en" lang="en">We are upfront about where the product stands. Tabs Pro is in pre-release,
+    and its current vocabulary covers major, minor and seventh chords. That is why the generated chart
+    is treated as an editable draft: any chord can be fixed with a tap, playback speed is adjustable,
+    and the synthesized guitar sound lets you check by ear before saving.</p>
+  </div>
+
+  <div class="card">
+    <h2>Destaques · <span lang="en">Highlights</span></h2>
+    <ul>
+      <li>Afinador cromático em tempo real: nota, oitava, Hz e desvio em cents<span class="en" lang="en">Real-time chromatic tuner: note, octave, Hz and deviation in cents</span></li>
+      <li>Cifra e tablatura geradas do microfone ou de arquivo de áudio<span class="en" lang="en">Chords and tablature generated from the microphone or an audio file</span></li>
+      <li>Transcrição do dedilhado nota a nota, com corda e casa<span class="en" lang="en">Note-by-note transcription of fingerpicking, with string and fret</span></li>
+      <li>Reprodução da cifra com som de violão sintetizado<span class="en" lang="en">Chart playback with a synthesized guitar sound</span></li>
+      <li>Edição de acordes com um toque, velocidade ajustável e tap tempo<span class="en" lang="en">One-tap chord editing, adjustable speed and tap tempo</span></li>
+      <li>Biblioteca local de cifras, salva no próprio aparelho<span class="en" lang="en">Library of your saved charts, stored on the device itself</span></li>
+      <li>Processamento 100% no dispositivo: sem servidor, sem conta, sem coleta<span class="en" lang="en">100% on-device processing: no server, no account, no data collection</span></li>
+      <li>Funciona sem conexão<span class="en" lang="en">Works offline</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Privacidade · <span lang="en">Privacy</span></h2>
+    <p>Privacidade aqui não é uma política escrita depois: é consequência da arquitetura. Toda a
+    análise roda no seu aparelho, do decodificador de arquivo até o reconhecimento dos acordes. Não
+    existe backend, não existe conta de usuário e nenhuma gravação sua é transmitida ou armazenada em
+    nuvem. No Android, o app pede uma única permissão: microfone — nem acesso à internet ele solicita.</p>
+    <p class="en" lang="en">Privacy here is not a policy written afterwards: it follows from the
+    architecture. All analysis runs on your device, from the file decoder to chord recognition. There
+    is no backend, no user account, and none of your recordings is transmitted or stored in the cloud.
+    On Android, the app asks for a single permission — the microphone; it does not even request
+    internet access.</p>
+  </div>
+
+  <div class="card">
+    <h2>Perguntas frequentes · <span lang="en">FAQ</span></h2>
+    <div class="item">
+      <h3>O app envia meu áudio para a internet? <span class="en" lang="en">Does the app send my audio to the internet?</span></h3>
+      <p>Não. Toda a análise acontece no próprio aparelho. Não há servidor, conta de usuário nem coleta de dados, e o app funciona em modo avião.</p>
+      <p class="en" lang="en">No. All analysis happens on the device itself. There is no server, no user account and no data collection, and the app works in airplane mode.</p>
+    </div>
+    <div class="item">
+      <h3>Posso usar uma música do Spotify, do Apple Music ou do YouTube? <span class="en" lang="en">Can I use a song from Spotify, Apple Music or YouTube?</span></h3>
+      <p>Não diretamente — os arquivos desses serviços são protegidos. O que funciona é tocar a música em um alto-falante e deixar o app ouvir pelo microfone, ou escolher um arquivo de áudio que esteja no aparelho.</p>
+      <p class="en" lang="en">Not directly — files from those services are protected. What works is playing the song through a speaker and letting the app listen through the microphone, or choosing an audio file stored on the device.</p>
+    </div>
+    <div class="item">
+      <h3>A cifra já sai pronta? <span class="en" lang="en">Is the chart ready right away?</span></h3>
+      <p>O app escreve a sequência de acordes e a tablatura em segundos, e você ajusta o que precisar. A detecção acerta melhor em gravações limpas, com o violão perto do microfone.</p>
+      <p class="en" lang="en">The app writes the chord sequence and tablature in seconds, and you adjust whatever you need. Detection works best on clean recordings, with the guitar close to the microphone.</p>
+    </div>
+    <div class="item">
+      <h3>Quais acordes ele reconhece? <span class="en" lang="en">Which chords does it recognize?</span></h3>
+      <p>Maiores, menores e com sétima, nas 12 raízes, incluindo baixo invertido (como C/G).</p>
+      <p class="en" lang="en">Major, minor and seventh chords on all 12 root notes, including inversions (such as C/G).</p>
+    </div>
+    <div class="item">
+      <h3>Serve para outros instrumentos? <span class="en" lang="en">Does it work for other instruments?</span></h3>
+      <p>O afinador é cromático, então serve para afinações alternativas e para instrumentos de tessitura parecida, como guitarra, cavaquinho e ukulele. Baixo ainda não: as cordas graves ficam abaixo da faixa coberta nesta versão.</p>
+      <p class="en" lang="en">The tuner is chromatic, so it works for alternate tunings and for instruments with a similar range, such as electric guitar, cavaquinho and ukulele. Bass not yet: its low strings fall below the range covered in this version.</p>
+    </div>
+  </div>
+
+  <div class="links">
+    <a href="/tabspro/privacidade">Privacidade · <span lang="en">Privacy</span></a>
+    <a href="/tabspro/termos">Termos · <span lang="en">Terms</span></a>
+    <a href="/tabspro/suporte">Suporte · <span lang="en">Support</span></a>
+    <a href="legal.html#tabspro">Documentos legais · <span lang="en">Legal</span></a>
+    <a href="/#apps">Todos os aplicativos · <span lang="en">All apps</span></a>
+  </div>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="foot-brand" href="/" aria-label="OakAppWare — início">
+      <img src="assets/logo.svg" width="131" height="26" alt="OakAppWare" />
+    </a>
+    OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA — <span style="white-space:nowrap">CNPJ 68.923.016/0001-00</span><br/>
+    SGAS 915, Conjunto B, Bloco D, Sala 103 (Parte CH 528) — Asa Sul, Brasília/DF, CEP 70.390-150<br/>
+    oakappware.com · <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>
+    <nav class="foot-links" aria-label="Rodapé">
+      <a href="/#apps">Apps</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="suporte.html">Suporte</a>
+      <a href="legal.html">Legal</a>
+      <a href="legal.html#privacidade-site">Privacidade do site</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
