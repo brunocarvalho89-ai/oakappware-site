@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Tabs Pro: Afinador e Cifras — app em andamento · OakAppWare</title>
+<title>Tabs Pro: Afinador e Cifras · OakAppWare</title>
 <meta name="description" content="Tabs Pro, o app de violão da OakAppWare: afinador cromático em tempo real, e cifra e tablatura geradas a partir do áudio, com todo o processamento no próprio aparelho." />
 <link rel="canonical" href="https://oakappware.com/tabspro.html" />
 <meta name="theme-color" content="#0B0F0C" />
 <meta name="color-scheme" content="dark" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="OakAppWare" />
-<meta property="og:title" content="Tabs Pro: Afinador e Cifras — app em andamento · OakAppWare" />
+<meta property="og:title" content="Tabs Pro: Afinador e Cifras · OakAppWare" />
 <meta property="og:description" content="Tabs Pro, o app de violão da OakAppWare: afinador cromático em tempo real, e cifra e tablatura geradas a partir do áudio, com todo o processamento no próprio aparelho." />
 <meta property="og:url" content="https://oakappware.com/tabspro.html" />
 <meta property="og:image" content="https://oakappware.com/assets/og-tabspro.png" />
@@ -19,7 +19,7 @@
 <meta property="og:image:alt" content="Logotipo do Tabs Pro — palheta laranja com onda de áudio recortada, sobre fundo grafite" />
 <meta property="og:locale" content="pt_BR" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Tabs Pro: Afinador e Cifras — app em andamento · OakAppWare" />
+<meta name="twitter:title" content="Tabs Pro: Afinador e Cifras · OakAppWare" />
 <meta name="twitter:description" content="Tabs Pro, o app de violão da OakAppWare: afinador cromático em tempo real, e cifra e tablatura geradas a partir do áudio, com todo o processamento no próprio aparelho." />
 <meta name="twitter:image" content="https://oakappware.com/assets/og-tabspro.png" />
 <link rel="icon" href="assets/favicon.ico" sizes="16x16 32x32 48x48" />
@@ -90,6 +90,18 @@
   .notice p { color:var(--text); }
   .notice .en { color:var(--muted); }
 
+  /* Badges de loja — rótulos neutros, sem as marcas oficiais. Sem link = desabilitado. */
+  .badges { display:flex; gap:12px; flex-wrap:wrap; margin-top:22px; }
+  .badge { display:inline-flex; flex-direction:column; justify-content:center; min-width:196px;
+           padding:10px 18px; border:1px solid var(--border); border-radius:12px;
+           background:var(--surface-2); }
+  .badge .store { font-size:15px; font-weight:600; color:var(--text); letter-spacing:.01em; }
+  .badge .state { font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-top:2px; }
+  a.badge { border-color:var(--app-border); }
+  a.badge:hover, a.badge:focus-visible { border-color:var(--app-accent); text-decoration:none; }
+  a.badge .store { color:var(--text); }
+  a.badge .state { color:var(--app-accent); }
+
   .links { display:flex; gap:14px; flex-wrap:wrap; margin-top:30px; }
   .links a { display:inline-block; padding:10px 18px; border:1px solid var(--green-deep); border-radius:999px; color:var(--text); font-size:14.5px; font-weight:500; }
   .links a:hover { border-color:var(--green); text-decoration:none; color:var(--broto); }
@@ -117,6 +129,8 @@
     .pstatus { color:#333; border-color:#ccc; }
     .tagline, .en, li .en, .notice .en, footer { color:#333; }
     .links a { border-color:#999; color:#111; }
+    .badge { border-color:#ccc; background:#fff; }
+    .badge .store, .badge .state, a.badge .state { color:#333; }
     header, .foot-links, .skip, .foot-brand { display:none; }
     footer { border-top:1px solid #ccc; margin-top:24px; }
   }
@@ -148,43 +162,48 @@
     </div>
     <div>
       <h1 class="appname">Tabs<span>&nbsp;Pro</span>: Afinador e Cifras</h1>
-      <p class="pstatus"><span class="nw">Em andamento</span> · <span class="nw" lang="en">In progress</span></p>
+      <p class="pstatus"><span class="nw">Disponível no Google Play</span> · <span class="nw" lang="en">Available on Google Play</span></p>
     </div>
   </div>
 
   <p class="tagline">Do áudio à cifra, sem sair do seu aparelho.<br/>
   <span class="en" lang="en">From audio to chords, without leaving your device.</span></p>
 
-  <div class="card notice">
-    <h2><svg viewBox="0 0 20 18" aria-hidden="true"><path fill="currentColor" d="M10 0l10 18H0L10 0zm-1 6v6h2V6H9zm0 8v2h2v-2H9z"/></svg> Em andamento · <span lang="en">In progress</span></h2>
-    <p>O Tabs Pro está em desenvolvimento e ainda não foi publicado nas lojas. Quer um aviso
-    quando sair? Escreva para <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>.</p>
-    <p class="en" lang="en">Tabs Pro is under development and has not been published in the stores
-    yet. Want a heads-up when it ships? Write to contato@oakappware.com.</p>
+  <div class="badges" role="group" aria-label="Disponibilidade nas lojas">
+    <a class="badge" href="https://play.google.com/store/apps/details?id=com.tuningtabspro.app">
+      <span class="store">Google Play</span>
+      <span class="state">Disponível · Available</span>
+    </a>
+    <span class="badge" aria-disabled="true">
+      <span class="store">App Store</span>
+      <span class="state">Em breve · Coming soon</span>
+    </span>
   </div>
 
   <div class="card">
     <h2>O que é · <span lang="en">What it is</span></h2>
-    <p>O Tabs Pro é o app de violão da OakAppWare para iOS e Android. Ele faz duas coisas que todo violonista
+    <p>O Tabs Pro é o app de violão da OakAppWare, disponível no Google Play para Android (a versão para
+    iOS vem em seguida). Ele faz duas coisas que todo violonista
     precisa e que normalmente estão separadas em apps diferentes: afina o instrumento e transforma uma
     música em cifra e tablatura. O afinador é cromático e funciona em tempo real, mostrando a nota, a
     frequência em Hz e o desvio em cents enquanto a corda ainda está soando. A geração de cifras parte
     do microfone ou de um arquivo de áudio do aparelho: o app identifica as notas, reconhece os acordes
     e escreve a tablatura de seis linhas — e quando o trecho é dedilhado, a transcrição sai nota a nota,
     com corda e casa.</p>
-    <p class="en" lang="en">Tabs Pro is OakAppWare’s guitar app for iOS and Android. It does two things every
+    <p class="en" lang="en">Tabs Pro is OakAppWare’s guitar app, available on Google Play for Android (the iOS
+    version comes next). It does two things every
     guitarist needs, which usually live in separate apps: it tunes the instrument and turns a song into
     chords and tablature. The tuner is chromatic and works in real time, showing the note, the
     frequency in Hz and the deviation in cents while the string is still ringing. Chord generation
     starts from the microphone or from an audio file on the device: the app identifies the notes,
     recognizes the chords and writes six-line tablature — and when a passage is fingerpicked, the
     transcription comes out note by note, with string and fret.</p>
-    <p>Somos diretos sobre o estágio do produto. O Tabs Pro está em pré-lançamento e o vocabulário atual
-    cobre acordes maiores, menores e com sétima. Por isso a cifra gerada é tratada como rascunho
+    <p>Somos diretos sobre o que o app faz. O vocabulário atual cobre acordes maiores, menores, com
+    sétima (7, m7, 7M), suspensos e diminutos. Por isso a cifra gerada é tratada como rascunho
     editável: qualquer acorde é corrigido com um toque, a velocidade de reprodução é ajustável e o som
     de violão sintetizado deixa você conferir de ouvido antes de salvar.</p>
-    <p class="en" lang="en">We are upfront about where the product stands. Tabs Pro is in pre-release,
-    and its current vocabulary covers major, minor and seventh chords. That is why the generated chart
+    <p class="en" lang="en">We are upfront about what the app does. Its current vocabulary covers major,
+    minor, seventh (7, m7, maj7), suspended and diminished chords. That is why the generated chart
     is treated as an editable draft: any chord can be fixed with a tap, playback speed is adjustable,
     and the synthesized guitar sound lets you check by ear before saving.</p>
   </div>
@@ -237,8 +256,8 @@
     </div>
     <div class="item">
       <h3>Quais acordes ele reconhece? <span class="en" lang="en">Which chords does it recognize?</span></h3>
-      <p>Maiores, menores e com sétima, nas 12 raízes, incluindo baixo invertido (como C/G).</p>
-      <p class="en" lang="en">Major, minor and seventh chords on all 12 root notes, including inversions (such as C/G).</p>
+      <p>Maiores, menores, com sétima (7, m7, 7M), suspensos e diminutos, nas 12 raízes, além de baixo invertido (como C/G).</p>
+      <p class="en" lang="en">Major, minor, seventh (7, m7, maj7), suspended and diminished chords on all 12 root notes, plus inversions (such as C/G).</p>
     </div>
     <div class="item">
       <h3>Serve para outros instrumentos? <span class="en" lang="en">Does it work for other instruments?</span></h3>
