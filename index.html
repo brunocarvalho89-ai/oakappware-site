@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>OakAppWare — Aplicativos para saúde e educação</title>
-<meta name="description" content="OakAppWare desenvolve aplicativos para saúde, educação e o dia a dia. Criadora do DICOM Pro, visualizador de exames DICOM para ensino, estudo e referência." />
+<meta name="description" content="Aplicativos para saúde, educação e o dia a dia: Tabs Pro (afinador e cifras) e DICOM Pro (DICOM para ensino, estudo e referência)." />
 <link rel="canonical" href="https://oakappware.com/" />
 <meta name="theme-color" content="#0B0F0C" />
 <meta name="color-scheme" content="dark" />
@@ -26,298 +26,368 @@
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 <link rel="apple-touch-icon" href="assets/apple-touch-icon-180.png" />
 <link rel="manifest" href="assets/site.webmanifest" />
-<style>
-  @font-face { font-family:"Inter"; font-weight:400; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-400-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-400-normal.woff") format("woff"); }
-  @font-face { font-family:"Inter"; font-weight:500; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-500-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-500-normal.woff") format("woff"); }
-  @font-face { font-family:"Inter"; font-weight:600; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-600-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-600-normal.woff") format("woff"); }
-  @font-face { font-family:"Inter"; font-weight:800; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-800-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-800-normal.woff") format("woff"); }
-
-  :root {
-    color-scheme:dark;
-    --bg:#0B0F0C; --surface-2:#161C18; --border:#233029;
-    --text:#F3F6F4; --muted:#A6B3A9; --faint:#7B8B80;
-    --green:#2FD37A; --green-deep:#168A4E; --broto:#8AF5B4;
-    --nocturne-bg:#161826; --nocturne-accent:#9184d9; --nocturne-border:#3f424d;
-  }
-  * { box-sizing:border-box; margin:0; }
-  html { scroll-behavior:smooth; }
-  body { background:var(--bg); color:var(--text); font:16px/1.65 "Inter",system-ui,-apple-system,"Segoe UI",sans-serif; -webkit-font-smoothing:antialiased; }
-  a { color:var(--green); text-decoration:none; }
-  a:hover, a:focus-visible { color:var(--broto); text-decoration:underline; text-underline-offset:3px; }
-  a:focus-visible { outline:2px solid var(--green); outline-offset:3px; border-radius:2px; }
-  img { max-width:100%; }
-  .wrap { max-width:880px; margin:0 auto; padding:0 24px; }
-  .skip { position:absolute; left:-9999px; }
-  .skip:focus { left:0; right:0; top:0; width:auto; z-index:20; background:var(--bg); border:0; border-radius:0; outline:2px solid var(--green); outline-offset:-2px; padding:14px 24px; color:var(--text); font-weight:600; }
-
-  /* Topo — lockup aprovado (assets/logo.svg = brand/final/lockup-horizontal.svg) */
-  header { border-bottom:1px solid var(--border); }
-  .bar { display:flex; align-items:center; justify-content:space-between; gap:12px 16px; padding:18px 24px; flex-wrap:wrap; }
-  .brand { display:flex; align-items:center; }
-  .brand:hover { text-decoration:none; }
-  .brand img { height:34px; width:auto; display:block; }
-  header nav { display:flex; gap:22px; font-size:14.5px; font-weight:500; }
-  header nav a { color:var(--muted); white-space:nowrap; }
-  header nav a:hover { color:var(--text); text-decoration:none; }
-  header nav a[aria-current="page"] { color:var(--text); border-bottom:2px solid var(--green); padding-bottom:2px; }
-
-  /* Hero */
-  .hero { padding:76px 24px 68px; position:relative; overflow:hidden; }
-  .hero::before { content:""; position:absolute; inset:0; pointer-events:none;
-    background:radial-gradient(560px 320px at 24% 30%, rgba(47,211,122,.07), transparent 70%); }
-  .hero-inner { position:relative; display:flex; align-items:center; gap:40px; flex-wrap:wrap; }
-  .hero-symbol { width:148px; flex:0 0 auto; }
-  .hero-symbol svg { width:100%; height:auto; display:block; }
-  .hero h1 { font-size:clamp(34px,6vw,52px); font-weight:800; letter-spacing:.05em; line-height:1.08; text-wrap:balance; }
-  .hero h1 span { font-weight:600; letter-spacing:.08em; color:var(--green); }
-  .tagline { color:var(--text); font-size:19px; font-weight:500; margin-top:16px; max-width:30em; text-wrap:balance; }
-  .tagline-en { color:var(--muted); font-size:15px; margin-top:6px; font-style:italic; }
-
-  /* Seções */
-  section { padding:8px 0 40px; }
-  .label { display:flex; align-items:center; gap:10px; font-size:13px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--green); margin:36px 0 18px; }
-  .label svg { width:13px; height:15px; flex:0 0 auto; }
-
-  /* Grade de apps — acrescentar um app = colar um <article class="product"> */
-  .grid-apps { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:18px; align-items:start; }
-  .product { display:grid; grid-template-columns:auto 1fr; gap:10px 22px; background:var(--surface-2); border:1px solid var(--border); border-radius:16px; padding:24px 26px; height:100%; }
-  .ptile { flex:0 0 68px; width:68px; height:68px; border-radius:16px; background:var(--tile-bg,linear-gradient(160deg,#2f2a4d,#1a1c2e 58%,#121422)); border:1px solid var(--tile-border,var(--nocturne-border)); display:flex; align-items:center; justify-content:center; }
-  .ptile svg { width:40px; height:40px; }
-  .pbody { min-width:0; }
-  .pname { font-weight:600; font-size:19px; letter-spacing:.02em; }
-  .pname span { color:var(--app-accent,var(--nocturne-accent)); margin-left:.04em; }
-  /* Cor de cada app no card (sem modificador, vale a do DICOM Pro). */
-  .app-radio { --tile-bg:linear-gradient(180deg,#123E74,#0A2540); --tile-border:#1B4F9C; --app-accent:#8EC5FF; }
-  .app-tabspro { --tile-bg:#15171C; --tile-border:#5a3a26; --app-accent:#F0905A; }
-  .psub { color:var(--muted); font-size:13.5px; font-weight:500; letter-spacing:.02em; margin-top:2px; }
-  /* App ainda não publicado nas lojas. */
-  .pstatus { display:inline-block; margin-top:8px; padding:2px 10px; border:1px solid var(--border); border-radius:10px;
-             color:var(--muted); font-size:11.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; }
-  .pstatus .nw { white-space:nowrap; }
-  .pdesc { color:var(--muted); font-size:15px; margin-top:6px; max-width:44em; }
-  .pdesc em { color:var(--faint); font-size:13.5px; }
-  /* Enquadramento educacional — slot fixo do card de app; todo app novo herda este padrão. */
-  .pnote { margin-top:12px; padding-left:12px; border-left:2px solid var(--green-deep);
-           color:var(--muted); font-size:13.5px; line-height:1.6; max-width:44em; }
-  .pnote em { color:var(--muted); }
-  .plinks { margin-top:14px; font-size:14px; display:flex; gap:8px 18px; flex-wrap:wrap; }
-  .assina { color:var(--faint); font-size:13.5px; margin-top:18px; }
-
-  .about { color:var(--muted); font-size:15.5px; max-width:44em; margin-bottom:10px; }
-  .about strong { color:var(--text); font-weight:600; }
-  .about-en { color:var(--faint); font-size:14px; font-style:italic; max-width:44em; }
-  .about-link { margin-top:14px; font-size:14.5px; }
-
-  .contact { color:var(--muted); font-size:15.5px; max-width:38em; }
-
-  /* Rodapé */
-  footer { border-top:1px solid var(--border); margin-top:48px; padding:28px 0 44px; color:var(--faint); font-size:13px; line-height:1.85; }
-  .foot-brand { display:block; margin-bottom:14px; }
-  .foot-brand img { height:26px; width:auto; display:block; }
-  footer a { color:var(--muted); }
-  .foot-links { margin-top:10px; display:flex; gap:8px 18px; flex-wrap:wrap; }
-
-  @media (max-width:640px) {
-    .hero { padding:56px 24px 48px; }
-    .hero-inner { gap:28px; }
-    .hero-symbol { width:110px; }
-    .product { grid-template-columns:1fr; }
-    header nav { gap:14px; font-size:14px; }
-  }
-  @media (prefers-reduced-motion:no-preference) {
-    .product { transition:border-color .18s ease; }
-  }
-  .product:hover { border-color:var(--green-deep); }
-
-  /* Impressão / salvar em PDF: o corpo é claro sobre escuro; sem isto o Chrome
-     (que imprime sem "gráficos de segundo plano") devolve texto branco no papel. */
-  @media print {
-    body { background:#fff; color:#111; }
-    a { color:#111; text-decoration:underline; }
-    h1, h2, h3, .label, .pname { color:#111; }
-    .hero h1 span, .pname span, .about strong, .card strong, footer a { color:#111; }
-    .hero::before { display:none; }
-    .product { border-color:#ccc; background:#fff; break-inside:avoid; page-break-inside:avoid; }
-    .ptile { background:#fff; border-color:#ccc; }
-    .pstatus { color:#333; border-color:#ccc; }
-    .app-radio .ptile path[fill="#FFFFFF"] { fill:#0A2540; }
-    .tagline, .tagline-en, .pdesc, .pdesc em, .pnote, .pnote em,
-    .about, .about-en, .contact, .assina, footer { color:#333; }
-    .pnote { border-left-color:#999; }
-    header, .foot-links, .skip, .foot-brand { display:none; }
-    .hero { padding:0 0 24px; }
-    footer { border-top:1px solid #ccc; }
-  }
-</style>
+<script>document.documentElement.classList.add('js')</script>
+<link rel="stylesheet" href="assets/site.css" />
+<script src="assets/site.js" defer onerror="document.documentElement.classList.remove('js')"></script>
 </head>
 <body>
 
-<a class="skip" href="#conteudo">Pular para o conteúdo · <span lang="en">Skip to content</span></a>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <clipPath id="icone-tabspro-palheta"><path d="M512 152C706 152 874 216 868 368C860 536 636 766 556 852Q512 900 470 846C392 756 158 528 156 356C154 206 330 152 512 152Z"/></clipPath>
+    <mask id="icone-tabspro-onda"><rect width="1024" height="1024" fill="#fff"/><path fill="#000" d="M296.0 377.0H296.0A33.0 33.0 0 0 1 329.0 410.0V494.0A33.0 33.0 0 0 1 296.0 527.0H296.0A33.0 33.0 0 0 1 263.0 494.0V410.0A33.0 33.0 0 0 1 296.0 377.0Z"/><path fill="#000" d="M404.0 317.0H404.0A33.0 33.0 0 0 1 437.0 350.0V554.0A33.0 33.0 0 0 1 404.0 587.0H404.0A33.0 33.0 0 0 1 371.0 554.0V350.0A33.0 33.0 0 0 1 404.0 317.0Z"/><path fill="#000" d="M512.0 262.0H512.0A33.0 33.0 0 0 1 545.0 295.0V609.0A33.0 33.0 0 0 1 512.0 642.0H512.0A33.0 33.0 0 0 1 479.0 609.0V295.0A33.0 33.0 0 0 1 512.0 262.0Z"/><path fill="#000" d="M620.0 317.0H620.0A33.0 33.0 0 0 1 653.0 350.0V554.0A33.0 33.0 0 0 1 620.0 587.0H620.0A33.0 33.0 0 0 1 587.0 554.0V350.0A33.0 33.0 0 0 1 620.0 317.0Z"/><path fill="#000" d="M728.0 377.0H728.0A33.0 33.0 0 0 1 761.0 410.0V494.0A33.0 33.0 0 0 1 728.0 527.0H728.0A33.0 33.0 0 0 1 695.0 494.0V410.0A33.0 33.0 0 0 1 728.0 377.0Z"/></mask>
+  </defs>
+  <symbol id="icone-tabspro" viewBox="64 64 896 896"><g transform="rotate(-16 512 512)"><g clip-path="url(#icone-tabspro-palheta)" mask="url(#icone-tabspro-onda)"><rect width="1024" height="1024" fill="#E8702A"/><path d="M296 0H1024V712Z" fill="#F0905A"/></g></g></symbol>
+  <symbol id="icone-dicompro" viewBox="0 0 100 100"><path fill="#b5abfc" fill-rule="evenodd" d="M50,9 C31.5,9 18,22 18,39 C18,47.5 21.5,53.5 26.5,57.5 C28.5,59 29.5,61 29.5,63.5 L29.5,68 C29.5,72.5 33,76 37.5,76 L39.5,76 L39.5,83 C39.5,86.5 42,89 45.5,89 L54.5,89 C58,89 60.5,86.5 60.5,83 L60.5,76 L62.5,76 C67,76 70.5,72.5 70.5,68 L70.5,63.5 C70.5,61 71.5,59 73.5,57.5 C78.5,53.5 82,47.5 82,39 C82,22 68.5,9 50,9 Z M30,42.5 a7.5,7.5 0 1,0 15,0 a7.5,7.5 0 1,0 -15,0 Z M55,42.5 a7.5,7.5 0 1,0 15,0 a7.5,7.5 0 1,0 -15,0 Z M50,50.5 C47.8,54.5 45.8,57.8 45.8,60.5 C45.8,62.9 47.6,64.5 50,64.5 C52.4,64.5 54.2,62.9 54.2,60.5 C54.2,57.8 52.2,54.5 50,50.5 Z M45.9,77 L47.7,77 L47.7,87.6 L45.9,87.6 Z M52.3,77 L54.1,77 L54.1,87.6 L52.3,87.6 Z"/></symbol>
+  <symbol id="icone-radiologia" viewBox="136 120 752 752"><path d="M176.0,550.0 Q176.0,528.0 197.5,532.8 L476.5,595.2 Q498.0,600.0 498.0,622.0 L498.0,770.0 Q498.0,792.0 476.8,786.0 L197.2,706.0 Q176.0,700.0 176.0,678.0 Z" fill="#2F80ED"/><path d="M848.0,550.0 Q848.0,528.0 826.5,532.8 L547.5,595.2 Q526.0,600.0 526.0,622.0 L526.0,770.0 Q526.0,792.0 547.2,786.0 L826.8,706.0 Q848.0,700.0 848.0,678.0 Z" fill="#2F80ED"/><path d="M379.1,624.0 L374.0,621.3 L368.9,618.5 L363.9,615.5 L358.9,612.5 L354.1,609.3 L349.3,605.9 L344.6,602.5 L340.0,598.9 L335.5,595.2 L331.1,591.4 L326.8,587.5 L322.7,583.4 L318.6,579.3 L314.6,575.0 L310.7,570.7 L307.0,566.2 L303.3,561.7 L299.8,557.1 L296.4,552.3 L293.1,547.5 L290.0,542.6 L287.0,537.7 L284.1,532.6 L281.3,527.5 L278.7,522.3 L276.2,517.0 L273.9,511.7 L271.7,506.3 L269.6,500.9 L267.7,495.4 L265.9,489.9 L264.3,484.3 L262.8,478.7 L261.4,473.0 L260.2,467.3 L259.2,461.6 L258.3,455.8 L257.5,450.1 L256.9,444.3 L256.5,438.5 L256.2,432.7 L256.0,426.8 L256.0,421.0 L256.2,415.2 L256.5,409.4 L256.9,403.6 L257.5,397.8 L258.3,392.0 L259.2,386.3 L260.2,380.6 L261.5,374.9 L262.8,369.2 L264.3,363.6 L265.9,358.0 L267.7,352.5 L269.7,347.0 L271.7,341.6 L273.9,336.2 L276.3,330.9 L278.8,325.6 L281.4,320.4 L284.2,315.3 L287.0,310.2 L290.1,305.3 L293.2,300.4 L296.5,295.6 L299.9,290.8 L303.4,286.2 L307.0,281.7 L310.8,277.2 L314.7,272.9 L318.6,268.6 L322.7,264.5 L326.9,260.5 L331.2,256.5 L335.6,252.7 L340.1,249.0 L344.7,245.5 L349.4,242.0 L354.2,238.7 L359.0,235.5 L364.0,232.4 L369.0,229.4 L374.1,226.6 L379.2,223.9 L384.5,221.4 L389.8,219.0 L395.1,216.7 L400.5,214.6 L406.0,212.6 L411.5,210.7 L417.1,209.0 L422.7,207.5 L428.3,206.0 L434.0,204.8 L439.7,203.7 L445.4,202.7 L451.2,201.9 L457.0,201.2 L462.8,200.7 L468.6,200.3 L474.4,200.1 L480.2,200.0 L486.0,200.1 L491.8,200.3 L497.6,200.7 L503.4,201.2 L509.2,201.9 L515.0,202.7 L520.7,203.7 L526.4,204.9 L532.1,206.1 L537.7,207.6 L543.3,209.1 L548.9,210.9 L554.4,212.7 L559.9,214.7 L565.3,216.9 L570.6,219.2 L575.9,221.6 L581.1,224.1 L586.3,226.8 L591.4,229.7 L596.4,232.6 L601.3,235.7 L606.2,238.9 L610.9,242.3 L615.6,245.7 L620.2,249.3 L624.7,253.0 L629.1,256.8 L633.4,260.7 L637.6,264.8 L641.6,268.9 L645.6,273.2 L649.5,277.5 L653.2,282.0 L656.9,286.5 L660.4,291.2 L663.8,295.9 L667.0,300.7 L670.2,305.6 L673.2,310.6 L676.0,315.6 L678.8,320.8 L681.4,326.0 L683.9,331.2 L686.2,336.6 L688.4,341.9 L690.5,347.4 L706.6,392.9 Q712.0,408.0 704.3,422.0 L692.8,443.2 Q688.0,452.0 693.3,460.5 L720.5,504.7 Q730.0,520.0 723.9,536.9 L718.8,551.2 Q712.0,570.0 712.0,590.0 L712.0,678.0 Q712.0,692.0 698.0,692.0 L685.0,692.0 Q671.0,692.0 671.0,678.0 L671.0,630.0 Q671.0,624.0 665.0,624.0 L662.0,624.0 Q656.0,624.0 656.0,630.0 L656.0,678.0 Q656.0,692.0 642.0,692.0 L629.0,692.0 Q615.0,692.0 615.0,678.0 L615.0,630.0 Q615.0,624.0 609.0,624.0 L606.0,624.0 Q600.0,624.0 600.0,630.0 L600.0,678.0 Q600.0,692.0 586.0,692.0 L573.0,692.0 Q559.0,692.0 559.0,678.0 L559.0,634.0 Q559.0,624.0 549.0,624.0 Z M652.0,444.0 A52.0,52.0 0 1 0 548.0,444.0 A52.0,52.0 0 1 0 652.0,444.0 Z" fill-rule="evenodd" fill="#FFFFFF"/></symbol>
+  <symbol id="i-seta" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-esq" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+  <symbol id="i-dir" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
+  <symbol id="i-externo" viewBox="0 0 24 24"><path d="M8 16L16 8M9.5 8H16v6.5"/></symbol>
+  <symbol id="i-baixar" viewBox="0 0 24 24"><path d="M12 3.5v11.5M7 10.5l5 5 5-5M5 20h14"/></symbol>
+  <symbol id="i-ajuda" viewBox="0 0 24 24"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-1.5 1.5H10l-4.5 4v-4A1.5 1.5 0 0 1 4 14.5z"/><path d="M8.5 9h7M8.5 12h4"/></symbol>
+  <symbol id="i-escudo" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6z"/><path d="M9 12l2.2 2.2L15.5 10"/></symbol>
+  <symbol id="i-email" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5l8.5 6 8.5-6"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-fechar" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M6.2 3.6c0-.9.9-1.4 1.7-1l12.2 7.4c.8.5.8 1.6 0 2.1L7.9 19.4c-.8.5-1.7-.1-1.7-1z"/></symbol>
+</svg>
 
-<header>
-  <div class="wrap bar">
-    <a class="brand" href="/" aria-label="OakAppWare — início">
-      <img src="assets/logo.svg" width="171" height="34" alt="OakAppWare" />
-    </a>
-    <nav aria-label="Principal">
-      <a href="/#apps">Apps</a>
-      <a href="sobre.html">Sobre</a>
-      <a href="suporte.html">Suporte</a>
-      <a href="legal.html">Legal</a>
+<a class="pular" href="#conteudo">Pular para o conteúdo · <span lang="en">Skip to content</span></a>
+
+<header class="topo">
+  <div class="wrap topo-barra">
+    <a class="marca" href="/"><img src="assets/logo.svg" width="151" height="30" alt="OakAppWare" /><span class="sr-only"> — página inicial</span></a>
+    <nav class="nav" aria-label="Principal">
+      <button class="nav-menu" type="button" aria-expanded="false" aria-controls="nav-links">
+        <svg class="i abre" aria-hidden="true"><use href="#i-menu"/></svg><svg class="i fecha" aria-hidden="true"><use href="#i-fechar"/></svg><span class="nav-menu-txt">Menu</span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/#apps">Apps</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="legal.html">Legal</a></li>
+      </ul>
+      <a class="nav-suporte" href="suporte.html"><svg class="i" aria-hidden="true"><use href="#i-ajuda"/></svg>Suporte</a>
     </nav>
   </div>
 </header>
 
 <main id="conteudo">
-  <div class="wrap hero">
-    <div class="hero-inner">
-      <div class="hero-symbol">
-        <svg viewBox="0 0 1024 1024" role="img" aria-label="Símbolo da OakAppWare: carvalho de módulos hexagonais">
+
+  <section class="abertura" aria-labelledby="abertura-titulo">
+    <div class="wrap abertura-grade">
+      <div>
+        <a class="novidade" href="https://play.google.com/store/apps/details?id=com.tuningtabspro.app">
+          <span class="novidade-tag">Novo</span>
+          <span>Tabs Pro <span class="opc">já está </span>no Google Play</span>
+          <span class="novidade-cta">Baixar<svg class="i" aria-hidden="true"><use href="#i-externo"/></svg></span>
+        </a>
+        <h1 id="abertura-titulo">Aplicativos para saúde, educação e <em>o&nbsp;dia&nbsp;a&nbsp;dia</em>.</h1>
+        <p class="abertura-sub">Feitos com cuidado, privacidade em primeiro lugar e foco em quem usa.</p>
+        <p class="abertura-en" lang="en">Apps for health, education and everyday life — privacy-first.</p>
+      </div>
+      <div class="abertura-simbolo">
+        <svg class="simb-anim" viewBox="0 0 1024 1024" role="img" aria-label="Símbolo da OakAppWare: carvalho de módulos hexagonais">
           <path fill="#F3F6F4" d="M 426 663.67 C 428 706.37 433 760.46 433 806 C 433 864.56 403 910.92 358 928 L 666 928 C 621 910.92 591 864.56 591 806 C 591 760.46 589 706.37 598 663.67 Z"/>
-          <path fill="#2FD37A" fill-rule="evenodd" d="M296.26 152L381.13 201L381.13 299L296.26 348L211.39 299L211.39 201ZM296.26 209.74L331.13 229.87L331.13 270.13L296.26 290.26L261.39 270.13L261.39 229.87Z"/>
-          <path fill="#2FD37A" d="M512 152L596.87 201L596.87 299L512 348L427.13 299L427.13 201Z"/>
-          <path fill="#8AF5B4" d="M759.74 96.57L844.61 145.57L844.61 243.57L759.74 292.57L674.87 243.57L674.87 145.57Z"/>
-          <path fill="#2FD37A" fill-rule="evenodd" d="M188.39 338.84L273.26 387.84L273.26 485.84L188.39 534.84L103.52 485.84L103.52 387.84ZM188.39 396.57L223.26 416.7L223.26 456.97L188.39 477.1L153.52 456.97L153.52 416.7Z"/>
-          <path fill="#2FD37A" d="M404.13 338.84L489 387.84L489 485.84L404.13 534.84L319.26 485.84L319.26 387.84Z"/>
-          <path fill="#2FD37A" d="M619.87 338.84L704.74 387.84L704.74 485.84L619.87 534.84L535 485.84L535 387.84Z"/>
-          <path fill="#2FD37A" fill-rule="evenodd" d="M835.61 338.84L920.48 387.84L920.48 485.84L835.61 534.84L750.74 485.84L750.74 387.84ZM835.61 396.57L870.48 416.7L870.48 456.97L835.61 477.1L800.74 456.97L800.74 416.7Z"/>
-          <path fill="#2FD37A" d="M296.26 525.67L381.13 574.67L381.13 672.67L296.26 721.67L211.39 672.67L211.39 574.67Z"/>
-          <path fill="#F3F6F4" d="M512 525.67L596.87 574.67L596.87 672.67L512 721.67L427.13 672.67L427.13 574.67Z"/>
-          <path fill="#2FD37A" d="M727.74 525.67L812.61 574.67L812.61 672.67L727.74 721.67L642.87 672.67L642.87 574.67Z"/>
+          <path class="mod" style="--i:4" fill="#2FD37A" fill-rule="evenodd" d="M296.26 152L381.13 201L381.13 299L296.26 348L211.39 299L211.39 201ZM296.26 209.74L331.13 229.87L331.13 270.13L296.26 290.26L261.39 270.13L261.39 229.87Z"/>
+          <path class="mod" style="--i:4" fill="#2FD37A" d="M512 152L596.87 201L596.87 299L512 348L427.13 299L427.13 201Z"/>
+          <path class="mod" style="--i:3" fill="#2FD37A" fill-rule="evenodd" d="M188.39 338.84L273.26 387.84L273.26 485.84L188.39 534.84L103.52 485.84L103.52 387.84ZM188.39 396.57L223.26 416.7L223.26 456.97L188.39 477.1L153.52 456.97L153.52 416.7Z"/>
+          <path class="mod" style="--i:2" fill="#2FD37A" d="M404.13 338.84L489 387.84L489 485.84L404.13 534.84L319.26 485.84L319.26 387.84Z"/>
+          <path class="mod" style="--i:2" fill="#2FD37A" d="M619.87 338.84L704.74 387.84L704.74 485.84L619.87 534.84L535 485.84L535 387.84Z"/>
+          <path class="mod" style="--i:3" fill="#2FD37A" fill-rule="evenodd" d="M835.61 338.84L920.48 387.84L920.48 485.84L835.61 534.84L750.74 485.84L750.74 387.84ZM835.61 396.57L870.48 416.7L870.48 456.97L835.61 477.1L800.74 456.97L800.74 416.7Z"/>
+          <path class="mod" style="--i:1" fill="#2FD37A" d="M296.26 525.67L381.13 574.67L381.13 672.67L296.26 721.67L211.39 672.67L211.39 574.67Z"/>
+          <path class="mod" style="--i:0" fill="#F3F6F4" d="M512 525.67L596.87 574.67L596.87 672.67L512 721.67L427.13 672.67L427.13 574.67Z"/>
+          <path class="mod" style="--i:1" fill="#2FD37A" d="M727.74 525.67L812.61 574.67L812.61 672.67L727.74 721.67L642.87 672.67L642.87 574.67Z"/>
+          <path class="broto" fill="#8AF5B4" d="M759.74 96.57L844.61 145.57L844.61 243.57L759.74 292.57L674.87 243.57L674.87 145.57Z"/>
         </svg>
       </div>
-      <div>
-        <h1>OAK <span>APPWARE</span></h1>
-        <p class="tagline">Aplicativos para saúde, educação e o dia a dia — feitos com cuidado,
-        privacidade em primeiro lugar e foco em quem usa.</p>
-        <p class="tagline-en" lang="en">Apps for health, education and everyday life — privacy-first.</p>
+    </div>
+  </section>
+
+  <section class="precisa" aria-labelledby="precisa-titulo">
+    <div class="wrap">
+      <div class="precisa-caixa">
+        <h2 class="precisa-titulo" id="precisa-titulo">Precisa de algo? <span class="en" lang="en">Need something?</span></h2>
+        <ul class="precisa-lista">
+          <li><a class="precisa-item" href="#apps">
+            <span class="precisa-ico" aria-hidden="true"><svg class="i"><use href="#i-baixar"/></svg></span>
+            <span class="precisa-txt"><strong>Baixar um app</strong><span class="en" lang="en">Download an app</span></span>
+            <svg class="i" aria-hidden="true"><use href="#i-seta"/></svg></a></li>
+          <li><a class="precisa-item" href="suporte.html">
+            <span class="precisa-ico" aria-hidden="true"><svg class="i"><use href="#i-ajuda"/></svg></span>
+            <span class="precisa-txt"><strong>Suporte</strong><span class="en" lang="en">Support</span></span>
+            <svg class="i" aria-hidden="true"><use href="#i-seta"/></svg></a></li>
+          <li><a class="precisa-item" href="legal.html">
+            <span class="precisa-ico" aria-hidden="true"><svg class="i"><use href="#i-escudo"/></svg></span>
+            <span class="precisa-txt"><strong>Privacidade e termos</strong><span class="en" lang="en">Privacy &amp; terms</span></span>
+            <svg class="i" aria-hidden="true"><use href="#i-seta"/></svg></a></li>
+        </ul>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="wrap">
-    <section id="apps">
-      <h2 class="label">
-        <svg viewBox="0 0 16 18" aria-hidden="true"><path fill="#2FD37A" d="M8 0l7.8 4.5v9L8 18 .2 13.5v-9z"/></svg>
-        Nossos aplicativos · Our apps
-      </h2>
-
-      <div class="grid-apps">
-
-        <article class="product">
-          <div class="ptile">
-            <svg viewBox="0 0 100 100" aria-hidden="true"><path fill="#b5abfc" fill-rule="evenodd" d="M50,9 C31.5,9 18,22 18,39 C18,47.5 21.5,53.5 26.5,57.5 C28.5,59 29.5,61 29.5,63.5 L29.5,68 C29.5,72.5 33,76 37.5,76 L39.5,76 L39.5,83 C39.5,86.5 42,89 45.5,89 L54.5,89 C58,89 60.5,86.5 60.5,83 L60.5,76 L62.5,76 C67,76 70.5,72.5 70.5,68 L70.5,63.5 C70.5,61 71.5,59 73.5,57.5 C78.5,53.5 82,47.5 82,39 C82,22 68.5,9 50,9 Z M30,42.5 a7.5,7.5 0 1,0 15,0 a7.5,7.5 0 1,0 -15,0 Z M55,42.5 a7.5,7.5 0 1,0 15,0 a7.5,7.5 0 1,0 -15,0 Z M50,50.5 C47.8,54.5 45.8,57.8 45.8,60.5 C45.8,62.9 47.6,64.5 50,64.5 C52.4,64.5 54.2,62.9 54.2,60.5 C54.2,57.8 52.2,54.5 50,50.5 Z M45.9,77 L47.7,77 L47.7,87.6 L45.9,87.6 Z M52.3,77 L54.1,77 L54.1,87.6 L52.3,87.6 Z"/></svg>
-          </div>
-          <div class="pbody">
-            <h3 class="pname">DICOM<span>&nbsp;Pro</span></h3>
-            <p class="pdesc">Visualizador de exames DICOM para estudo: reconstrução multiplanar em três
-            planos, medições e filtros — processamento no próprio aparelho.<br/>
-            <em lang="en">DICOM exam viewer for study — 3-plane MPR, measurements and filters, processed on your device.</em></p>
-            <p class="pnote">Para ensino, estudo e referência — não se destina a diagnóstico, laudo
-            ou decisão clínica.<br/>
-            <em lang="en">For teaching, study and reference — not intended for diagnosis, reporting
-            or clinical decision-making.</em></p>
-            <div class="plinks">
-              <a href="dicompro.html">Conheça · Learn more</a>
-              <a href="https://play.google.com/store/apps/details?id=com.dicompro.app">Google Play</a>
-              <a href="suporte.html#dicompro">Suporte · Support</a>
-              <a href="privacidade.html">Privacidade · Privacy</a>
-              <a href="termos.html">Termos · Terms</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="product app-radio">
-          <div class="ptile">
-            <svg viewBox="136 120 752 752" aria-hidden="true"><path d="M176.0,550.0 Q176.0,528.0 197.5,532.8 L476.5,595.2 Q498.0,600.0 498.0,622.0 L498.0,770.0 Q498.0,792.0 476.8,786.0 L197.2,706.0 Q176.0,700.0 176.0,678.0 Z" fill="#2F80ED"/><path d="M848.0,550.0 Q848.0,528.0 826.5,532.8 L547.5,595.2 Q526.0,600.0 526.0,622.0 L526.0,770.0 Q526.0,792.0 547.2,786.0 L826.8,706.0 Q848.0,700.0 848.0,678.0 Z" fill="#2F80ED"/><path d="M379.1,624.0 L374.0,621.3 L368.9,618.5 L363.9,615.5 L358.9,612.5 L354.1,609.3 L349.3,605.9 L344.6,602.5 L340.0,598.9 L335.5,595.2 L331.1,591.4 L326.8,587.5 L322.7,583.4 L318.6,579.3 L314.6,575.0 L310.7,570.7 L307.0,566.2 L303.3,561.7 L299.8,557.1 L296.4,552.3 L293.1,547.5 L290.0,542.6 L287.0,537.7 L284.1,532.6 L281.3,527.5 L278.7,522.3 L276.2,517.0 L273.9,511.7 L271.7,506.3 L269.6,500.9 L267.7,495.4 L265.9,489.9 L264.3,484.3 L262.8,478.7 L261.4,473.0 L260.2,467.3 L259.2,461.6 L258.3,455.8 L257.5,450.1 L256.9,444.3 L256.5,438.5 L256.2,432.7 L256.0,426.8 L256.0,421.0 L256.2,415.2 L256.5,409.4 L256.9,403.6 L257.5,397.8 L258.3,392.0 L259.2,386.3 L260.2,380.6 L261.5,374.9 L262.8,369.2 L264.3,363.6 L265.9,358.0 L267.7,352.5 L269.7,347.0 L271.7,341.6 L273.9,336.2 L276.3,330.9 L278.8,325.6 L281.4,320.4 L284.2,315.3 L287.0,310.2 L290.1,305.3 L293.2,300.4 L296.5,295.6 L299.9,290.8 L303.4,286.2 L307.0,281.7 L310.8,277.2 L314.7,272.9 L318.6,268.6 L322.7,264.5 L326.9,260.5 L331.2,256.5 L335.6,252.7 L340.1,249.0 L344.7,245.5 L349.4,242.0 L354.2,238.7 L359.0,235.5 L364.0,232.4 L369.0,229.4 L374.1,226.6 L379.2,223.9 L384.5,221.4 L389.8,219.0 L395.1,216.7 L400.5,214.6 L406.0,212.6 L411.5,210.7 L417.1,209.0 L422.7,207.5 L428.3,206.0 L434.0,204.8 L439.7,203.7 L445.4,202.7 L451.2,201.9 L457.0,201.2 L462.8,200.7 L468.6,200.3 L474.4,200.1 L480.2,200.0 L486.0,200.1 L491.8,200.3 L497.6,200.7 L503.4,201.2 L509.2,201.9 L515.0,202.7 L520.7,203.7 L526.4,204.9 L532.1,206.1 L537.7,207.6 L543.3,209.1 L548.9,210.9 L554.4,212.7 L559.9,214.7 L565.3,216.9 L570.6,219.2 L575.9,221.6 L581.1,224.1 L586.3,226.8 L591.4,229.7 L596.4,232.6 L601.3,235.7 L606.2,238.9 L610.9,242.3 L615.6,245.7 L620.2,249.3 L624.7,253.0 L629.1,256.8 L633.4,260.7 L637.6,264.8 L641.6,268.9 L645.6,273.2 L649.5,277.5 L653.2,282.0 L656.9,286.5 L660.4,291.2 L663.8,295.9 L667.0,300.7 L670.2,305.6 L673.2,310.6 L676.0,315.6 L678.8,320.8 L681.4,326.0 L683.9,331.2 L686.2,336.6 L688.4,341.9 L690.5,347.4 L706.6,392.9 Q712.0,408.0 704.3,422.0 L692.8,443.2 Q688.0,452.0 693.3,460.5 L720.5,504.7 Q730.0,520.0 723.9,536.9 L718.8,551.2 Q712.0,570.0 712.0,590.0 L712.0,678.0 Q712.0,692.0 698.0,692.0 L685.0,692.0 Q671.0,692.0 671.0,678.0 L671.0,630.0 Q671.0,624.0 665.0,624.0 L662.0,624.0 Q656.0,624.0 656.0,630.0 L656.0,678.0 Q656.0,692.0 642.0,692.0 L629.0,692.0 Q615.0,692.0 615.0,678.0 L615.0,630.0 Q615.0,624.0 609.0,624.0 L606.0,624.0 Q600.0,624.0 600.0,630.0 L600.0,678.0 Q600.0,692.0 586.0,692.0 L573.0,692.0 Q559.0,692.0 559.0,678.0 L559.0,634.0 Q559.0,624.0 549.0,624.0 Z M652.0,444.0 A52.0,52.0 0 1 0 548.0,444.0 A52.0,52.0 0 1 0 652.0,444.0 Z" fill-rule="evenodd" fill="#FFFFFF"/></svg>
-          </div>
-          <div class="pbody">
-            <h3 class="pname">Radiologia <span>odontológica</span></h3>
-            <p class="pstatus"><span class="nw">Em andamento</span> · <span class="nw" lang="en">In progress</span></p>
-            <p class="pdesc">Atlas por exame, quiz com repetição espaçada e análise educacional com
-            IA — em 9 idiomas.<br/>
-            <em lang="en">Dental radiology study app — atlas by exam, spaced-repetition quiz and educational AI analysis, in 9 languages.</em></p>
-            <p class="pnote">Ferramenta exclusivamente educacional — não é dispositivo médico, não
-            realiza diagnósticos e não deve ser usada para decisões clínicas sobre pacientes.<br/>
-            <em lang="en">Educational tool only — not a medical device; it does not provide diagnoses and must not be used for clinical decisions about patients.</em></p>
-            <div class="plinks">
-              <a href="radiologia-odontologica.html">Conheça · Learn more</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="product app-tabspro">
-          <div class="ptile">
-            <svg viewBox="64 64 896 896" aria-hidden="true"><defs><clipPath id="tabspro-palheta"><path d="M512 152C706 152 874 216 868 368C860 536 636 766 556 852Q512 900 470 846C392 756 158 528 156 356C154 206 330 152 512 152Z"/></clipPath><mask id="tabspro-onda"><rect width="1024" height="1024" fill="#fff"/><path fill="#000" d="M296.0 377.0H296.0A33.0 33.0 0 0 1 329.0 410.0V494.0A33.0 33.0 0 0 1 296.0 527.0H296.0A33.0 33.0 0 0 1 263.0 494.0V410.0A33.0 33.0 0 0 1 296.0 377.0Z"/><path fill="#000" d="M404.0 317.0H404.0A33.0 33.0 0 0 1 437.0 350.0V554.0A33.0 33.0 0 0 1 404.0 587.0H404.0A33.0 33.0 0 0 1 371.0 554.0V350.0A33.0 33.0 0 0 1 404.0 317.0Z"/><path fill="#000" d="M512.0 262.0H512.0A33.0 33.0 0 0 1 545.0 295.0V609.0A33.0 33.0 0 0 1 512.0 642.0H512.0A33.0 33.0 0 0 1 479.0 609.0V295.0A33.0 33.0 0 0 1 512.0 262.0Z"/><path fill="#000" d="M620.0 317.0H620.0A33.0 33.0 0 0 1 653.0 350.0V554.0A33.0 33.0 0 0 1 620.0 587.0H620.0A33.0 33.0 0 0 1 587.0 554.0V350.0A33.0 33.0 0 0 1 620.0 317.0Z"/><path fill="#000" d="M728.0 377.0H728.0A33.0 33.0 0 0 1 761.0 410.0V494.0A33.0 33.0 0 0 1 728.0 527.0H728.0A33.0 33.0 0 0 1 695.0 494.0V410.0A33.0 33.0 0 0 1 728.0 377.0Z"/></mask></defs><g transform="rotate(-16 512 512)"><g clip-path="url(#tabspro-palheta)" mask="url(#tabspro-onda)"><rect width="1024" height="1024" fill="#E8702A"/><path d="M296 0H1024V712Z" fill="#F0905A"/></g></g></svg>
-          </div>
-          <div class="pbody">
-            <h3 class="pname">Tabs<span>&nbsp;Pro</span></h3>
-            <p class="psub">Afinador e Cifras · <span lang="en">Tuner &amp; Chords</span></p>
-            <p class="pdesc">Afinador cromático em tempo real, e cifra e tablatura geradas a partir do
-            áudio — tudo processado no próprio aparelho.<br/>
-            <em lang="en">Guitar app — real-time chromatic tuner, plus chords and tablature generated from audio, all processed on your device.</em></p>
-            <div class="plinks">
-              <a href="tabspro.html">Conheça · Learn more</a>
-              <a href="https://play.google.com/store/apps/details?id=com.tuningtabspro.app">Google Play</a>
-              <a href="/tabspro/suporte">Suporte · Support</a>
-              <a href="/tabspro/privacidade">Privacidade · Privacy</a>
-              <a href="/tabspro/termos">Termos · Terms</a>
-            </div>
-          </div>
-        </article>
-
+  <section class="vitrine" id="apps" aria-labelledby="apps-titulo" data-vitrine>
+    <div class="wrap">
+      <div class="vitrine-topo">
+        <h2 id="apps-titulo" class="titulo-secao titulo-hex">Nossos aplicativos <span class="en-t" lang="en">Our apps</span></h2>
+        <div class="setas">
+          <button type="button" class="seta" data-anterior aria-controls="trilho-apps" aria-label="App anterior"><svg class="i" aria-hidden="true"><use href="#i-esq"/></svg></button>
+          <button type="button" class="seta" data-proxima aria-controls="trilho-apps" aria-label="Próximo app"><svg class="i" aria-hidden="true"><use href="#i-dir"/></svg></button>
+        </div>
       </div>
 
-      <p class="assina">Cada app tem identidade própria e leva a assinatura "um app OakAppWare".<br/>
-      <em lang="en">Every app has its own identity and carries the "an OakAppWare app" signature.</em></p>
-    </section>
+      <nav class="seletor" aria-label="Escolha o app" style="--n:3">
+        <a class="seletor-item tema-tabspro is-ativa" href="#janela-tabspro" data-ir>
+          <span class="tile" aria-hidden="true"><svg><use href="#icone-tabspro"/></svg></span>
+          <span class="seletor-txt"><span class="seletor-nome">Tabs Pro</span><span class="seletor-estado"><span class="ponto ponto--novo" aria-hidden="true"></span><span class="t">Novo · Google Play</span></span></span>
+        </a>
+        <a class="seletor-item tema-dicompro" href="#janela-dicompro" data-ir>
+          <span class="tile" aria-hidden="true"><svg><use href="#icone-dicompro"/></svg></span>
+          <span class="seletor-txt"><span class="seletor-nome">DICOM Pro</span><span class="seletor-estado"><span class="ponto" aria-hidden="true"></span><span class="t">Google Play</span></span></span>
+        </a>
+        <a class="seletor-item tema-radiologia" href="#janela-radiologia" data-ir>
+          <span class="tile" aria-hidden="true"><svg><use href="#icone-radiologia"/></svg></span>
+          <span class="seletor-txt"><span class="seletor-nome">Radiologia odontológica</span><span class="seletor-estado"><span class="ponto ponto--breve" aria-hidden="true"></span><span class="t">Em andamento</span></span></span>
+        </a>
+      </nav>
+      <p class="sr-only" aria-live="polite" data-aviso></p>
+    </div>
 
-    <section id="sobre">
-      <h2 class="label">
-        <svg viewBox="0 0 16 18" aria-hidden="true"><path fill="#2FD37A" d="M8 0l7.8 4.5v9L8 18 .2 13.5v-9z"/></svg>
-        Sobre · About
-      </h2>
-      <p class="about">A OakAppWare é uma desenvolvedora de software brasileira, sediada em
-      Brasília/DF. Publicamos aplicativos próprios para saúde, educação e o dia a dia.</p>
-      <p class="about"><strong>Privacidade por padrão:</strong> sempre que possível, o processamento acontece no
-      próprio aparelho. Quando um app usa conta, sincronização, recursos na nuvem ou estatísticas de
-      uso e falhas, a política de privacidade daquele app diz o que sai do aparelho e por quê. Nossos
-      apps não têm anúncios, e não vendemos dados.</p>
-      <p class="about"><strong>Finalidade educacional:</strong> nossos aplicativos da área de saúde
-      são ferramentas de ensino, estudo e referência. Não são dispositivos médicos e não se destinam
-      a diagnóstico, laudo ou decisão clínica.</p>
-      <p class="about-en" lang="en">OakAppWare is a Brazilian software company based in Brasília.
-      Privacy by default, and health-related apps built for teaching, study and reference — not
-      medical devices.</p>
-      <p class="about-link"><a href="sobre.html">Conheça a empresa · About the company</a></p>
-    </section>
+    <div class="trilho" id="trilho-apps" role="region" aria-label="Janelas dos aplicativos" tabindex="0" data-trilho>
 
-    <section id="contato">
-      <h2 class="label">
-        <svg viewBox="0 0 16 18" aria-hidden="true"><path fill="#2FD37A" d="M8 0l7.8 4.5v9L8 18 .2 13.5v-9z"/></svg>
-        Contato · Contact
-      </h2>
-      <p class="contact">Suporte e dúvidas: <a href="mailto:contato@oakappware.com">contato@oakappware.com</a><br/>
-      Perguntas frequentes e canais de atendimento em <a href="suporte.html">Suporte · Support</a>.</p>
-    </section>
-  </div>
+      <article class="janela tema-tabspro is-ativa" id="janela-tabspro" aria-labelledby="nome-tabspro" data-nome="Tabs Pro">
+        <div class="janela-cabeca">
+          <div class="chips">
+            <span class="chip chip--novo"><span>Novo · <span lang="en">New</span></span></span>
+            <span class="chip chip--loja"><span class="ponto" aria-hidden="true"></span>No Google Play</span>
+          </div>
+          <h3 class="janela-nome" id="nome-tabspro">Tabs<span>&nbsp;Pro</span></h3>
+          <p class="janela-sub">Afinador e Cifras · <span lang="en">Tuner &amp; Chords</span></p>
+          <div class="janela-acoes">
+            <a class="btn-loja" href="https://play.google.com/store/apps/details?id=com.tuningtabspro.app">
+              <svg class="play" aria-hidden="true"><use href="#i-play"/></svg>
+              <span><span class="pre">Baixar no</span><span class="loja">Google Play</span><span class="sr-only"> — Tabs Pro</span></span>
+            </a>
+            <span class="loja-breve"><span class="ponto ponto--breve" aria-hidden="true"></span><span>App Store em breve · <span lang="en">soon</span></span></span>
+          </div>
+        </div>
+        <div class="janela-arte" aria-hidden="true">
+          <span class="hexfundo"></span>
+          <span class="aneis"></span>
+          <span class="tile tile--g"><svg><use href="#icone-tabspro"/></svg></span>
+          <p class="assinatura">um app <b>OakAppWare</b></p>
+        </div>
+        <div class="janela-corpo">
+          <p class="janela-frase">Do áudio à cifra, sem sair do seu aparelho. <span class="en" lang="en">From audio to chords, without leaving your device.</span></p>
+          <p class="janela-desc">Afinador cromático em tempo real, e cifra e tablatura geradas a partir do áudio — tudo processado no próprio aparelho.</p>
+          <p class="janela-desc-en" lang="en">Guitar app — real-time chromatic tuner, plus chords and tablature generated from audio, all processed on your device.</p>
+          <ul class="fatos">
+            <li>Gratuito para baixar</li>
+            <li>Sem anúncios</li>
+            <li>Funciona offline</li>
+            <li>Português, inglês e espanhol</li>
+            <li>Classificação Livre</li>
+          </ul>
+          <ul class="acoes-sec">
+            <li><a class="btn-sec" href="tabspro.html"><span class="pt">Conheça<span class="sr-only"> o Tabs Pro</span></span><span class="en" lang="en">Learn more</span></a></li>
+            <li><a class="btn-sec" href="/tabspro/suporte"><span class="pt">Suporte<span class="sr-only"> do Tabs Pro</span></span><span class="en" lang="en">Support</span></a></li>
+            <li><a class="btn-sec" href="/tabspro/privacidade"><span class="pt">Privacidade<span class="sr-only"> do Tabs Pro</span></span><span class="en" lang="en">Privacy</span></a></li>
+            <li><a class="btn-sec" href="/tabspro/termos"><span class="pt">Termos<span class="sr-only"> do Tabs Pro</span></span><span class="en" lang="en">Terms</span></a></li>
+          </ul>
+          <p class="janela-rodape"><svg class="i" aria-hidden="true"><use href="#i-escudo"/></svg><span>Nenhum dado coletado · só pede o microfone. <span class="en" lang="en">No data collected · microphone only.</span></span></p>
+        </div>
+        <span class="janela-veu" aria-hidden="true"><span class="tile"><svg><use href="#icone-tabspro"/></svg></span></span>
+      </article>
+
+      <article class="janela tema-dicompro" id="janela-dicompro" aria-labelledby="nome-dicompro" data-nome="DICOM Pro">
+        <div class="janela-cabeca">
+          <div class="chips">
+            <span class="chip chip--loja"><span class="ponto" aria-hidden="true"></span>No Google Play</span>
+            <span class="chip chip--breve"><span class="ponto ponto--breve" aria-hidden="true"></span>App Store em breve</span>
+          </div>
+          <h3 class="janela-nome" id="nome-dicompro">DICOM<span>&nbsp;Pro</span></h3>
+          <p class="janela-sub">Visualizador de exames DICOM&nbsp;· <span lang="en">DICOM exam viewer</span></p>
+          <p class="aviso"><strong>Para ensino, estudo e referência — não se destina a diagnóstico, laudo ou decisão clínica.</strong>
+            <span class="en" lang="en">For teaching, study and reference — not intended for diagnosis, reporting or clinical decision-making.</span></p>
+          <div class="janela-acoes">
+            <a class="btn-loja" href="https://play.google.com/store/apps/details?id=com.dicompro.app">
+              <svg class="play" aria-hidden="true"><use href="#i-play"/></svg>
+              <span><span class="pre">Baixar no</span><span class="loja">Google Play</span><span class="sr-only"> — DICOM Pro</span></span>
+            </a>
+          </div>
+        </div>
+        <figure class="janela-arte capturas">
+          <div class="capturas-palco">
+            <span class="hexfundo" aria-hidden="true"></span>
+            <span class="cap cap-1"><img src="assets/apps/dicompro/web/1-mpr-pt-400.webp" srcset="assets/apps/dicompro/web/1-mpr-pt-400.webp 400w, assets/apps/dicompro/web/1-mpr-pt-800.webp 800w" sizes="(min-width:981px) 196px, 112px" width="400" height="711" loading="lazy" decoding="async" alt="Tela principal do aplicativo: três janelas de reconstrução, rotuladas AXIAL, SAGITAL e CORONAL, com a barra de ferramentas à esquerda." /></span>
+            <span class="cap cap-2"><img src="assets/apps/dicompro/web/3-metais-pt-400.webp" srcset="assets/apps/dicompro/web/3-metais-pt-400.webp 400w, assets/apps/dicompro/web/3-metais-pt-800.webp 800w" sizes="(min-width:981px) 196px, 112px" width="400" height="711" loading="lazy" decoding="async" alt="As três janelas de reconstrução com a ferramenta de realce de regiões de alta densidade ligada." /></span>
+            <span class="tile tile-mini" aria-hidden="true"><svg><use href="#icone-dicompro"/></svg></span>
+            <p class="assinatura" aria-hidden="true">um app <b>OakAppWare</b></p>
+          </div>
+          <figcaption><strong>Telas reais do app · <span lang="en">Real app screens</span></strong>
+            Para ensino, estudo e referência — não se destina a diagnóstico, laudo ou decisão clínica.
+            <span class="en" lang="en">For teaching, study and reference — not intended for diagnosis, reporting or clinical decision-making.</span></figcaption>
+        </figure>
+        <div class="janela-corpo">
+          <p class="janela-desc">Visualizador de exames DICOM para estudo: reconstrução multiplanar em três planos, medições e filtros — processamento no próprio aparelho.</p>
+          <p class="janela-desc-en" lang="en">DICOM exam viewer for study — 3-plane MPR, measurements and filters, processed on your device.</p>
+          <ul class="fatos">
+            <li>Processamento no aparelho</li>
+            <li>Sem anúncios</li>
+            <li>Português e inglês</li>
+          </ul>
+          <ul class="acoes-sec">
+            <li><a class="btn-sec" href="dicompro.html"><span class="pt">Conheça<span class="sr-only"> o DICOM Pro</span></span><span class="en" lang="en">Learn more</span></a></li>
+            <li><a class="btn-sec" href="suporte.html#dicompro"><span class="pt">Suporte<span class="sr-only"> do DICOM Pro</span></span><span class="en" lang="en">Support</span></a></li>
+            <li><a class="btn-sec" href="privacidade.html"><span class="pt">Privacidade<span class="sr-only"> do DICOM Pro</span></span><span class="en" lang="en">Privacy</span></a></li>
+            <li><a class="btn-sec" href="termos.html"><span class="pt">Termos<span class="sr-only"> do DICOM Pro</span></span><span class="en" lang="en">Terms</span></a></li>
+          </ul>
+        </div>
+        <span class="janela-veu" aria-hidden="true"><span class="tile"><svg><use href="#icone-dicompro"/></svg></span></span>
+      </article>
+
+      <article class="janela tema-radiologia" id="janela-radiologia" aria-labelledby="nome-radiologia" data-nome="Radiologia odontológica">
+        <div class="janela-cabeca">
+          <div class="chips">
+            <span class="chip chip--breve"><span class="ponto ponto--breve" aria-hidden="true"></span><span>Em andamento · <span lang="en">In progress</span></span></span>
+          </div>
+          <h3 class="janela-nome" id="nome-radiologia">Radiologia <span>odontológica</span></h3>
+          <p class="janela-sub">App de estudo · <span lang="en">Study app</span></p>
+          <p class="aviso"><strong>Ferramenta exclusivamente educacional — não é dispositivo médico, não realiza diagnósticos e não deve ser usada para decisões clínicas sobre pacientes.</strong>
+            <span class="en" lang="en">Educational tool only — not a medical device; it does not provide diagnoses and must not be used for clinical decisions about patients.</span></p>
+          <div class="janela-acoes">
+            <a class="btn btn-fantasma" href="radiologia-odontologica.html"><span>Conheça o app<span class="sr-only"> de radiologia odontológica</span> · <span lang="en">Learn more</span></span><svg class="i" aria-hidden="true"><use href="#i-seta"/></svg></a>
+            <span class="loja-breve"><span class="ponto ponto--breve" aria-hidden="true"></span><span>Ainda não está nas lojas · <span lang="en">Not in the stores yet</span></span></span>
+          </div>
+        </div>
+        <div class="janela-arte" aria-hidden="true">
+          <span class="hexfundo"></span>
+          <span class="aneis"></span>
+          <span class="tile tile--g"><svg><use href="#icone-radiologia"/></svg></span>
+          <p class="assinatura">um app <b>OakAppWare</b></p>
+        </div>
+        <div class="janela-corpo">
+          <p class="janela-desc">Atlas por exame, quiz com repetição espaçada e análise educacional com IA — em 9 idiomas.</p>
+          <p class="janela-desc-en" lang="en">Dental radiology study app — atlas by exam, spaced-repetition quiz and educational AI analysis, in 9 languages.</p>
+          <ul class="fatos">
+            <li>Atlas por exame</li>
+            <li>Quiz com repetição espaçada</li>
+            <li>9 idiomas</li>
+          </ul>
+          <ul class="acoes-sec">
+            <li><a class="btn-sec" href="suporte.html#outros-apps"><span class="pt">Suporte<span class="sr-only"> do app de radiologia odontológica</span></span><span class="en" lang="en">Support</span></a></li>
+          </ul>
+        </div>
+        <span class="janela-veu" aria-hidden="true"><span class="tile"><svg><use href="#icone-radiologia"/></svg></span></span>
+      </article>
+
+    </div>
+
+    <div class="wrap vitrine-rodape">
+      <p class="vitrine-dica"><span class="dica-toque">Deslize para o lado ou escolha acima. <span class="en" lang="en">Swipe or pick above.</span></span><span class="dica-mouse">Use as setas ou escolha acima. <span class="en" lang="en">Use the arrows or pick above.</span></span></p>
+      <p>Cada app tem identidade própria e leva a assinatura “um app OakAppWare”. <span class="en" lang="en">Every app carries the “an OakAppWare app” signature.</span></p>
+    </div>
+  </section>
+
+  <section class="secao" id="sobre" aria-labelledby="sobre-titulo">
+    <div class="wrap sobre-grade">
+      <div class="sobre-intro revelar">
+        <p class="rotulo"><span>Sobre · <span class="en" lang="en">About</span></span></p>
+        <h2 id="sobre-titulo" class="titulo-secao">Uma desenvolvedora de software brasileira, de Brasília/DF.</h2>
+        <p class="lead">A OakAppWare é uma desenvolvedora de software brasileira, sediada em Brasília/DF. Publicamos aplicativos próprios para saúde, educação e o dia a dia.</p>
+        <p class="en" lang="en">OakAppWare is a Brazilian software company based in Brasília. Privacy by default, and health-related apps built for teaching, study and reference — not medical devices.</p>
+        <a class="link-seta" href="sobre.html"><span>Conheça a empresa · <span lang="en">About the company</span></span><svg class="i" aria-hidden="true"><use href="#i-seta"/></svg></a>
+      </div>
+      <ul class="principios">
+        <li class="principio revelar" style="--d:1">
+          <span class="hex" aria-hidden="true"><svg viewBox="0 0 40 46"><path fill="none" stroke="currentColor" stroke-width="2" d="M20 2l17 10v22L20 44 3 34V12z"/><path fill="currentColor" d="M20 15l7 4v8l-7 4-7-4v-8z"/></svg></span>
+          <h3>Privacidade por padrão</h3>
+          <p>Sempre que possível, o processamento acontece no próprio aparelho. Quando um app usa conta, sincronização, recursos na nuvem ou estatísticas de uso e falhas, a política de privacidade daquele app diz o que sai do aparelho e por quê. Nossos apps não têm anúncios, e não vendemos dados.</p>
+          <p class="en" lang="en">Privacy by default — no ads, and we do not sell data.</p>
+        </li>
+        <li class="principio revelar" style="--d:2">
+          <span class="hex" aria-hidden="true"><svg viewBox="0 0 40 46"><path fill="none" stroke="currentColor" stroke-width="2" d="M20 2l17 10v22L20 44 3 34V12z"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 19h16M12 24h16M12 29h10"/></svg></span>
+          <h3>Finalidade educacional</h3>
+          <p>Nossos aplicativos da área de saúde são ferramentas de ensino, estudo e referência. Não são dispositivos médicos e não se destinam a diagnóstico, laudo ou decisão clínica.</p>
+          <p class="en" lang="en">Health-related apps built for teaching, study and reference — not medical devices.</p>
+        </li>
+        <li class="principio revelar" style="--d:3">
+          <span class="hex" aria-hidden="true"><svg viewBox="0 0 40 46"><path fill="none" stroke="currentColor" stroke-width="2" d="M20 2l17 10v22L20 44 3 34V12z"/><path fill="currentColor" d="M25 9l5 3v6l-5 3-5-3v-6z"/><path fill="currentColor" d="M15 20l5 3v6l-5 3-5-3v-6z"/></svg></span>
+          <h3>Uma marca, vários apps</h3>
+          <p>Cada app tem identidade própria e leva a assinatura “um app OakAppWare”. No símbolo, cada módulo da copa é um app — e um deles se desprende no alto: o próximo que vem.</p>
+          <p class="en" lang="en">Every app has its own identity and carries the “an OakAppWare app” signature.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="secao" id="contato" aria-labelledby="contato-titulo">
+    <div class="wrap">
+      <div class="contato-cartao revelar">
+        <div>
+          <p class="rotulo"><span>Contato · <span class="en" lang="en">Contact</span></span></p>
+          <h2 id="contato-titulo" class="titulo-secao">Fale com a gente.</h2>
+          <p>Suporte e dúvidas: atendemos em português ou inglês e respondemos todas as mensagens.</p>
+          <p class="en" lang="en">Support and questions: we answer in Portuguese or English, and we reply to every message.</p>
+          <a class="email-grande" href="mailto:contato@oakappware.com"><svg class="i" aria-hidden="true"><use href="#i-email"/></svg>contato@oakappware.com</a>
+          <p class="aviso-email">Nunca envie exames, imagens médicas ou dados de pacientes por e-mail — não precisamos deles para ajudar você.</p>
+        </div>
+        <ul class="atalhos">
+          <li><a class="atalho" href="suporte.html"><span>Central de suporte<small>Perguntas frequentes · <span lang="en">FAQ</span></small></span><svg class="i" aria-hidden="true"><use href="#i-seta"/></svg></a></li>
+          <li><a class="atalho" href="/tabspro/suporte"><span>Suporte do Tabs Pro<small>PT · EN · ES</small></span><svg class="i" aria-hidden="true"><use href="#i-seta"/></svg></a></li>
+          <li><a class="atalho tema-dicompro" href="suporte.html#dicompro"><span>Suporte do DICOM Pro<small>Perguntas frequentes · <span lang="en">FAQ</span></small><small class="aviso-curto">Para ensino, estudo e referência</small></span><svg class="i" aria-hidden="true"><use href="#i-seta"/></svg></a></li>
+          <li><a class="atalho" href="legal.html"><span>Documentos legais<small>Privacidade e termos de cada app</small></span><svg class="i" aria-hidden="true"><use href="#i-seta"/></svg></a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
 </main>
 
-<footer>
+<footer class="rodape">
   <div class="wrap">
-    <a class="foot-brand" href="/" aria-label="OakAppWare — início">
-      <img src="assets/logo.svg" width="131" height="26" alt="OakAppWare" />
-    </a>
-    OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA — <span style="white-space:nowrap">CNPJ 68.923.016/0001-00</span><br/>
-    SGAS 915, Conjunto B, Bloco D, Sala 103 (Parte CH 528) — Asa Sul, Brasília/DF, CEP 70.390-150<br/>
-    oakappware.com · <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>
-    <nav class="foot-links" aria-label="Rodapé">
-      <a href="/#apps">Apps</a>
-      <a href="sobre.html">Sobre</a>
-      <a href="suporte.html">Suporte</a>
-      <a href="legal.html">Legal</a>
-      <a href="legal.html#privacidade-site">Privacidade do site</a>
-    </nav>
+    <div class="rodape-grade">
+      <div class="rodape-marca-col">
+        <a class="marca" href="/"><img src="assets/logo.svg" width="141" height="28" alt="OakAppWare" /><span class="sr-only"> — página inicial</span></a>
+        <address class="empresa">
+          <span class="razao">OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA</span><br />
+          <span class="nw">CNPJ 68.923.016/0001-00</span><br />
+          SGAS 915, Conjunto B, Bloco D, Sala 103 (Parte CH 528) — Asa Sul, Brasília/DF, <span class="nw">CEP 70.390-150</span><br />
+          <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>
+        </address>
+      </div>
+      <nav aria-labelledby="rodape-apps">
+        <h2 id="rodape-apps">Apps</h2>
+        <ul>
+          <li><a href="tabspro.html">Tabs Pro</a></li>
+          <li><a href="dicompro.html">DICOM Pro</a></li>
+          <li><a href="radiologia-odontologica.html">Radiologia odontológica</a></li>
+        </ul>
+      </nav>
+      <nav aria-labelledby="rodape-ajuda">
+        <h2 id="rodape-ajuda">Ajuda</h2>
+        <ul>
+          <li><a href="suporte.html">Suporte</a></li>
+          <li><a href="/tabspro/suporte">Suporte do Tabs Pro</a></li>
+          <li><a href="suporte.html#dicompro">Suporte do DICOM Pro</a></li>
+          <li><a href="sobre.html">Sobre a empresa</a></li>
+        </ul>
+      </nav>
+      <nav class="rodape-legal" aria-labelledby="rodape-legal">
+        <h2 id="rodape-legal">Legal</h2>
+        <ul>
+          <li><a href="privacidade.html">Privacidade do DICOM Pro</a></li>
+          <li><a href="termos.html">Termos do DICOM Pro</a></li>
+          <li><a href="/tabspro/privacidade">Privacidade do Tabs Pro</a></li>
+          <li><a href="/tabspro/termos">Termos do Tabs Pro</a></li>
+          <li><a href="legal.html#privacidade-site">Privacidade do site</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="rodape-base">
+      <span>oakappware.com · Brasília/DF</span>
+      <span lang="en">Apps for health, education and everyday life.</span>
+    </div>
   </div>
 </footer>
 

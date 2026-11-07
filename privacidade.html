@@ -27,210 +27,201 @@
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 <link rel="apple-touch-icon" href="assets/apple-touch-icon-180.png" />
 <link rel="manifest" href="assets/site.webmanifest" />
-<style>
-  @font-face { font-family:"Inter"; font-weight:400; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-400-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-400-normal.woff") format("woff"); }
-  @font-face { font-family:"Inter"; font-weight:500; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-500-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-500-normal.woff") format("woff"); }
-  @font-face { font-family:"Inter"; font-weight:600; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-600-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-600-normal.woff") format("woff"); }
-  @font-face { font-family:"Inter"; font-weight:800; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-800-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-800-normal.woff") format("woff"); }
-
-  :root {
-    color-scheme:dark;
-    --bg:#0B0F0C; --border:#233029;
-    --text:#F3F6F4; --muted:#A6B3A9; --faint:#7B8B80;
-    --green:#2FD37A; --green-deep:#168A4E; --surface-2:#161C18;
-  }
-  * { box-sizing:border-box; margin:0; }
-  body { background:var(--bg); color:var(--text); font:16px/1.7 "Inter",system-ui,-apple-system,"Segoe UI",sans-serif; -webkit-font-smoothing:antialiased; }
-  /* Coluna de leitura de 680px alinhada à esquerda da faixa de 880px do
-     cabeçalho e do rodapé — as bordas esquerdas coincidem em todas as páginas. */
-  main { max-width:880px; margin:0 auto; padding:30px 24px 56px; }
-  main > * { max-width:680px; }
-  .wrap { max-width:880px; margin:0 auto; padding:0 24px; }
-
-  /* Cabeçalho e rodapé padrão do site — mesma marcação das outras páginas.
-     Só marcação e estilo: o texto legal abaixo não é tocado. */
-  header { border-bottom:1px solid var(--border); }
-  .bar { display:flex; align-items:center; justify-content:space-between; gap:12px 16px; padding:18px 24px; flex-wrap:wrap; }
-  .brand { display:flex; align-items:center; }
-  .brand:hover { text-decoration:none; }
-  .brand img { height:34px; width:auto; display:block; }
-  header nav { display:flex; gap:22px; font-size:14.5px; font-weight:500; }
-  header nav a { color:var(--muted); white-space:nowrap; }
-  header nav a:hover { color:var(--text); text-decoration:none; }
-  footer { border-top:1px solid var(--border); padding:28px 0 44px; color:var(--faint); font-size:13px; line-height:1.85; }
-  .foot-brand { display:block; margin-bottom:14px; }
-  .foot-brand img { height:26px; width:auto; display:block; }
-  footer a { color:var(--muted); }
-  .foot-links { margin-top:10px; display:flex; gap:8px 18px; flex-wrap:wrap; }
-  @media (max-width:640px) { header nav { gap:14px; font-size:14px; } }
-
-  a { color:var(--green); text-decoration:none; }
-  a:hover, a:focus-visible { color:var(--green); text-decoration:underline; text-underline-offset:3px; }
-  a:focus-visible, .skip:focus { outline:2px solid var(--green); outline-offset:3px; border-radius:2px; }
-  .skip { position:absolute; left:-9999px; }
-  .skip:focus { left:0; right:0; top:0; width:auto; z-index:20; background:var(--bg); border:0; border-radius:0; outline:2px solid var(--green); outline-offset:-2px; padding:14px 24px; color:var(--text); font-weight:600; }
-  .crumbs { font-size:14px; color:var(--faint); display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
-  .crumbs a { color:var(--muted); font-weight:500; }
-  .crumbs svg { width:14px; height:16px; }
-  h1, .doc-title { font-size:26px; font-weight:600; letter-spacing:-.01em; color:var(--text); text-transform:none; margin:22px 0 4px; }
-  .version { color:var(--muted); font-size:14px; margin-bottom:8px; }
-  .version + .version { margin-bottom:26px; }
-  h2, h3 { font-size:13px; letter-spacing:.12em; text-transform:uppercase; font-weight:600; color:var(--green); margin:28px 0 6px; }
-  p { margin:8px 0; }
-  .en-block { border-top:1px solid var(--border); margin-top:48px; padding-top:32px; }
-  .lang-note { color:var(--faint); font-size:13px; letter-spacing:.14em; text-transform:uppercase; font-weight:600; }
-  .doc-foot { border-top:1px solid var(--border); margin-top:48px; padding-top:24px; font-size:14px; color:var(--muted); display:flex; flex-wrap:wrap; gap:6px 16px; }
-  .doc-foot a { font-weight:500; }
-
-  @media print {
-    body { background:#fff; color:#111; font-size:11pt; }
-    main, main > * { max-width:none; padding:0; }
-    a { color:#111; text-decoration:underline; }
-    h1, .doc-title, h2, h3, footer a { color:#111; }
-    .version, .lang-note, .doc-foot { color:#333; }
-    .crumbs, .skip, header, .foot-links, .foot-brand { display:none; }
-    footer { border-top:1px solid #ccc; color:#333; padding:16px 0 0; }
-    .wrap { max-width:none; padding:0; }
-    .en-block { border-top:1px solid #ccc; break-before:page; page-break-before:always; }
-    .doc-foot { border-top:1px solid #ccc; }
-    h1, .doc-title, h2, h3 { break-after:avoid; page-break-after:avoid; }
-    p { orphans:3; widows:3; }
-  }
-</style>
+<script>document.documentElement.classList.add('js')</script>
+<link rel="stylesheet" href="assets/site.css" />
+<script src="assets/site.js" defer onerror="document.documentElement.classList.remove('js')"></script>
 </head>
-<body>
-<a class="skip" href="#conteudo">Pular para o conteúdo · <span lang="en">Skip to content</span></a>
-<header>
-  <div class="wrap bar">
-    <a class="brand" href="/" aria-label="OakAppWare — início">
-      <img src="assets/logo.svg" width="171" height="34" alt="OakAppWare" />
-    </a>
-    <nav aria-label="Principal">
-      <a href="/#apps">Apps</a>
-      <a href="sobre.html">Sobre</a>
-      <a href="suporte.html">Suporte</a>
-      <a href="legal.html" aria-current="page">Legal</a>
+<body class="tema-dicompro">
+
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="icone-dicompro" viewBox="0 0 100 100"><path fill="#b5abfc" fill-rule="evenodd" d="M50,9 C31.5,9 18,22 18,39 C18,47.5 21.5,53.5 26.5,57.5 C28.5,59 29.5,61 29.5,63.5 L29.5,68 C29.5,72.5 33,76 37.5,76 L39.5,76 L39.5,83 C39.5,86.5 42,89 45.5,89 L54.5,89 C58,89 60.5,86.5 60.5,83 L60.5,76 L62.5,76 C67,76 70.5,72.5 70.5,68 L70.5,63.5 C70.5,61 71.5,59 73.5,57.5 C78.5,53.5 82,47.5 82,39 C82,22 68.5,9 50,9 Z M30,42.5 a7.5,7.5 0 1,0 15,0 a7.5,7.5 0 1,0 -15,0 Z M55,42.5 a7.5,7.5 0 1,0 15,0 a7.5,7.5 0 1,0 -15,0 Z M50,50.5 C47.8,54.5 45.8,57.8 45.8,60.5 C45.8,62.9 47.6,64.5 50,64.5 C52.4,64.5 54.2,62.9 54.2,60.5 C54.2,57.8 52.2,54.5 50,50.5 Z M45.9,77 L47.7,77 L47.7,87.6 L45.9,87.6 Z M52.3,77 L54.1,77 L54.1,87.6 L52.3,87.6 Z"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-fechar" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-ajuda" viewBox="0 0 24 24"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-1.5 1.5H10l-4.5 4v-4A1.5 1.5 0 0 1 4 14.5z"/><path d="M8.5 9h7M8.5 12h4"/></symbol>
+  <symbol id="i-escudo" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6z"/><path d="M9 12l2.2 2.2L15.5 10"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6.5 3h8l4 4v13.5a.5.5 0 0 1-.5.5h-11.5a.5.5 0 0 1-.5-.5V3.5a.5.5 0 0 1 .5-.5z"/><path d="M14 3v4.5h4.5M9 12h6M9 15.5h6"/></symbol>
+  <symbol id="i-email" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5l8.5 6 8.5-6"/></symbol>
+  <symbol id="i-seta" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+</svg>
+
+<a class="pular" href="#conteudo">Pular para o conteúdo · <span lang="en">Skip to content</span></a>
+
+<header class="topo">
+  <div class="wrap topo-barra">
+    <a class="marca" href="/"><img src="assets/logo.svg" width="151" height="30" alt="OakAppWare" /><span class="sr-only"> — página inicial</span></a>
+    <nav class="nav" aria-label="Principal">
+      <button class="nav-menu" type="button" aria-expanded="false" aria-controls="nav-links">
+        <svg class="i abre" aria-hidden="true"><use href="#i-menu"/></svg><svg class="i fecha" aria-hidden="true"><use href="#i-fechar"/></svg><span class="nav-menu-txt">Menu</span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/#apps">Apps</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="legal.html">Legal</a></li>
+      </ul>
+      <a class="nav-suporte" href="suporte.html"><svg class="i" aria-hidden="true"><use href="#i-ajuda"/></svg>Suporte</a>
     </nav>
   </div>
 </header>
 
-<main id="conteudo">
-  <nav class="crumbs" aria-label="Navegação">
-    <svg viewBox="0 0 16 18" aria-hidden="true"><path fill="#2FD37A" d="M8 0l7.8 4.5v9L8 18 .2 13.5v-9z"/></svg>
-    <a href="index.html">OakAppWare</a> · <a href="dicompro.html">DICOM Pro</a>
-  </nav>
-  <h1>Política de Privacidade</h1>
-  <p class="version">Versão de 10 de outubro de 2026 · <a href="#english" lang="en">English below</a></p>
-  <p class="version">Desenvolvido por <strong>OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA</strong> (<span style="white-space:nowrap">CNPJ 68.923.016/0001-00</span>) — Brasília/DF, Brasil. Contato: contato@oakappware.com</p>
+<main id="conteudo" class="doc-pagina">
+  <div class="documento-wrap doc-grade">
+    <article class="documento">
+      <nav aria-label="Trilha de navegação"><ol class="trilha"><li><a href="/">OakAppWare</a></li><li><a href="dicompro.html">DICOM Pro</a></li><li><span aria-current="page">Privacidade</span></li></ol></nav>
+      <div class="doc-topo" data-chrome>
+        <div class="doc-ident"><span class="tile" aria-hidden="true"><svg><use href="#icone-dicompro"/></svg></span><p><strong>DICOM Pro</strong><span><span class="ponto" aria-hidden="true"></span>Disponível no Google Play</span></p></div>
+        <p class="aviso"><strong>Para ensino, estudo e referência — não se destina a diagnóstico, laudo ou decisão clínica.</strong>
+          <span class="en" lang="en">For teaching, study and reference — not intended for diagnosis, reporting or clinical decision-making.</span></p>
+      </div>
+      <h1>Política de Privacidade</h1>
+      <p class="version">Versão de 10 de outubro de 2026 · <a href="#english" lang="en">English below</a></p>
+      <p class="version">Desenvolvido por <strong>OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA</strong> (<span class="nw">CNPJ 68.923.016/0001-00</span>) — Brasília/DF, Brasil. Contato: contato@oakappware.com</p>
 
-  <h2>Resumo</h2>
-  <p><strong>O DICOM Pro não coleta, não transmite e não compartilha nenhum dado.</strong>
-  Não há servidor, não há conta de usuário, não há anúncios, não há rastreadores
-  ou ferramentas de análise. Todo o processamento acontece no aparelho.</p>
+      <h2>Resumo</h2>
+      <p><strong>O DICOM Pro não coleta, não transmite e não compartilha nenhum dado.</strong>
+      Não há servidor, não há conta de usuário, não há anúncios, não há rastreadores
+      ou ferramentas de análise. Todo o processamento acontece no aparelho.</p>
 
-  <h2>Exames e dados de pacientes</h2>
-  <p>Os exames que você abre são lidos diretamente do armazenamento do aparelho
-  (ou da sua nuvem pessoal, como o iCloud ou o Google Drive, mediante a sua ação)
-  e processados apenas na memória local. Ao usar "Salvar exame", os arquivos são
-  copiados para a área privada do app no próprio aparelho — fora do backup do
-  iCloud no iOS — e podem ser removidos por você a qualquer momento em "Exames
-  salvos". O desenvolvedor não tem acesso a esses arquivos.</p>
+      <h2>Exames e dados de pacientes</h2>
+      <p>Os exames que você abre são lidos diretamente do armazenamento do aparelho
+      (ou da sua nuvem pessoal, como o iCloud ou o Google Drive, mediante a sua ação)
+      e processados apenas na memória local. Ao usar "Salvar exame", os arquivos são
+      copiados para a área privada do app no próprio aparelho — fora do backup do
+      iCloud no iOS — e podem ser removidos por você a qualquer momento em "Exames
+      salvos". O desenvolvedor não tem acesso a esses arquivos.</p>
 
-  <h2>O que fica armazenado no aparelho</h2>
-  <p>Apenas dados locais: preferências (idioma, modo de exibição, aceite dos
-  termos), a lista de exames salvos (nome do paciente conforme o exame, data e a
-  descrição que você digitou), as medições e anotações que você faz (guardadas
-  por série) e as imagens-chave (miniaturas da própria imagem, sem nome ou
-  identificação do paciente). Nada disso sai do aparelho. Ao exportar uma
-  imagem, o arquivo gerado — sem nome, data ou identificação do paciente — vai
-  apenas para o destino que você escolher na folha de compartilhamento.</p>
+      <h2>O que fica armazenado no aparelho</h2>
+      <p>Apenas dados locais: preferências (idioma, modo de exibição, aceite dos
+      termos), a lista de exames salvos (nome do paciente conforme o exame, data e a
+      descrição que você digitou), as medições e anotações que você faz (guardadas
+      por série) e as imagens-chave (miniaturas da própria imagem, sem nome ou
+      identificação do paciente). Nada disso sai do aparelho. Ao exportar uma
+      imagem, o arquivo gerado — sem nome, data ou identificação do paciente — vai
+      apenas para o destino que você escolher na folha de compartilhamento.</p>
 
-  <h2>Permissões</h2>
-  <p>O app acessa somente os arquivos e pastas que você escolhe pelo seletor do
-  sistema. Não acessa câmera, microfone, localização ou contatos.</p>
+      <h2>Permissões</h2>
+      <p>O app acessa somente os arquivos e pastas que você escolhe pelo seletor do
+      sistema. Não acessa câmera, microfone, localização ou contatos.</p>
 
-  <h2>Compras</h2>
-  <p>Se você contratar a assinatura, o pagamento é processado pela App Store ou
-  pelo Google Play. O app não recebe nem armazena dados de pagamento.</p>
+      <h2>Compras</h2>
+      <p>Se você contratar a assinatura, o pagamento é processado pela App Store ou
+      pelo Google Play. O app não recebe nem armazena dados de pagamento.</p>
 
-  <h2>Seus direitos (LGPD)</h2>
-  <p>Como os dados permanecem no seu aparelho, você os exclui diretamente:
-  removendo exames salvos, limpando os dados do app ou desinstalando-o. Para
-  dúvidas sobre esta política, contate:
-  <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>.</p>
+      <h2>Seus direitos (LGPD)</h2>
+      <p>Como os dados permanecem no seu aparelho, você os exclui diretamente:
+      removendo exames salvos, limpando os dados do app ou desinstalando-o. Para
+      dúvidas sobre esta política, contate:
+      <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>.</p>
 
-  <h2>Alterações</h2>
-  <p>Se esta política mudar, a nova versão será apresentada no app e publicada
-  nesta página.</p>
+      <h2>Alterações</h2>
+      <p>Se esta política mudar, a nova versão será apresentada no app e publicada
+      nesta página.</p>
 
-  <div class="en-block" id="english" lang="en">
-    <p class="lang-note">English</p>
-    <h2 class="doc-title">Privacy Policy</h2>
-    <p class="version">Version of October 10, 2026</p>
-    <p class="version">Developed by <strong>OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA</strong> (Brazilian company registry <span style="white-space:nowrap">68.923.016/0001-00</span>) — Brasília/DF, Brazil. Contact: contato@oakappware.com</p>
+      <div class="en-block" id="english" lang="en">
+        <p class="lang-note">English</p>
+        <h2 class="doc-title">Privacy Policy</h2>
+        <p class="version">Version of October 10, 2026</p>
+        <p class="version">Developed by <strong>OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA</strong> (Brazilian company registry <span class="nw">68.923.016/0001-00</span>) — Brasília/DF, Brazil. Contact: contato@oakappware.com</p>
 
-    <h3>Summary</h3>
-    <p><strong>DICOM Pro does not collect, transmit or share any data.</strong>
-    There is no server, no user account, no ads, no trackers or analytics. All
-    processing happens on the device.</p>
+        <h3>Summary</h3>
+        <p><strong>DICOM Pro does not collect, transmit or share any data.</strong>
+        There is no server, no user account, no ads, no trackers or analytics. All
+        processing happens on the device.</p>
 
-    <h3>Exams and patient data</h3>
-    <p>The exams you open are read directly from the device storage (or from
-    your personal cloud, such as iCloud or Google Drive, upon your action) and
-    processed only in local memory. When you use "Save exam", the files are
-    copied to the app's private area on the device itself — excluded from iCloud
-    backup on iOS — and can be removed by you at any time in "Saved exams". The
-    developer has no access to these files.</p>
+        <h3>Exams and patient data</h3>
+        <p>The exams you open are read directly from the device storage (or from
+        your personal cloud, such as iCloud or Google Drive, upon your action) and
+        processed only in local memory. When you use "Save exam", the files are
+        copied to the app's private area on the device itself — excluded from iCloud
+        backup on iOS — and can be removed by you at any time in "Saved exams". The
+        developer has no access to these files.</p>
 
-    <h3>What is stored on the device</h3>
-    <p>Only local data: preferences (language, display mode, terms acceptance),
-    the list of saved exams (patient name as present in the exam, date and the
-    description you typed), the measurements and annotations you make (kept per
-    series) and the key images (thumbnails of the image itself, with no patient
-    name or identification). None of this leaves the device. When you export an
-    image, the generated file — with no patient name, date or identification —
-    goes only to the destination you choose in the share sheet.</p>
+        <h3>What is stored on the device</h3>
+        <p>Only local data: preferences (language, display mode, terms acceptance),
+        the list of saved exams (patient name as present in the exam, date and the
+        description you typed), the measurements and annotations you make (kept per
+        series) and the key images (thumbnails of the image itself, with no patient
+        name or identification). None of this leaves the device. When you export an
+        image, the generated file — with no patient name, date or identification —
+        goes only to the destination you choose in the share sheet.</p>
 
-    <h3>Permissions</h3>
-    <p>The app accesses only the files and folders you choose through the system
-    picker. It does not access camera, microphone, location or contacts.</p>
+        <h3>Permissions</h3>
+        <p>The app accesses only the files and folders you choose through the system
+        picker. It does not access camera, microphone, location or contacts.</p>
 
-    <h3>Purchases</h3>
-    <p>If you subscribe, payment is processed by the App Store or Google Play.
-    The app does not receive or store payment data.</p>
+        <h3>Purchases</h3>
+        <p>If you subscribe, payment is processed by the App Store or Google Play.
+        The app does not receive or store payment data.</p>
 
-    <h3>Your rights</h3>
-    <p>Since data remains on your device, you delete it directly: by removing
-    saved exams, clearing the app's data or uninstalling it. For questions about
-    this policy, contact:
-    <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>.</p>
+        <h3>Your rights</h3>
+        <p>Since data remains on your device, you delete it directly: by removing
+        saved exams, clearing the app's data or uninstalling it. For questions about
+        this policy, contact:
+        <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>.</p>
 
-    <h3>Changes</h3>
-    <p>If this policy changes, the new version will be presented in the app and
-    published on this page.</p>
+        <h3>Changes</h3>
+        <p>If this policy changes, the new version will be presented in the app and
+        published on this page.</p>
+      </div>
+    </article>
+    <nav class="doc-lado" aria-labelledby="lado-titulo">
+      <p class="rotulo" id="lado-titulo">Documentos do DICOM Pro</p>
+      <ul class="doc-lista">
+        <li><a href="suporte.html#dicompro"><svg class="i" aria-hidden="true"><use href="#i-ajuda"/></svg><span>Suporte<small lang="en">Support</small></span></a></li>
+        <li><a href="privacidade.html" aria-current="page"><svg class="i" aria-hidden="true"><use href="#i-escudo"/></svg><span>Política de Privacidade<small lang="en">Privacy Policy</small></span></a></li>
+        <li><a href="termos.html"><svg class="i" aria-hidden="true"><use href="#i-doc"/></svg><span>Termos de Uso<small lang="en">Terms of Use</small></span></a></li>
+      </ul>
+      <a class="link-seta doc-baixo" href="#english" lang="en">English version<svg class="i" aria-hidden="true"><use href="#i-seta"/></svg></a>
+      <p class="doc-lado-rotulo">Contato · <span lang="en">Contact</span></p>
+      <a class="doc-email" href="mailto:contato@oakappware.com"><svg class="i" aria-hidden="true"><use href="#i-email"/></svg>contato@oakappware.com</a>
+      <p class="doc-lado-nota">Nunca envie exames, imagens médicas ou dados de pacientes por e-mail — não precisamos deles para ajudar você.</p>
+    </nav>
   </div>
-
-  <nav class="doc-foot" aria-label="Documentos e contato">
-    <a href="termos.html">Termos de Uso · <span lang="en">Terms of Use</span></a>
-    <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>
-    <a href="index.html">OakAppWare</a>
-  </nav>
 </main>
 
-<footer>
+<footer class="rodape">
   <div class="wrap">
-    <a class="foot-brand" href="/" aria-label="OakAppWare — início">
-      <img src="assets/logo.svg" width="131" height="26" alt="OakAppWare" />
-    </a>
-    OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA — <span style="white-space:nowrap">CNPJ 68.923.016/0001-00</span><br/>
-    SGAS 915, Conjunto B, Bloco D, Sala 103 (Parte CH 528) — Asa Sul, Brasília/DF, CEP 70.390-150<br/>
-    oakappware.com · <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>
-    <nav class="foot-links" aria-label="Rodapé">
-      <a href="/#apps">Apps</a>
-      <a href="sobre.html">Sobre</a>
-      <a href="suporte.html">Suporte</a>
-      <a href="legal.html">Legal</a>
-    </nav>
+    <div class="rodape-grade">
+      <div class="rodape-marca-col">
+        <a class="marca" href="/"><img src="assets/logo.svg" width="141" height="28" alt="OakAppWare" /><span class="sr-only"> — página inicial</span></a>
+        <address class="empresa">
+          <span class="razao">OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA</span><br />
+          <span class="nw">CNPJ 68.923.016/0001-00</span><br />
+          SGAS 915, Conjunto B, Bloco D, Sala 103 (Parte CH 528) — Asa Sul, Brasília/DF, <span class="nw">CEP 70.390-150</span><br />
+          <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>
+        </address>
+      </div>
+      <nav aria-labelledby="rodape-apps">
+        <h2 id="rodape-apps">Apps</h2>
+        <ul>
+          <li><a href="tabspro.html">Tabs Pro</a></li>
+          <li><a href="dicompro.html">DICOM Pro</a></li>
+          <li><a href="radiologia-odontologica.html">Radiologia odontológica</a></li>
+        </ul>
+      </nav>
+      <nav aria-labelledby="rodape-ajuda">
+        <h2 id="rodape-ajuda">Ajuda</h2>
+        <ul>
+          <li><a href="suporte.html">Suporte</a></li>
+          <li><a href="/tabspro/suporte">Suporte do Tabs Pro</a></li>
+          <li><a href="suporte.html#dicompro">Suporte do DICOM Pro</a></li>
+          <li><a href="sobre.html">Sobre a empresa</a></li>
+        </ul>
+      </nav>
+      <nav class="rodape-legal" aria-labelledby="rodape-legal">
+        <h2 id="rodape-legal">Legal</h2>
+        <ul>
+          <li><a href="privacidade.html" aria-current="page">Privacidade do DICOM Pro</a></li>
+          <li><a href="termos.html">Termos do DICOM Pro</a></li>
+          <li><a href="/tabspro/privacidade">Privacidade do Tabs Pro</a></li>
+          <li><a href="/tabspro/termos">Termos do Tabs Pro</a></li>
+          <li><a href="legal.html#privacidade-site">Privacidade do site</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="rodape-base">
+      <span>oakappware.com · Brasília/DF</span>
+      <span lang="en">Apps for health, education and everyday life.</span>
+    </div>
   </div>
 </footer>
 

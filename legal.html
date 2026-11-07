@@ -25,294 +25,286 @@
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 <link rel="apple-touch-icon" href="assets/apple-touch-icon-180.png" />
 <link rel="manifest" href="assets/site.webmanifest" />
-<style>
-  @font-face { font-family:"Inter"; font-weight:400; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-400-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-400-normal.woff") format("woff"); }
-  @font-face { font-family:"Inter"; font-weight:500; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-500-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-500-normal.woff") format("woff"); }
-  @font-face { font-family:"Inter"; font-weight:600; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-600-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-600-normal.woff") format("woff"); }
-  @font-face { font-family:"Inter"; font-weight:800; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-800-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-800-normal.woff") format("woff"); }
-
-  :root {
-    color-scheme:dark;
-    --bg:#0B0F0C; --surface-2:#161C18; --border:#233029;
-    --text:#F3F6F4; --muted:#A6B3A9; --faint:#7B8B80;
-    --green:#2FD37A; --green-deep:#168A4E; --broto:#8AF5B4;
-    --nocturne-accent:#9184d9; --nocturne-border:#3f424d;
-  }
-  * { box-sizing:border-box; margin:0; }
-  html { scroll-behavior:smooth; }
-  body { background:var(--bg); color:var(--text); font:16px/1.65 "Inter",system-ui,-apple-system,"Segoe UI",sans-serif; -webkit-font-smoothing:antialiased; }
-  a { color:var(--green); text-decoration:none; }
-  a:hover, a:focus-visible { color:var(--broto); text-decoration:underline; text-underline-offset:3px; }
-  a:focus-visible { outline:2px solid var(--green); outline-offset:3px; border-radius:2px; }
-  .wrap { max-width:880px; margin:0 auto; padding:0 24px; }
-  .skip { position:absolute; left:-9999px; }
-  .skip:focus { left:0; right:0; top:0; width:auto; z-index:20; background:var(--bg); border:0; border-radius:0; outline:2px solid var(--green); outline-offset:-2px; padding:14px 24px; color:var(--text); font-weight:600; }
-
-  /* Topo */
-  header { border-bottom:1px solid var(--border); }
-  .bar { display:flex; align-items:center; justify-content:space-between; gap:12px 16px; padding:18px 24px; flex-wrap:wrap; }
-  .brand { display:flex; align-items:center; }
-  .brand:hover { text-decoration:none; }
-  .brand img { height:34px; width:auto; display:block; }
-  header nav { display:flex; gap:22px; font-size:14.5px; font-weight:500; }
-  header nav a { color:var(--muted); white-space:nowrap; }
-  header nav a:hover { color:var(--text); text-decoration:none; }
-  header nav a[aria-current="page"] { color:var(--text); border-bottom:2px solid var(--green); padding-bottom:2px; }
-
-  /* Cabeçalho da página */
-  .pagehead { padding:58px 24px 12px; position:relative; overflow:hidden; }
-  .pagehead::before { content:""; position:absolute; inset:0; pointer-events:none;
-    background:radial-gradient(560px 300px at 20% 24%, rgba(47,211,122,.07), transparent 70%); }
-  .pagehead > * { position:relative; }
-  h1 { font-size:clamp(29px,4.6vw,42px); font-weight:800; letter-spacing:.03em; line-height:1.12; text-wrap:balance; }
-  h1 span { font-weight:600; letter-spacing:.06em; color:var(--green); }
-  .lead { color:var(--text); font-size:18px; font-weight:500; margin-top:16px; max-width:34em; text-wrap:balance; }
-  .lead-en { color:var(--faint); font-size:15px; margin-top:6px; font-style:italic; max-width:34em; }
-
-  /* Índice da página */
-  .pageindex { margin-top:22px; display:flex; gap:8px 16px; flex-wrap:wrap; font-size:14.5px; }
-  .pageindex a { color:var(--muted); }
-  .pageindex a:hover, .pageindex a:focus-visible { color:var(--broto); }
-
-  /* Seções */
-  main section { padding:4px 0 18px; }
-  .label { display:flex; align-items:flex-start; gap:10px; font-size:13px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--green); margin:34px 0 16px; }
-  .label svg { width:13px; height:15px; flex:0 0 auto; margin-top:3px; }
-
-  /* Cartões */
-  .card { background:var(--surface-2); border:1px solid var(--border); border-radius:14px; padding:22px 24px; }
-  .card + .card { margin-top:14px; }
-  .card h3 { font-size:17px; font-weight:600; line-height:1.4; letter-spacing:.01em; }
-  .card h3 .en { font-weight:500; display:inline-block; margin-top:2px; }
-  .card p { max-width:46em; }
-  .card h3 + p { margin-top:8px; }
-  .card p + p { margin-top:10px; }
-  .en { color:var(--faint); font-size:14.5px; }
-  .en strong { color:var(--muted); font-weight:600; }
-  .card strong { color:var(--text); font-weight:600; }
-  .soon { border-style:dashed; }
-  .soon h3, .soon p { color:var(--muted); }
-  .prose { color:var(--muted); font-size:15.5px; max-width:44em; }
-  .prose + .prose { margin-top:10px; }
-  .prose strong { color:var(--text); font-weight:600; }
-  .datacard { line-height:1.8; }
-  .datacard .co { color:var(--text); font-weight:600; }
-  .links { margin-top:16px; display:flex; gap:8px 18px; flex-wrap:wrap; font-size:15px; }
-  .doclist { list-style:none; padding:0; }
-  .doclist li { position:relative; padding-left:20px; margin:10px 0; }
-  .doclist li::before { content:""; position:absolute; left:0; top:.6em; width:9px; height:10px; background:var(--green); clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%); }
-  .doclist .when { color:var(--faint); font-size:13.5px; }
-
-  /* Rodapé */
-  footer { border-top:1px solid var(--border); margin-top:48px; padding:28px 0 44px; color:var(--faint); font-size:13px; line-height:1.85; }
-  .foot-brand { display:block; margin-bottom:14px; }
-  .foot-brand img { height:26px; width:auto; display:block; }
-  footer a { color:var(--muted); }
-  .foot-links { margin-top:10px; display:flex; gap:8px 18px; flex-wrap:wrap; }
-
-  @media (max-width:640px) {
-    .pagehead { padding:44px 24px 8px; }
-    header nav { gap:14px; font-size:14px; }
-    .card { padding:20px 20px; }
-  }
-  /* Impressão / salvar em PDF: o corpo é claro sobre escuro; sem isto o Chrome
-     (que imprime sem "gráficos de segundo plano") devolve texto branco no papel. */
-  @media print {
-    body { background:#fff; color:#111; }
-    a { color:#111; text-decoration:underline; }
-    h1, h2, h3, .label, h1 span, .datacard .co, footer a { color:#111; }
-    .pagehead::before { display:none; }
-    .pagehead { padding:0 0 8px; }
-    .card { border-color:#ccc; background:#fff; break-inside:avoid; page-break-inside:avoid; }
-    .en, .lead, .lead-en, .prose, .soon h3, .soon p, .doclist .when, footer { color:#333; }
-    .en strong, .prose strong, .card strong { color:#111; }
-    .doclist li::before { background:#111; }
-    .label svg { display:none; }
-    header, .foot-links, .skip, .foot-brand { display:none; }
-    footer { border-top:1px solid #ccc; }
-  }
-</style>
+<script>document.documentElement.classList.add('js')</script>
+<link rel="stylesheet" href="assets/site.css" />
+<script src="assets/site.js" defer onerror="document.documentElement.classList.remove('js')"></script>
 </head>
 <body>
 
-<a class="skip" href="#conteudo">Pular para o conteúdo · <span lang="en">Skip to content</span></a>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <clipPath id="icone-tabspro-palheta"><path d="M512 152C706 152 874 216 868 368C860 536 636 766 556 852Q512 900 470 846C392 756 158 528 156 356C154 206 330 152 512 152Z"/></clipPath>
+    <mask id="icone-tabspro-onda"><rect width="1024" height="1024" fill="#fff"/><path fill="#000" d="M296.0 377.0H296.0A33.0 33.0 0 0 1 329.0 410.0V494.0A33.0 33.0 0 0 1 296.0 527.0H296.0A33.0 33.0 0 0 1 263.0 494.0V410.0A33.0 33.0 0 0 1 296.0 377.0Z"/><path fill="#000" d="M404.0 317.0H404.0A33.0 33.0 0 0 1 437.0 350.0V554.0A33.0 33.0 0 0 1 404.0 587.0H404.0A33.0 33.0 0 0 1 371.0 554.0V350.0A33.0 33.0 0 0 1 404.0 317.0Z"/><path fill="#000" d="M512.0 262.0H512.0A33.0 33.0 0 0 1 545.0 295.0V609.0A33.0 33.0 0 0 1 512.0 642.0H512.0A33.0 33.0 0 0 1 479.0 609.0V295.0A33.0 33.0 0 0 1 512.0 262.0Z"/><path fill="#000" d="M620.0 317.0H620.0A33.0 33.0 0 0 1 653.0 350.0V554.0A33.0 33.0 0 0 1 620.0 587.0H620.0A33.0 33.0 0 0 1 587.0 554.0V350.0A33.0 33.0 0 0 1 620.0 317.0Z"/><path fill="#000" d="M728.0 377.0H728.0A33.0 33.0 0 0 1 761.0 410.0V494.0A33.0 33.0 0 0 1 728.0 527.0H728.0A33.0 33.0 0 0 1 695.0 494.0V410.0A33.0 33.0 0 0 1 728.0 377.0Z"/></mask>
+  </defs>
+  <symbol id="icone-tabspro" viewBox="64 64 896 896"><g transform="rotate(-16 512 512)"><g clip-path="url(#icone-tabspro-palheta)" mask="url(#icone-tabspro-onda)"><rect width="1024" height="1024" fill="#E8702A"/><path d="M296 0H1024V712Z" fill="#F0905A"/></g></g></symbol>
+  <symbol id="icone-dicompro" viewBox="0 0 100 100"><path fill="#b5abfc" fill-rule="evenodd" d="M50,9 C31.5,9 18,22 18,39 C18,47.5 21.5,53.5 26.5,57.5 C28.5,59 29.5,61 29.5,63.5 L29.5,68 C29.5,72.5 33,76 37.5,76 L39.5,76 L39.5,83 C39.5,86.5 42,89 45.5,89 L54.5,89 C58,89 60.5,86.5 60.5,83 L60.5,76 L62.5,76 C67,76 70.5,72.5 70.5,68 L70.5,63.5 C70.5,61 71.5,59 73.5,57.5 C78.5,53.5 82,47.5 82,39 C82,22 68.5,9 50,9 Z M30,42.5 a7.5,7.5 0 1,0 15,0 a7.5,7.5 0 1,0 -15,0 Z M55,42.5 a7.5,7.5 0 1,0 15,0 a7.5,7.5 0 1,0 -15,0 Z M50,50.5 C47.8,54.5 45.8,57.8 45.8,60.5 C45.8,62.9 47.6,64.5 50,64.5 C52.4,64.5 54.2,62.9 54.2,60.5 C54.2,57.8 52.2,54.5 50,50.5 Z M45.9,77 L47.7,77 L47.7,87.6 L45.9,87.6 Z M52.3,77 L54.1,77 L54.1,87.6 L52.3,87.6 Z"/></symbol>
+  <symbol id="icone-radiologia" viewBox="136 120 752 752"><path d="M176.0,550.0 Q176.0,528.0 197.5,532.8 L476.5,595.2 Q498.0,600.0 498.0,622.0 L498.0,770.0 Q498.0,792.0 476.8,786.0 L197.2,706.0 Q176.0,700.0 176.0,678.0 Z" fill="#2F80ED"/><path d="M848.0,550.0 Q848.0,528.0 826.5,532.8 L547.5,595.2 Q526.0,600.0 526.0,622.0 L526.0,770.0 Q526.0,792.0 547.2,786.0 L826.8,706.0 Q848.0,700.0 848.0,678.0 Z" fill="#2F80ED"/><path d="M379.1,624.0 L374.0,621.3 L368.9,618.5 L363.9,615.5 L358.9,612.5 L354.1,609.3 L349.3,605.9 L344.6,602.5 L340.0,598.9 L335.5,595.2 L331.1,591.4 L326.8,587.5 L322.7,583.4 L318.6,579.3 L314.6,575.0 L310.7,570.7 L307.0,566.2 L303.3,561.7 L299.8,557.1 L296.4,552.3 L293.1,547.5 L290.0,542.6 L287.0,537.7 L284.1,532.6 L281.3,527.5 L278.7,522.3 L276.2,517.0 L273.9,511.7 L271.7,506.3 L269.6,500.9 L267.7,495.4 L265.9,489.9 L264.3,484.3 L262.8,478.7 L261.4,473.0 L260.2,467.3 L259.2,461.6 L258.3,455.8 L257.5,450.1 L256.9,444.3 L256.5,438.5 L256.2,432.7 L256.0,426.8 L256.0,421.0 L256.2,415.2 L256.5,409.4 L256.9,403.6 L257.5,397.8 L258.3,392.0 L259.2,386.3 L260.2,380.6 L261.5,374.9 L262.8,369.2 L264.3,363.6 L265.9,358.0 L267.7,352.5 L269.7,347.0 L271.7,341.6 L273.9,336.2 L276.3,330.9 L278.8,325.6 L281.4,320.4 L284.2,315.3 L287.0,310.2 L290.1,305.3 L293.2,300.4 L296.5,295.6 L299.9,290.8 L303.4,286.2 L307.0,281.7 L310.8,277.2 L314.7,272.9 L318.6,268.6 L322.7,264.5 L326.9,260.5 L331.2,256.5 L335.6,252.7 L340.1,249.0 L344.7,245.5 L349.4,242.0 L354.2,238.7 L359.0,235.5 L364.0,232.4 L369.0,229.4 L374.1,226.6 L379.2,223.9 L384.5,221.4 L389.8,219.0 L395.1,216.7 L400.5,214.6 L406.0,212.6 L411.5,210.7 L417.1,209.0 L422.7,207.5 L428.3,206.0 L434.0,204.8 L439.7,203.7 L445.4,202.7 L451.2,201.9 L457.0,201.2 L462.8,200.7 L468.6,200.3 L474.4,200.1 L480.2,200.0 L486.0,200.1 L491.8,200.3 L497.6,200.7 L503.4,201.2 L509.2,201.9 L515.0,202.7 L520.7,203.7 L526.4,204.9 L532.1,206.1 L537.7,207.6 L543.3,209.1 L548.9,210.9 L554.4,212.7 L559.9,214.7 L565.3,216.9 L570.6,219.2 L575.9,221.6 L581.1,224.1 L586.3,226.8 L591.4,229.7 L596.4,232.6 L601.3,235.7 L606.2,238.9 L610.9,242.3 L615.6,245.7 L620.2,249.3 L624.7,253.0 L629.1,256.8 L633.4,260.7 L637.6,264.8 L641.6,268.9 L645.6,273.2 L649.5,277.5 L653.2,282.0 L656.9,286.5 L660.4,291.2 L663.8,295.9 L667.0,300.7 L670.2,305.6 L673.2,310.6 L676.0,315.6 L678.8,320.8 L681.4,326.0 L683.9,331.2 L686.2,336.6 L688.4,341.9 L690.5,347.4 L706.6,392.9 Q712.0,408.0 704.3,422.0 L692.8,443.2 Q688.0,452.0 693.3,460.5 L720.5,504.7 Q730.0,520.0 723.9,536.9 L718.8,551.2 Q712.0,570.0 712.0,590.0 L712.0,678.0 Q712.0,692.0 698.0,692.0 L685.0,692.0 Q671.0,692.0 671.0,678.0 L671.0,630.0 Q671.0,624.0 665.0,624.0 L662.0,624.0 Q656.0,624.0 656.0,630.0 L656.0,678.0 Q656.0,692.0 642.0,692.0 L629.0,692.0 Q615.0,692.0 615.0,678.0 L615.0,630.0 Q615.0,624.0 609.0,624.0 L606.0,624.0 Q600.0,624.0 600.0,630.0 L600.0,678.0 Q600.0,692.0 586.0,692.0 L573.0,692.0 Q559.0,692.0 559.0,678.0 L559.0,634.0 Q559.0,624.0 549.0,624.0 Z M652.0,444.0 A52.0,52.0 0 1 0 548.0,444.0 A52.0,52.0 0 1 0 652.0,444.0 Z" fill-rule="evenodd" fill="#FFFFFF"/></symbol>
+  <symbol id="i-seta" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-ajuda" viewBox="0 0 24 24"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-1.5 1.5H10l-4.5 4v-4A1.5 1.5 0 0 1 4 14.5z"/><path d="M8.5 9h7M8.5 12h4"/></symbol>
+  <symbol id="i-escudo" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6z"/><path d="M9 12l2.2 2.2L15.5 10"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6.5 3h8l4 4v13.5a.5.5 0 0 1-.5.5h-11.5a.5.5 0 0 1-.5-.5V3.5a.5.5 0 0 1 .5-.5z"/><path d="M14 3v4.5h4.5M9 12h6M9 15.5h6"/></symbol>
+  <symbol id="i-predio" viewBox="0 0 24 24"><path d="M4 21V5.5A1.5 1.5 0 0 1 5.5 4h8A1.5 1.5 0 0 1 15 5.5V21M15 10h3.5a1.5 1.5 0 0 1 1.5 1.5V21M3 21h18M8 8h3M8 12h3M8 16h3"/></symbol>
+  <symbol id="i-email" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5l8.5 6 8.5-6"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-fechar" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+</svg>
 
-<header>
-  <div class="wrap bar">
-    <a class="brand" href="/" aria-label="OakAppWare — início">
-      <img src="assets/logo.svg" width="171" height="34" alt="OakAppWare" />
-    </a>
-    <nav aria-label="Principal">
-      <a href="/#apps">Apps</a>
-      <a href="sobre.html">Sobre</a>
-      <a href="suporte.html">Suporte</a>
-      <a href="legal.html" aria-current="page">Legal</a>
+<a class="pular" href="#conteudo">Pular para o conteúdo · <span lang="en">Skip to content</span></a>
+
+<header class="topo">
+  <div class="wrap topo-barra">
+    <a class="marca" href="/"><img src="assets/logo.svg" width="151" height="30" alt="OakAppWare" /><span class="sr-only"> — página inicial</span></a>
+    <nav class="nav" aria-label="Principal">
+      <button class="nav-menu" type="button" aria-expanded="false" aria-controls="nav-links">
+        <svg class="i abre" aria-hidden="true"><use href="#i-menu"/></svg><svg class="i fecha" aria-hidden="true"><use href="#i-fechar"/></svg><span class="nav-menu-txt">Menu</span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/#apps">Apps</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="legal.html" aria-current="page">Legal</a></li>
+      </ul>
+      <a class="nav-suporte" href="suporte.html"><svg class="i" aria-hidden="true"><use href="#i-ajuda"/></svg>Suporte</a>
     </nav>
   </div>
 </header>
 
 <main id="conteudo">
-  <div class="wrap pagehead">
-    <h1>Documentos <span>legais</span></h1>
-    <p class="lead">Os documentos legais de cada aplicativo da OakAppWare, em um só
-    lugar. Cada app tem os seus — nada aqui vale para todos ao mesmo tempo.</p>
-    <p class="lead-en" lang="en">Legal documents for each OakAppWare app, in one place. Every app
-    has its own — nothing here applies to all of them at once.</p>
-    <nav class="pageindex" aria-label="Nesta página · On this page">
-      <a href="#dicompro">DICOM Pro</a>
-      <a href="#tabspro">Tabs Pro</a>
-      <a href="#privacidade-site">Privacidade do site · Website privacy</a>
-      <a href="#outros-apps">Outros aplicativos · Other apps</a>
-      <a href="#empresa">Responsável · Publisher</a>
-    </nav>
-  </div>
+
+  <header class="pagina-cabeca">
+    <div class="wrap">
+      <nav aria-label="Trilha de navegação">
+        <ol class="trilha">
+          <li><a href="/">OakAppWare</a></li>
+          <li><span aria-current="page">Legal</span></li>
+        </ol>
+      </nav>
+      <h1>Documentos <span>legais</span></h1>
+      <p class="lead">Os documentos legais de cada aplicativo da OakAppWare, em um só
+      lugar. Cada app tem os seus — nada aqui vale para todos ao mesmo tempo.</p>
+      <p class="lead-en" lang="en">Legal documents for each OakAppWare app, in one place. Every app
+      has its own — nothing here applies to all of them at once.</p>
+      <nav aria-label="Nesta página · On this page">
+        <ul class="indice">
+          <li><a href="#dicompro">DICOM Pro</a></li>
+          <li><a href="#tabspro">Tabs Pro</a></li>
+          <li><a href="#privacidade-site"><span>Privacidade do site · <span lang="en">Website privacy</span></span></a></li>
+          <li><a href="#outros-apps"><span>Outros aplicativos · <span lang="en">Other apps</span></span></a></li>
+          <li><a href="#empresa"><span>Responsável · <span lang="en">Publisher</span></span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
   <div class="wrap">
-    <section id="dicompro">
-      <h2 class="label">
-        <svg viewBox="0 0 16 18" aria-hidden="true"><path fill="#2FD37A" d="M8 0l7.8 4.5v9L8 18 .2 13.5v-9z"/></svg>
-        DICOM Pro
-      </h2>
-      <div class="card">
-        <h3>Política de Privacidade e Termos de Uso do DICOM Pro</h3>
-        <p>As duas páginas abaixo são <strong>os documentos do DICOM Pro</strong> — são
-        elas que estão vinculadas à ficha do app na App Store e no Google Play.</p>
-        <p class="en" lang="en">The two pages below are <strong>the DICOM Pro documents</strong> —
-        they are the ones linked from the app’s listing on the App Store and Google Play.</p>
-        <ul class="doclist">
-          <li><a href="privacidade.html">Política de Privacidade · Privacy Policy</a>
-            <span class="when">— versão de 5 de setembro de 2026</span></li>
-          <li><a href="termos.html">Termos de Uso · Terms of Use</a>
-            <span class="when">— versão de 5 de setembro de 2026</span></li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Finalidade do app · What the app is for</h3>
-        <p>O DICOM Pro destina-se a <strong>ensino, estudo e referência</strong>. Não se
-        destina a diagnóstico, laudo ou decisão clínica.</p>
-        <p class="en" lang="en">DICOM Pro is intended for <strong>teaching, study and
-        reference</strong>. It is not intended for diagnosis, reporting or clinical decisions.</p>
-      </div>
-    </section>
 
-    <section id="tabspro">
-      <h2 class="label">
-        <svg viewBox="0 0 16 18" aria-hidden="true"><path fill="#2FD37A" d="M8 0l7.8 4.5v9L8 18 .2 13.5v-9z"/></svg>
-        Tabs Pro
-      </h2>
-      <div class="card">
-        <h3>Documentos do Tabs Pro · <span class="en" lang="en">Tabs Pro documents</span></h3>
-        <p>As páginas abaixo são <strong>os documentos do Tabs Pro</strong>, o app de violão
-        (afinador e cifras) da OakAppWare — valem só para ele. O app está disponível no Google
-        Play.</p>
-        <p class="en" lang="en">The pages below are <strong>the Tabs Pro documents</strong> —
-        Tabs Pro is OakAppWare’s guitar app (tuner and chords) — and they apply to it alone.
-        The app is available on Google Play.</p>
-        <ul class="doclist">
-          <li><a href="/tabspro/privacidade">Política de Privacidade · Privacy Policy</a></li>
-          <li><a href="/tabspro/termos">Termos de Uso · Terms of Use</a></li>
-          <li><a href="/tabspro/suporte">Suporte · Support</a></li>
+    <section class="bloco tema-dicompro" id="dicompro" aria-labelledby="dicompro-titulo">
+      <div class="app-bloco">
+        <div class="app-nome">
+          <span class="tile" aria-hidden="true"><svg><use href="#icone-dicompro"/></svg></span>
+          <div class="app-nome-txt"><h2 id="dicompro-titulo">DICOM Pro</h2><small>Política de Privacidade e Termos de Uso do DICOM Pro</small></div>
+        </div>
+        <div class="legal-topo">
+          <div class="legal-id">
+            <p class="aviso"><strong>Para ensino, estudo e referência — não se destina a diagnóstico, laudo ou decisão clínica.</strong>
+              <span class="en" lang="en">For teaching, study and reference — not intended for diagnosis, reporting or clinical decision-making.</span></p>
+          </div>
+          <div class="legal-txt">
+            <p>As duas páginas abaixo são <strong>os documentos do DICOM Pro</strong> — são
+            elas que estão vinculadas à ficha do app na App Store e no Google Play.</p>
+            <p class="en" lang="en">The two pages below are <strong>the DICOM Pro documents</strong> —
+            they are the ones linked from the app’s listing on the App Store and Google Play.</p>
+          </div>
+        </div>
+        <ul class="docs legal-docs legal-docs--2">
+          <li class="doc">
+            <a class="doc-principal" href="privacidade.html"><span class="bento-ico" aria-hidden="true"><svg class="i"><use href="#i-escudo"/></svg></span><span>Política de Privacidade<small lang="en">Privacy Policy</small><span class="sr-only"> — DICOM Pro</span></span><svg class="i" aria-hidden="true"><use href="#i-seta"/></svg></a>
+            <p class="doc-versao">Versão de 10 de outubro de 2026</p>
+          </li>
+          <li class="doc">
+            <a class="doc-principal" href="termos.html"><span class="bento-ico" aria-hidden="true"><svg class="i"><use href="#i-doc"/></svg></span><span>Termos de Uso<small lang="en">Terms of Use</small><span class="sr-only"> — DICOM Pro</span></span><svg class="i" aria-hidden="true"><use href="#i-seta"/></svg></a>
+            <p class="doc-versao">Versão de 10 de outubro de 2026</p>
+          </li>
         </ul>
       </div>
     </section>
 
-    <section id="privacidade-site">
-      <h2 class="label">
-        <svg viewBox="0 0 16 18" aria-hidden="true"><path fill="#2FD37A" d="M8 0l7.8 4.5v9L8 18 .2 13.5v-9z"/></svg>
-        Privacidade do site · Website privacy
-      </h2>
-      <div class="card">
-        <h3>O que o site oakappware.com trata<br/><span class="en" lang="en">What the oakappware.com website processes</span></h3>
-        <p>Este site é <strong>estático</strong>: não usa cookies, não tem analytics nem
-        rastreadores e não coleta formulários.</p>
-        <p class="en" lang="en">This website is <strong>static</strong>: it uses no cookies, has no
-        analytics and no trackers, and collects no forms.</p>
-        <p>A hospedagem (GitHub Pages) pode registrar dados de acesso, como
-        <strong>endereço IP e user agent</strong>, para operação e segurança do serviço, pelo
-        prazo do provedor.</p>
-        <p class="en" lang="en">The hosting provider (GitHub Pages) may log access data, such as
-        <strong>IP address and user agent</strong>, for the operation and security of the service,
-        for the period set by the provider.</p>
-        <p>Os e-mails enviados a <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>
-        são usados apenas para responder ao contato.</p>
-        <p class="en" lang="en">E-mails sent to <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>
-        are used only to reply to the contact.</p>
-      </div>
-      <div class="card datacard">
-        <h3>Controlador e canal do titular<br/><span class="en" lang="en">Controller and data-subject channel</span></h3>
-        <p><span class="co">OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA</span><br/>
-        <span style="white-space:nowrap">CNPJ 68.923.016/0001-00</span><br/>
-        SGAS 915, Conjunto B, Bloco D, Sala 103 (Parte CH 528) — Asa Sul, Brasília/DF,
-        CEP 70.390-150</p>
-        <p>Canal para o exercício dos direitos do titular (LGPD, art. 18):
-        <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>.</p>
-        <p class="en" lang="en">Channel for exercising data-subject rights (Brazilian LGPD, art. 18):
-        <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>.</p>
-        <p><strong>Este aviso trata apenas do site oakappware.com. A privacidade do DICOM Pro
-        está na <a href="privacidade.html">Política de Privacidade</a> do app.</strong></p>
-        <p class="en" lang="en">This notice covers the oakappware.com website only. DICOM Pro’s
-        privacy is described in the <a href="privacidade.html">app’s Privacy Policy</a>.</p>
-      </div>
-    </section>
-
-    <section id="outros-apps">
-      <h2 class="label">
-        <svg viewBox="0 0 16 18" aria-hidden="true"><path fill="#2FD37A" d="M8 0l7.8 4.5v9L8 18 .2 13.5v-9z"/></svg>
-        Outros aplicativos · Other apps
-      </h2>
-      <div class="card soon">
-        <h3>App de radiologia odontológica — em andamento<br/><span class="en" lang="en">Dental radiology app — in progress</span></h3>
-        <p>Ainda não publicado nas lojas. A Política de Privacidade, os Termos de Uso e a
-        página de exclusão de conta dele serão publicados aqui, em páginas próprias, antes
-        do lançamento.</p>
-        <p class="en" lang="en">Not yet published in the stores. Its Privacy Policy, Terms of Use
-        and account-deletion page will be published here, on their own pages, before launch.</p>
-        <p><a href="radiologia-odontologica.html">Sobre o app · About the app</a></p>
-      </div>
-      <div class="card soon">
-        <p>Cada aplicativo tem os próprios documentos, em páginas separadas — para que os
-        documentos do DICOM Pro continuem sendo apenas do DICOM Pro.</p>
-        <p class="en" lang="en">Every app has its own documents, on separate pages — so that the
-        DICOM Pro documents remain DICOM Pro’s alone.</p>
+    <section class="bloco tema-tabspro" id="tabspro" aria-labelledby="tabspro-titulo">
+      <div class="app-bloco revelar">
+        <div class="legal-cabeca">
+          <div class="app-nome">
+            <span class="tile" aria-hidden="true"><svg><use href="#icone-tabspro"/></svg></span>
+            <div class="app-nome-txt"><h2 id="tabspro-titulo">Tabs Pro</h2><small>Documentos do Tabs Pro · <span lang="en">Tabs Pro documents</span></small></div>
+          </div>
+          <p class="chips"><span class="chip chip--loja"><span class="ponto" aria-hidden="true"></span>No Google Play</span><span class="chip">PT · EN · ES</span></p>
+        </div>
+        <div class="legal-topo">
+          <div class="legal-txt">
+            <p>As páginas abaixo são <strong>os documentos do Tabs Pro</strong>, o app de violão
+            (afinador e cifras) da OakAppWare — valem só para ele. O app está disponível no Google
+            Play.</p>
+          </div>
+          <div class="legal-txt">
+            <p class="en" lang="en">The pages below are <strong>the Tabs Pro documents</strong> —
+            Tabs Pro is OakAppWare’s guitar app (tuner and chords) — and they apply to it alone.
+            The app is available on Google Play.</p>
+          </div>
+        </div>
+        <ul class="docs legal-docs">
+          <li class="doc">
+            <a class="doc-principal" href="/tabspro/privacidade"><span class="bento-ico" aria-hidden="true"><svg class="i"><use href="#i-escudo"/></svg></span><span>Política de Privacidade<small lang="en">Privacy Policy</small><span class="sr-only"> — Tabs Pro</span></span><svg class="i" aria-hidden="true"><use href="#i-seta"/></svg></a>
+            <p class="doc-idiomas"><a href="/tabspro/privacidade" hreflang="pt-BR"><span class="sr-only">Política de Privacidade do Tabs Pro em </span>PT</a><a href="/tabspro/privacidade/en/" lang="en" hreflang="en"><span class="sr-only">Tabs Pro Privacy Policy in </span>EN</a><a href="/tabspro/privacidade/es/" lang="es" hreflang="es"><span class="sr-only">Política de Privacidad de Tabs Pro en </span>ES</a></p>
+          </li>
+          <li class="doc">
+            <a class="doc-principal" href="/tabspro/termos"><span class="bento-ico" aria-hidden="true"><svg class="i"><use href="#i-doc"/></svg></span><span>Termos de Uso<small lang="en">Terms of Use</small><span class="sr-only"> — Tabs Pro</span></span><svg class="i" aria-hidden="true"><use href="#i-seta"/></svg></a>
+            <p class="doc-idiomas"><a href="/tabspro/termos" hreflang="pt-BR"><span class="sr-only">Termos de Uso do Tabs Pro em </span>PT</a><a href="/tabspro/termos/en/" lang="en" hreflang="en"><span class="sr-only">Tabs Pro Terms of Use in </span>EN</a><a href="/tabspro/termos/es/" lang="es" hreflang="es"><span class="sr-only">Términos de Uso de Tabs Pro en </span>ES</a></p>
+          </li>
+          <li class="doc">
+            <a class="doc-principal" href="/tabspro/suporte"><span class="bento-ico" aria-hidden="true"><svg class="i"><use href="#i-ajuda"/></svg></span><span>Suporte<small lang="en">Support</small><span class="sr-only"> — Tabs Pro</span></span><svg class="i" aria-hidden="true"><use href="#i-seta"/></svg></a>
+            <p class="doc-idiomas"><a href="/tabspro/suporte" hreflang="pt-BR"><span class="sr-only">Suporte do Tabs Pro em </span>PT</a><a href="/tabspro/suporte/en/" lang="en" hreflang="en"><span class="sr-only">Tabs Pro support in </span>EN</a><a href="/tabspro/suporte/es/" lang="es" hreflang="es"><span class="sr-only">Soporte de Tabs Pro en </span>ES</a></p>
+          </li>
+        </ul>
       </div>
     </section>
 
-    <section id="empresa">
-      <h2 class="label">
-        <svg viewBox="0 0 16 18" aria-hidden="true"><path fill="#2FD37A" d="M8 0l7.8 4.5v9L8 18 .2 13.5v-9z"/></svg>
-        Responsável · Publisher
-      </h2>
-      <div class="card datacard">
-        <p><span class="co">OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA</span><br/>
-        <span style="white-space:nowrap">CNPJ 68.923.016/0001-00</span><br/>
-        SGAS 915, Conjunto B, Bloco D, Sala 103 (Parte CH 528) — Asa Sul, Brasília/DF,
-        CEP 70.390-150<br/>
-        <a href="mailto:contato@oakappware.com">contato@oakappware.com</a> · oakappware.com</p>
-        <p>Sócio administrador e representante legal: <strong>Juraci Mario de Carvalho</strong>.</p>
-      </div>
-      <div class="links">
-        <a href="sobre.html">Sobre a OakAppWare · About</a>
-        <a href="suporte.html">Suporte · Support</a>
+    <section class="bloco" id="privacidade-site" aria-labelledby="privacidade-site-titulo">
+      <h2 class="rotulo" id="privacidade-site-titulo"><span>Privacidade do site · <span class="en" lang="en">Website privacy</span></span></h2>
+      <div class="grade-2">
+        <div class="cartao">
+          <h3>O que o site oakappware.com trata<br/><span class="en" lang="en">What the oakappware.com website processes</span></h3>
+          <p>Este site é <strong>estático</strong>: não usa cookies, não tem analytics nem
+          rastreadores e não coleta formulários.</p>
+          <p class="en" lang="en">This website is <strong>static</strong>: it uses no cookies, has no
+          analytics and no trackers, and collects no forms.</p>
+          <p>A hospedagem (GitHub Pages) pode registrar dados de acesso, como
+          <strong>endereço IP e user agent</strong>, para operação e segurança do serviço, pelo
+          prazo do provedor.</p>
+          <p class="en" lang="en">The hosting provider (GitHub Pages) may log access data, such as
+          <strong>IP address and user agent</strong>, for the operation and security of the service,
+          for the period set by the provider.</p>
+          <p>Os e-mails enviados a <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>
+          são usados apenas para responder ao contato.</p>
+          <p class="en" lang="en">E-mails sent to <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>
+          are used only to reply to the contact.</p>
+        </div>
+        <div class="cartao cartao--dados">
+          <h3>Controlador e canal do titular<br/><span class="en" lang="en">Controller and data-subject channel</span></h3>
+          <p><span class="co">OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA</span><br/>
+          <span class="nw">CNPJ 68.923.016/0001-00</span><br/>
+          SGAS 915, Conjunto B, Bloco D, Sala 103 (Parte CH 528) — Asa Sul, Brasília/DF,
+          CEP 70.390-150</p>
+          <p>Canal para o exercício dos direitos do titular (LGPD, art. 18):
+          <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>.</p>
+          <p class="en" lang="en">Channel for exercising data-subject rights (Brazilian LGPD, art. 18):
+          <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>.</p>
+          <p><strong>Este aviso trata apenas do site oakappware.com. A privacidade do DICOM Pro
+          está na <a href="privacidade.html">Política de Privacidade</a> do app.</strong></p>
+          <p class="en" lang="en">This notice covers the oakappware.com website only. DICOM Pro’s
+          privacy is described in the <a href="privacidade.html">app’s Privacy Policy</a>.</p>
+        </div>
       </div>
     </section>
+
+    <section class="bloco" id="outros-apps" aria-labelledby="outros-titulo">
+      <h2 class="rotulo" id="outros-titulo"><span>Outros aplicativos · <span class="en" lang="en">Other apps</span></span></h2>
+      <article class="app-bloco is-breve tema-radiologia revelar" aria-labelledby="radiologia-titulo">
+        <div class="app-nome">
+          <span class="tile" aria-hidden="true"><svg><use href="#icone-radiologia"/></svg></span>
+          <div class="app-nome-txt"><h3 id="radiologia-titulo">App de radiologia odontológica — em andamento</h3><small lang="en">Dental radiology app — in progress</small></div>
+        </div>
+        <div class="legal-topo">
+          <div class="legal-id">
+            <p class="aviso"><strong>Ferramenta exclusivamente educacional — não é dispositivo médico, não realiza diagnósticos e não deve ser usada para decisões clínicas sobre pacientes.</strong>
+              <span class="en" lang="en">Educational tool only — not a medical device; it does not provide diagnoses and must not be used for clinical decisions about patients.</span></p>
+          </div>
+          <div class="legal-txt">
+            <p>Ainda não publicado nas lojas. A Política de Privacidade, os Termos de Uso e a
+            página de exclusão de conta dele serão publicados aqui, em páginas próprias, antes
+            do lançamento.</p>
+            <p class="en" lang="en">Not yet published in the stores. Its Privacy Policy, Terms of Use
+            and account-deletion page will be published here, on their own pages, before launch.</p>
+            <p><a class="link-seta" href="radiologia-odontologica.html"><span>Sobre o app · <span lang="en">About the app</span><span class="sr-only"> — radiologia odontológica</span></span><svg class="i" aria-hidden="true"><use href="#i-seta"/></svg></a></p>
+          </div>
+        </div>
+      </article>
+      <div class="cartao cartao--breve nota-apps">
+        <span class="rotulo-cartao" aria-hidden="true"><svg class="i"><use href="#i-doc"/></svg></span>
+        <div>
+          <p>Cada aplicativo tem os próprios documentos, em páginas separadas — para que os
+          documentos do DICOM Pro continuem sendo apenas do DICOM Pro.</p>
+          <p class="en" lang="en">Every app has its own documents, on separate pages — so that the
+          DICOM Pro documents remain DICOM Pro’s alone.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="bloco" id="empresa" aria-labelledby="empresa-titulo">
+      <h2 class="rotulo" id="empresa-titulo"><span>Responsável · <span class="en" lang="en">Publisher</span></span></h2>
+      <div class="grade-2 grade-empresa">
+        <div class="cartao cartao--dados">
+          <span class="rotulo-cartao" aria-hidden="true"><svg class="i"><use href="#i-predio"/></svg></span>
+          <p><span class="co">OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA</span><br/>
+          <span class="nw">CNPJ 68.923.016/0001-00</span><br/>
+          SGAS 915, Conjunto B, Bloco D, Sala 103 (Parte CH 528) — Asa Sul, Brasília/DF,
+          CEP 70.390-150<br/>
+          <a href="mailto:contato@oakappware.com">contato@oakappware.com</a><br />oakappware.com</p>
+          <p>Sócio administrador e representante legal: <strong>Juraci Mario de Carvalho</strong>.</p>
+        </div>
+        <ul class="atalhos">
+          <li><a class="atalho" href="sobre.html"><span>Sobre a OakAppWare<small lang="en">About</small></span><svg class="i" aria-hidden="true"><use href="#i-seta"/></svg></a></li>
+          <li><a class="atalho" href="suporte.html"><span>Suporte<small lang="en">Support</small></span><svg class="i" aria-hidden="true"><use href="#i-seta"/></svg></a></li>
+          <li><a class="atalho" href="mailto:contato@oakappware.com"><span>contato@oakappware.com<small>E-mail · <span lang="en">Email</span></small></span><svg class="i" aria-hidden="true"><use href="#i-email"/></svg></a></li>
+        </ul>
+      </div>
+    </section>
+
   </div>
+
 </main>
 
-<footer>
+<footer class="rodape">
   <div class="wrap">
-    <a class="foot-brand" href="/" aria-label="OakAppWare — início">
-      <img src="assets/logo.svg" width="131" height="26" alt="OakAppWare" />
-    </a>
-    OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA — <span style="white-space:nowrap">CNPJ 68.923.016/0001-00</span><br/>
-    SGAS 915, Conjunto B, Bloco D, Sala 103 (Parte CH 528) — Asa Sul, Brasília/DF, CEP 70.390-150<br/>
-    oakappware.com · <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>
-    <nav class="foot-links" aria-label="Rodapé">
-      <a href="/#apps">Apps</a>
-      <a href="sobre.html">Sobre</a>
-      <a href="suporte.html">Suporte</a>
-      <a href="legal.html">Legal</a>
-      <a href="legal.html#privacidade-site">Privacidade do site</a>
-    </nav>
+    <div class="rodape-grade">
+      <div class="rodape-marca-col">
+        <a class="marca" href="/"><img src="assets/logo.svg" width="141" height="28" alt="OakAppWare" /><span class="sr-only"> — página inicial</span></a>
+        <address class="empresa">
+          <span class="razao">OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA</span><br />
+          <span class="nw">CNPJ 68.923.016/0001-00</span><br />
+          SGAS 915, Conjunto B, Bloco D, Sala 103 (Parte CH 528) — Asa Sul, Brasília/DF, <span class="nw">CEP 70.390-150</span><br />
+          <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>
+        </address>
+      </div>
+      <nav aria-labelledby="rodape-apps">
+        <h2 id="rodape-apps">Apps</h2>
+        <ul>
+          <li><a href="tabspro.html">Tabs Pro</a></li>
+          <li><a href="dicompro.html">DICOM Pro</a></li>
+          <li><a href="radiologia-odontologica.html">Radiologia odontológica</a></li>
+        </ul>
+      </nav>
+      <nav aria-labelledby="rodape-ajuda">
+        <h2 id="rodape-ajuda">Ajuda</h2>
+        <ul>
+          <li><a href="suporte.html">Suporte</a></li>
+          <li><a href="/tabspro/suporte">Suporte do Tabs Pro</a></li>
+          <li><a href="suporte.html#dicompro">Suporte do DICOM Pro</a></li>
+          <li><a href="sobre.html">Sobre a empresa</a></li>
+        </ul>
+      </nav>
+      <nav class="rodape-legal" aria-labelledby="rodape-legal">
+        <h2 id="rodape-legal">Legal</h2>
+        <ul>
+          <li><a href="privacidade.html">Privacidade do DICOM Pro</a></li>
+          <li><a href="termos.html">Termos do DICOM Pro</a></li>
+          <li><a href="/tabspro/privacidade">Privacidade do Tabs Pro</a></li>
+          <li><a href="/tabspro/termos">Termos do Tabs Pro</a></li>
+          <li><a href="legal.html#privacidade-site">Privacidade do site</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="rodape-base">
+      <span>oakappware.com · Brasília/DF</span>
+      <span lang="en">Apps for health, education and everyday life.</span>
+    </div>
   </div>
 </footer>
 

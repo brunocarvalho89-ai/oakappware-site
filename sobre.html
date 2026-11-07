@@ -25,230 +25,184 @@
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 <link rel="apple-touch-icon" href="assets/apple-touch-icon-180.png" />
 <link rel="manifest" href="assets/site.webmanifest" />
-<style>
-  @font-face { font-family:"Inter"; font-weight:400; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-400-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-400-normal.woff") format("woff"); }
-  @font-face { font-family:"Inter"; font-weight:500; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-500-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-500-normal.woff") format("woff"); }
-  @font-face { font-family:"Inter"; font-weight:600; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-600-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-600-normal.woff") format("woff"); }
-  @font-face { font-family:"Inter"; font-weight:800; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-800-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-800-normal.woff") format("woff"); }
-
-  :root {
-    color-scheme:dark;
-    --bg:#0B0F0C; --surface-2:#161C18; --border:#233029;
-    --text:#F3F6F4; --muted:#A6B3A9; --faint:#7B8B80;
-    --green:#2FD37A; --green-deep:#168A4E; --broto:#8AF5B4;
-    --nocturne-accent:#9184d9; --nocturne-border:#3f424d;
-  }
-  * { box-sizing:border-box; margin:0; }
-  html { scroll-behavior:smooth; }
-  body { background:var(--bg); color:var(--text); font:16px/1.65 "Inter",system-ui,-apple-system,"Segoe UI",sans-serif; -webkit-font-smoothing:antialiased; }
-  a { color:var(--green); text-decoration:none; }
-  a:hover, a:focus-visible { color:var(--broto); text-decoration:underline; text-underline-offset:3px; }
-  a:focus-visible { outline:2px solid var(--green); outline-offset:3px; border-radius:2px; }
-  .wrap { max-width:880px; margin:0 auto; padding:0 24px; }
-  .skip { position:absolute; left:-9999px; }
-  .skip:focus { left:0; right:0; top:0; width:auto; z-index:20; background:var(--bg); border:0; border-radius:0; outline:2px solid var(--green); outline-offset:-2px; padding:14px 24px; color:var(--text); font-weight:600; }
-
-  /* Topo */
-  header { border-bottom:1px solid var(--border); }
-  .bar { display:flex; align-items:center; justify-content:space-between; gap:12px 16px; padding:18px 24px; flex-wrap:wrap; }
-  .brand { display:flex; align-items:center; }
-  .brand:hover { text-decoration:none; }
-  .brand img { height:34px; width:auto; display:block; }
-  header nav { display:flex; gap:22px; font-size:14.5px; font-weight:500; }
-  header nav a { color:var(--muted); white-space:nowrap; }
-  header nav a:hover { color:var(--text); text-decoration:none; }
-  header nav a[aria-current="page"] { color:var(--text); border-bottom:2px solid var(--green); padding-bottom:2px; }
-
-  /* Cabeçalho da página */
-  .pagehead { padding:58px 24px 12px; position:relative; overflow:hidden; }
-  .pagehead::before { content:""; position:absolute; inset:0; pointer-events:none;
-    background:radial-gradient(560px 300px at 20% 24%, rgba(47,211,122,.07), transparent 70%); }
-  .pagehead > * { position:relative; }
-  h1 { font-size:clamp(29px,4.6vw,42px); font-weight:800; letter-spacing:.03em; line-height:1.12; text-wrap:balance; }
-  h1 span { font-weight:600; letter-spacing:.06em; color:var(--green); }
-  .lead { color:var(--text); font-size:18px; font-weight:500; margin-top:16px; max-width:34em; text-wrap:balance; }
-  .lead-en { color:var(--faint); font-size:15px; margin-top:6px; font-style:italic; max-width:34em; }
-
-  /* Seções */
-  main section { padding:4px 0 18px; }
-  .label { display:flex; align-items:flex-start; gap:10px; font-size:13px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--green); margin:34px 0 16px; }
-  .label svg { width:13px; height:15px; flex:0 0 auto; margin-top:3px; }
-
-  /* Cartões */
-  .card { background:var(--surface-2); border:1px solid var(--border); border-radius:14px; padding:22px 24px; }
-  .card + .card { margin-top:14px; }
-  .card h3 { font-size:17px; font-weight:600; line-height:1.4; letter-spacing:.01em; }
-  .card h3 .en { font-weight:500; display:inline-block; margin-top:2px; }
-  .card p { max-width:46em; }
-  .card h3 + p { margin-top:8px; }
-  .card p + p { margin-top:10px; }
-  .en { color:var(--faint); font-size:14.5px; }
-  .en strong { color:var(--muted); font-weight:600; }
-  .card strong { color:var(--text); font-weight:600; }
-  .soon { border-style:dashed; }
-  .soon h3, .soon p { color:var(--muted); }
-  .prose { color:var(--muted); font-size:15.5px; max-width:44em; }
-  .prose + .prose { margin-top:10px; }
-  .prose strong { color:var(--text); font-weight:600; }
-  .datacard { line-height:1.8; }
-  .datacard .co { color:var(--text); font-weight:600; }
-  .links { margin-top:16px; display:flex; gap:8px 18px; flex-wrap:wrap; font-size:15px; }
-  .doclist { list-style:none; padding:0; }
-  .doclist li { position:relative; padding-left:20px; margin:10px 0; }
-  .doclist li::before { content:""; position:absolute; left:0; top:.6em; width:9px; height:10px; background:var(--green); clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%); }
-  .doclist .when { color:var(--faint); font-size:13.5px; }
-
-  /* Rodapé */
-  footer { border-top:1px solid var(--border); margin-top:48px; padding:28px 0 44px; color:var(--faint); font-size:13px; line-height:1.85; }
-  .foot-brand { display:block; margin-bottom:14px; }
-  .foot-brand img { height:26px; width:auto; display:block; }
-  footer a { color:var(--muted); }
-  .foot-links { margin-top:10px; display:flex; gap:8px 18px; flex-wrap:wrap; }
-
-  @media (max-width:640px) {
-    .pagehead { padding:44px 24px 8px; }
-    header nav { gap:14px; font-size:14px; }
-    .card { padding:20px 20px; }
-  }
-  /* Impressão / salvar em PDF: o corpo é claro sobre escuro; sem isto o Chrome
-     (que imprime sem "gráficos de segundo plano") devolve texto branco no papel. */
-  @media print {
-    body { background:#fff; color:#111; }
-    a { color:#111; text-decoration:underline; }
-    h1, h2, h3, .label, h1 span, .datacard .co, footer a { color:#111; }
-    .pagehead::before { display:none; }
-    .pagehead { padding:0 0 8px; }
-    .card { border-color:#ccc; background:#fff; break-inside:avoid; page-break-inside:avoid; }
-    .en, .lead, .lead-en, .prose, .soon h3, .soon p, .doclist .when, footer { color:#333; }
-    .en strong, .prose strong, .card strong { color:#111; }
-    .doclist li::before { background:#111; }
-    .label svg { display:none; }
-    header, .foot-links, .skip, .foot-brand { display:none; }
-    footer { border-top:1px solid #ccc; }
-  }
-</style>
+<script>document.documentElement.classList.add('js')</script>
+<link rel="stylesheet" href="assets/site.css" />
+<script src="assets/site.js" defer onerror="document.documentElement.classList.remove('js')"></script>
 </head>
 <body>
 
-<a class="skip" href="#conteudo">Pular para o conteúdo · <span lang="en">Skip to content</span></a>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-seta" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-ajuda" viewBox="0 0 24 24"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-1.5 1.5H10l-4.5 4v-4A1.5 1.5 0 0 1 4 14.5z"/><path d="M8.5 9h7M8.5 12h4"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-fechar" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+</svg>
 
-<header>
-  <div class="wrap bar">
-    <a class="brand" href="/" aria-label="OakAppWare — início">
-      <img src="assets/logo.svg" width="171" height="34" alt="OakAppWare" />
-    </a>
-    <nav aria-label="Principal">
-      <a href="/#apps">Apps</a>
-      <a href="sobre.html" aria-current="page">Sobre</a>
-      <a href="suporte.html">Suporte</a>
-      <a href="legal.html">Legal</a>
+<a class="pular" href="#conteudo">Pular para o conteúdo · <span lang="en">Skip to content</span></a>
+
+<header class="topo">
+  <div class="wrap topo-barra">
+    <a class="marca" href="/"><img src="assets/logo.svg" width="151" height="30" alt="OakAppWare" /><span class="sr-only"> — página inicial</span></a>
+    <nav class="nav" aria-label="Principal">
+      <button class="nav-menu" type="button" aria-expanded="false" aria-controls="nav-links">
+        <svg class="i abre" aria-hidden="true"><use href="#i-menu"/></svg><svg class="i fecha" aria-hidden="true"><use href="#i-fechar"/></svg><span class="nav-menu-txt">Menu</span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/#apps">Apps</a></li>
+        <li><a href="sobre.html" aria-current="page">Sobre</a></li>
+        <li><a href="legal.html">Legal</a></li>
+      </ul>
+      <a class="nav-suporte" href="suporte.html"><svg class="i" aria-hidden="true"><use href="#i-ajuda"/></svg>Suporte</a>
     </nav>
   </div>
 </header>
 
 <main id="conteudo">
-  <div class="wrap pagehead">
-    <h1>Sobre a <span>OakAppWare</span></h1>
-    <p class="lead">Uma desenvolvedora de software brasileira que publica os próprios
-    aplicativos — com cuidado, privacidade em primeiro lugar e foco em quem usa.</p>
-    <p class="lead-en" lang="en">About OakAppWare — a Brazilian software company that publishes
-    its own apps, built with care and privacy first.</p>
-  </div>
+
+  <header class="pagina-cabeca">
+    <div class="wrap">
+      <nav aria-label="Trilha de navegação">
+        <ol class="trilha">
+          <li><a href="/">OakAppWare</a></li>
+          <li><span aria-current="page">Sobre</span></li>
+        </ol>
+      </nav>
+      <h1>Sobre a <span>OakAppWare</span></h1>
+      <p class="lead">Uma desenvolvedora de software brasileira que publica os próprios
+      aplicativos — com cuidado, privacidade em primeiro lugar e foco em quem usa.</p>
+      <p class="lead-en" lang="en">About OakAppWare — a Brazilian software company that publishes
+      its own apps, built with care and privacy first.</p>
+      <nav aria-label="Nesta página · On this page">
+        <ul class="indice">
+          <li><a href="#quem-somos">Quem somos</a></li>
+          <li><a href="#como-trabalhamos">Como trabalhamos</a></li>
+          <li><a href="#o-nome">O nome</a></li>
+          <li><a href="#empresa">A empresa</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
   <div class="wrap">
-    <section id="quem-somos">
-      <h2 class="label">
-        <svg viewBox="0 0 16 18" aria-hidden="true"><path fill="#2FD37A" d="M8 0l7.8 4.5v9L8 18 .2 13.5v-9z"/></svg>
-        Quem somos · Who we are
-      </h2>
-      <div class="card">
-        <p>A OakAppWare é uma desenvolvedora de software brasileira, sediada em
-        Brasília/DF. Publicamos aplicativos próprios para saúde, educação e o dia a
-        dia — feitos com cuidado, privacidade em primeiro lugar e foco em quem usa.</p>
-        <p class="en" lang="en">OakAppWare is a Brazilian software company based in Brasília,
-        Brazil. We publish our own apps for health, education and everyday life — built with
-        care, privacy first, and focused on the people who use them.</p>
+
+    <section class="bloco" id="quem-somos" aria-labelledby="quem-titulo">
+      <div class="quem">
+        <div>
+          <h2 class="rotulo" id="quem-titulo"><span>Quem somos · <span class="en" lang="en">Who we are</span></span></h2>
+          <p class="titulo-secao">Uma desenvolvedora de software brasileira, de Brasília/DF.</p>
+        </div>
+        <div>
+          <p class="manifesto">A OakAppWare é uma desenvolvedora de software brasileira, sediada em
+          Brasília/DF. Publicamos aplicativos próprios para saúde, educação e o dia a
+          dia — feitos com cuidado, privacidade em primeiro lugar e foco em quem usa.</p>
+          <p class="en" lang="en">OakAppWare is a Brazilian software company based in Brasília,
+          Brazil. We publish our own apps for health, education and everyday life — built with
+          care, privacy first, and focused on the people who use them.</p>
+        </div>
       </div>
     </section>
 
-    <section id="como-trabalhamos">
-      <h2 class="label">
-        <svg viewBox="0 0 16 18" aria-hidden="true"><path fill="#2FD37A" d="M8 0l7.8 4.5v9L8 18 .2 13.5v-9z"/></svg>
-        Como trabalhamos · How we work
-      </h2>
-      <div class="card">
-        <h3>Privacidade por padrão · Privacy by default</h3>
-        <p>Sempre que possível, o processamento acontece no próprio aparelho. Quando um app
-        usa conta, sincronização, recursos na nuvem ou estatísticas de uso e falhas — como o
-        nosso app de radiologia odontológica —, a política de privacidade daquele app diz o que
-        sai do aparelho e por quê. Nossos apps não têm anúncios. <strong>Não vendemos
-        dados.</strong></p>
-        <p class="en" lang="en"><strong>Privacy by default.</strong> Whenever possible, processing
-        happens on the device itself. When an app uses an account, sync, cloud features or usage and
-        crash statistics — as our dental radiology app does — that app’s privacy policy explains what
-        leaves the device and why. Our apps carry no ads. We do not sell data.</p>
-      </div>
-      <div class="card">
-        <h3>Finalidade educacional · Educational purpose</h3>
-        <p>Nossos aplicativos da área de saúde são ferramentas de <strong>ensino,
-        estudo e referência</strong>. Não são dispositivos médicos e não se destinam a
-        diagnóstico, laudo ou decisão clínica — qualquer avaliação com finalidade
-        clínica deve ser feita por profissional habilitado, em equipamento e software
-        adequados a esse fim.</p>
-        <p class="en" lang="en"><strong>Educational purpose.</strong> Our health-related apps are
-        tools for teaching, study and reference. They are not medical devices and are not intended
-        for diagnosis, reporting or clinical decision-making — any evaluation for clinical purposes
-        must be performed by a licensed professional using equipment and software fit for that
-        purpose.</p>
-      </div>
-      <div class="card">
-        <h3>Uma marca, vários apps · One brand, many apps</h3>
-        <p>Cada aplicativo tem identidade própria e leva a assinatura
-        “um app OakAppWare”.</p>
-        <p class="en" lang="en"><strong>One brand, many apps.</strong> Every app has its own
-        identity and carries the “an OakAppWare app” signature.</p>
+    <section class="bloco" id="como-trabalhamos" aria-labelledby="como-titulo">
+      <h2 class="rotulo" id="como-titulo"><span>Como trabalhamos · <span class="en" lang="en">How we work</span></span></h2>
+      <ul class="principios principios--2">
+        <li class="principio revelar">
+          <span class="hex" aria-hidden="true"><svg viewBox="0 0 40 46"><path fill="none" stroke="currentColor" stroke-width="2" d="M20 2l17 10v22L20 44 3 34V12z"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 19h16M12 24h16M12 29h10"/></svg></span>
+          <h3>Finalidade educacional <span class="en" lang="en">Educational purpose</span></h3>
+          <p>Nossos aplicativos da área de saúde são ferramentas de <strong>ensino,
+          estudo e referência</strong>. Não são dispositivos médicos e não se destinam a
+          diagnóstico, laudo ou decisão clínica — qualquer avaliação com finalidade
+          clínica deve ser feita por profissional habilitado, em equipamento e software
+          adequados a esse fim.</p>
+          <p class="en" lang="en"><strong>Educational purpose.</strong> Our health-related apps are
+          tools for teaching, study and reference. They are not medical devices and are not intended
+          for diagnosis, reporting or clinical decision-making — any evaluation for clinical purposes
+          must be performed by a licensed professional using equipment and software fit for that
+          purpose.</p>
+        </li>
+        <li class="principio revelar" style="--d:1">
+          <span class="hex" aria-hidden="true"><svg viewBox="0 0 40 46"><path fill="none" stroke="currentColor" stroke-width="2" d="M20 2l17 10v22L20 44 3 34V12z"/><path fill="currentColor" d="M20 15l7 4v8l-7 4-7-4v-8z"/></svg></span>
+          <h3>Privacidade por padrão <span class="en" lang="en">Privacy by default</span></h3>
+          <p>Sempre que possível, o processamento acontece no próprio aparelho. Quando um app
+          usa conta, sincronização, recursos na nuvem ou estatísticas de uso e falhas — como o
+          nosso app de radiologia odontológica —, a política de privacidade daquele app diz o que
+          sai do aparelho e por quê. Nossos apps não têm anúncios. <strong>Não vendemos
+          dados.</strong></p>
+          <p class="en" lang="en"><strong>Privacy by default.</strong> Whenever possible, processing
+          happens on the device itself. When an app uses an account, sync, cloud features or usage and
+          crash statistics — as our dental radiology app does — that app’s privacy policy explains what
+          leaves the device and why. Our apps carry no ads. We do not sell data.</p>
+        </li>
+        <li class="principio principio--largo revelar">
+          <span class="hex" aria-hidden="true"><svg viewBox="0 0 40 46"><path fill="none" stroke="currentColor" stroke-width="2" d="M20 2l17 10v22L20 44 3 34V12z"/><path fill="currentColor" d="M25 9l5 3v6l-5 3-5-3v-6z"/><path fill="currentColor" d="M15 20l5 3v6l-5 3-5-3v-6z"/></svg></span>
+          <h3>Uma marca, vários apps <span class="en" lang="en">One brand, many apps</span></h3>
+          <p>Cada aplicativo tem identidade própria e leva a assinatura
+          “um app OakAppWare”.</p>
+          <p class="en" lang="en"><strong>One brand, many apps.</strong> Every app has its own
+          identity and carries the “an OakAppWare app” signature.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="bloco" id="o-nome" aria-labelledby="nome-titulo">
+      <div class="nome-grade revelar">
+        <div>
+          <h2 class="rotulo" id="nome-titulo"><span>O nome · <span class="en" lang="en">The name</span></span></h2>
+          <p class="titulo-secao">Oak + Appware.</p>
+          <p>Carvalho, em inglês, é <em>oak</em> — o sobrenome da família fundadora virou
+          marca. “Appware” soma <em>apps</em> e <em>software</em>. O símbolo é um carvalho
+          cuja copa é feita de módulos hexagonais: cada módulo é um app, e um deles se
+          desprende no alto — o próximo que vem.</p>
+          <p class="en" lang="en"><em>Carvalho</em>, the founding family’s surname, means
+          <em>oak</em>. “Appware” joins <em>apps</em> and <em>software</em>. The symbol is an oak
+          whose canopy is made of hexagonal modules: each module is an app, and one of them breaks
+          away at the top — the next one coming.</p>
+        </div>
+        <div class="nome-simbolo">
+          <svg viewBox="0 0 1024 1024" role="img" aria-label="Símbolo da OakAppWare: carvalho de módulos hexagonais">
+            <path fill="#F3F6F4" d="M 426 663.67 C 428 706.37 433 760.46 433 806 C 433 864.56 403 910.92 358 928 L 666 928 C 621 910.92 591 864.56 591 806 C 591 760.46 589 706.37 598 663.67 Z"/>
+            <path fill="#2FD37A" fill-rule="evenodd" d="M296.26 152L381.13 201L381.13 299L296.26 348L211.39 299L211.39 201ZM296.26 209.74L331.13 229.87L331.13 270.13L296.26 290.26L261.39 270.13L261.39 229.87Z"/>
+            <path fill="#2FD37A" d="M512 152L596.87 201L596.87 299L512 348L427.13 299L427.13 201Z"/>
+            <path fill="#2FD37A" fill-rule="evenodd" d="M188.39 338.84L273.26 387.84L273.26 485.84L188.39 534.84L103.52 485.84L103.52 387.84ZM188.39 396.57L223.26 416.7L223.26 456.97L188.39 477.1L153.52 456.97L153.52 416.7Z"/>
+            <path fill="#2FD37A" d="M404.13 338.84L489 387.84L489 485.84L404.13 534.84L319.26 485.84L319.26 387.84Z"/>
+            <path fill="#2FD37A" d="M619.87 338.84L704.74 387.84L704.74 485.84L619.87 534.84L535 485.84L535 387.84Z"/>
+            <path fill="#2FD37A" fill-rule="evenodd" d="M835.61 338.84L920.48 387.84L920.48 485.84L835.61 534.84L750.74 485.84L750.74 387.84ZM835.61 396.57L870.48 416.7L870.48 456.97L835.61 477.1L800.74 456.97L800.74 416.7Z"/>
+            <path fill="#2FD37A" d="M296.26 525.67L381.13 574.67L381.13 672.67L296.26 721.67L211.39 672.67L211.39 574.67Z"/>
+            <path fill="#F3F6F4" d="M512 525.67L596.87 574.67L596.87 672.67L512 721.67L427.13 672.67L427.13 574.67Z"/>
+            <path fill="#2FD37A" d="M727.74 525.67L812.61 574.67L812.61 672.67L727.74 721.67L642.87 672.67L642.87 574.67Z"/>
+            <path fill="#8AF5B4" d="M759.74 96.57L844.61 145.57L844.61 243.57L759.74 292.57L674.87 243.57L674.87 145.57Z"/>
+          </svg>
+        </div>
       </div>
     </section>
 
-    <section id="o-nome">
-      <h2 class="label">
-        <svg viewBox="0 0 16 18" aria-hidden="true"><path fill="#2FD37A" d="M8 0l7.8 4.5v9L8 18 .2 13.5v-9z"/></svg>
-        O nome · The name
-      </h2>
-      <div class="card">
-        <p>Carvalho, em inglês, é <em>oak</em> — o sobrenome da família fundadora virou
-        marca. “Appware” soma <em>apps</em> e <em>software</em>. O símbolo é um carvalho
-        cuja copa é feita de módulos hexagonais: cada módulo é um app, e um deles se
-        desprende no alto — o próximo que vem.</p>
-        <p class="en" lang="en"><em>Carvalho</em>, the founding family’s surname, means
-        <em>oak</em>. “Appware” joins <em>apps</em> and <em>software</em>. The symbol is an oak
-        whose canopy is made of hexagonal modules: each module is an app, and one of them breaks
-        away at the top — the next one coming.</p>
+    <section class="bloco" id="empresa" aria-labelledby="empresa-titulo">
+      <h2 class="rotulo" id="empresa-titulo"><span>A empresa · <span class="en" lang="en">The company</span></span></h2>
+      <div class="empresa-grade">
+        <div class="cartao cartao--dados">
+          <dl class="dados">
+            <dt>Razão social · <span class="en" lang="en">Legal name</span></dt>
+            <dd class="co">OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA</dd>
+            <dt>CNPJ</dt>
+            <dd>68.923.016/0001-00</dd>
+            <dt>Endereço · <span class="en" lang="en">Address</span></dt>
+            <dd>SGAS 915, Conjunto B, Bloco D, Sala 103 (Parte CH 528) — Asa Sul, Brasília/DF,
+            <span class="nw">CEP 70.390-150</span></dd>
+            <dt>Contato · <span class="en" lang="en">Contact</span></dt>
+            <dd><a href="mailto:contato@oakappware.com">contato@oakappware.com</a><br />oakappware.com</dd>
+            <dt>Representante · <span class="en" lang="en">Representative</span></dt>
+            <dd><strong>Juraci Mario de Carvalho</strong>, sócio administrador e representante legal · <span class="en" lang="en">managing partner and legal representative</span></dd>
+          </dl>
+        </div>
+        <ul class="atalhos">
+          <li><a class="atalho" href="/#apps"><span>Nossos aplicativos<small lang="en">Our apps</small></span><svg class="i" aria-hidden="true"><use href="#i-seta"/></svg></a></li>
+          <li><a class="atalho" href="suporte.html"><span>Suporte<small lang="en">Support</small></span><svg class="i" aria-hidden="true"><use href="#i-seta"/></svg></a></li>
+          <li><a class="atalho" href="legal.html"><span>Documentos legais<small lang="en">Legal documents</small></span><svg class="i" aria-hidden="true"><use href="#i-seta"/></svg></a></li>
+        </ul>
       </div>
     </section>
 
-    <section id="empresa">
-      <h2 class="label">
-        <svg viewBox="0 0 16 18" aria-hidden="true"><path fill="#2FD37A" d="M8 0l7.8 4.5v9L8 18 .2 13.5v-9z"/></svg>
-        A empresa · The company
-      </h2>
-      <div class="card datacard">
-        <p><span class="co">OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA</span><br/>
-        <span style="white-space:nowrap">CNPJ 68.923.016/0001-00</span><br/>
-        SGAS 915, Conjunto B, Bloco D, Sala 103 (Parte CH 528) — Asa Sul, Brasília/DF,
-        CEP 70.390-150<br/>
-        <a href="mailto:contato@oakappware.com">contato@oakappware.com</a> · oakappware.com</p>
-        <p>Sócio administrador e representante legal: <strong>Juraci Mario de Carvalho</strong>.</p>
-        <p class="en" lang="en">Managing partner and legal representative:
-        <strong>Juraci Mario de Carvalho</strong>.</p>
-      </div>
-      <div class="links">
-        <a href="/#apps">Nossos aplicativos · Our apps</a>
-        <a href="suporte.html">Suporte · Support</a>
-        <a href="legal.html">Documentos legais · Legal documents</a>
-      </div>
-    </section>
   </div>
+
 </main>
 
 <script type="application/ld+json">
@@ -273,21 +227,50 @@
 }
 </script>
 
-<footer>
+<footer class="rodape">
   <div class="wrap">
-    <a class="foot-brand" href="/" aria-label="OakAppWare — início">
-      <img src="assets/logo.svg" width="131" height="26" alt="OakAppWare" />
-    </a>
-    OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA — <span style="white-space:nowrap">CNPJ 68.923.016/0001-00</span><br/>
-    SGAS 915, Conjunto B, Bloco D, Sala 103 (Parte CH 528) — Asa Sul, Brasília/DF, CEP 70.390-150<br/>
-    oakappware.com · <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>
-    <nav class="foot-links" aria-label="Rodapé">
-      <a href="/#apps">Apps</a>
-      <a href="sobre.html">Sobre</a>
-      <a href="suporte.html">Suporte</a>
-      <a href="legal.html">Legal</a>
-      <a href="legal.html#privacidade-site">Privacidade do site</a>
-    </nav>
+    <div class="rodape-grade">
+      <div class="rodape-marca-col">
+        <a class="marca" href="/"><img src="assets/logo.svg" width="141" height="28" alt="OakAppWare" /><span class="sr-only"> — página inicial</span></a>
+        <address class="empresa">
+          <span class="razao">OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA</span><br />
+          <span class="nw">CNPJ 68.923.016/0001-00</span><br />
+          SGAS 915, Conjunto B, Bloco D, Sala 103 (Parte CH 528) — Asa Sul, Brasília/DF, <span class="nw">CEP 70.390-150</span><br />
+          <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>
+        </address>
+      </div>
+      <nav aria-labelledby="rodape-apps">
+        <h2 id="rodape-apps">Apps</h2>
+        <ul>
+          <li><a href="tabspro.html">Tabs Pro</a></li>
+          <li><a href="dicompro.html">DICOM Pro</a></li>
+          <li><a href="radiologia-odontologica.html">Radiologia odontológica</a></li>
+        </ul>
+      </nav>
+      <nav aria-labelledby="rodape-ajuda">
+        <h2 id="rodape-ajuda">Ajuda</h2>
+        <ul>
+          <li><a href="suporte.html">Suporte</a></li>
+          <li><a href="/tabspro/suporte">Suporte do Tabs Pro</a></li>
+          <li><a href="suporte.html#dicompro">Suporte do DICOM Pro</a></li>
+          <li><a href="sobre.html">Sobre a empresa</a></li>
+        </ul>
+      </nav>
+      <nav class="rodape-legal" aria-labelledby="rodape-legal">
+        <h2 id="rodape-legal">Legal</h2>
+        <ul>
+          <li><a href="privacidade.html">Privacidade do DICOM Pro</a></li>
+          <li><a href="termos.html">Termos do DICOM Pro</a></li>
+          <li><a href="/tabspro/privacidade">Privacidade do Tabs Pro</a></li>
+          <li><a href="/tabspro/termos">Termos do Tabs Pro</a></li>
+          <li><a href="legal.html#privacidade-site">Privacidade do site</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="rodape-base">
+      <span>oakappware.com · Brasília/DF</span>
+      <span lang="en">Apps for health, education and everyday life.</span>
+    </div>
   </div>
 </footer>
 

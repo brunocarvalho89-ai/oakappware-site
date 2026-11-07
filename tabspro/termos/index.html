@@ -30,215 +30,199 @@
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon-180.png" />
 <link rel="manifest" href="/assets/site.webmanifest" />
-<style>
-  @font-face { font-family:"Inter"; font-weight:400; font-style:normal; font-display:swap; src:url("/assets/fonts/inter-latin-400-normal.woff2") format("woff2"), url("/assets/fonts/inter-latin-400-normal.woff") format("woff"); }
-  @font-face { font-family:"Inter"; font-weight:500; font-style:normal; font-display:swap; src:url("/assets/fonts/inter-latin-500-normal.woff2") format("woff2"), url("/assets/fonts/inter-latin-500-normal.woff") format("woff"); }
-  @font-face { font-family:"Inter"; font-weight:600; font-style:normal; font-display:swap; src:url("/assets/fonts/inter-latin-600-normal.woff2") format("woff2"), url("/assets/fonts/inter-latin-600-normal.woff") format("woff"); }
-  @font-face { font-family:"Inter"; font-weight:800; font-style:normal; font-display:swap; src:url("/assets/fonts/inter-latin-800-normal.woff2") format("woff2"), url("/assets/fonts/inter-latin-800-normal.woff") format("woff"); }
-
-  :root {
-    color-scheme:dark;
-    --bg:#0B0F0C; --border:#233029;
-    --text:#F3F6F4; --muted:#A6B3A9; --faint:#7B8B80;
-    --green:#2FD37A; --green-deep:#168A4E; --surface-2:#161C18;
-    --app-accent:#F0905A; --app-orange:#E8702A; --app-border:#7a4424; --tile-bg:#15171C;
-  }
-  * { box-sizing:border-box; margin:0; }
-  body { background:var(--bg); color:var(--text); font:16px/1.7 "Inter",system-ui,-apple-system,"Segoe UI",sans-serif; -webkit-font-smoothing:antialiased; }
-  /* Coluna de leitura de 680px alinhada à esquerda da faixa de 880px do
-     cabeçalho e do rodapé — as bordas esquerdas coincidem em todas as páginas. */
-  main { max-width:880px; margin:0 auto; padding:30px 24px 56px; }
-  main > * { max-width:680px; }
-  .wrap { max-width:880px; margin:0 auto; padding:0 24px; }
-
-  /* Cabeçalho e rodapé padrão do site — mesma marcação das outras páginas.
-     Esta página vive dois níveis abaixo da raiz: todos os caminhos são absolutos.
-     Só marcação e estilo: o texto legal abaixo não é tocado. */
-  header { border-bottom:1px solid var(--border); }
-  .bar { display:flex; align-items:center; justify-content:space-between; gap:12px 16px; padding:18px 24px; flex-wrap:wrap; }
-  .brand { display:flex; align-items:center; }
-  .brand:hover { text-decoration:none; }
-  .brand img { height:34px; width:auto; display:block; }
-  header nav { display:flex; gap:22px; font-size:14.5px; font-weight:500; }
-  header nav a { color:var(--muted); white-space:nowrap; }
-  header nav a:hover { color:var(--text); text-decoration:none; }
-  footer { border-top:1px solid var(--border); padding:28px 0 44px; color:var(--faint); font-size:13px; line-height:1.85; }
-  .foot-brand { display:block; margin-bottom:14px; }
-  .foot-brand img { height:26px; width:auto; display:block; }
-  footer a { color:var(--muted); }
-  .foot-links { margin-top:10px; display:flex; gap:8px 18px; flex-wrap:wrap; }
-  @media (max-width:640px) { header nav { gap:14px; font-size:14px; } }
-
-  a { color:var(--green); text-decoration:none; }
-  a:hover, a:focus-visible { color:var(--green); text-decoration:underline; text-underline-offset:3px; }
-  a:focus-visible, .skip:focus { outline:2px solid var(--green); outline-offset:3px; border-radius:2px; }
-  .skip { position:absolute; left:-9999px; }
-  .skip:focus { left:0; right:0; top:0; width:auto; z-index:20; background:var(--bg); border:0; border-radius:0; outline:2px solid var(--green); outline-offset:-2px; padding:14px 24px; color:var(--text); font-weight:600; }
-  .crumbs { font-size:14px; color:var(--faint); display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
-  .crumbs a { color:var(--muted); font-weight:500; }
-  .crumbs svg { width:16px; height:16px; }
-  .langs { margin-top:14px; display:flex; align-items:center; gap:10px; font-size:13px; font-weight:600; letter-spacing:.08em; color:var(--faint); }
-  .langs a { color:var(--muted); }
-  .langs [aria-current] { color:var(--app-accent); }
-  h1, .doc-title { font-size:26px; font-weight:600; letter-spacing:-.01em; color:var(--text); text-transform:none; margin:22px 0 4px; }
-  .version { color:var(--muted); font-size:14px; margin-bottom:26px; }
-  h2 { font-size:13px; letter-spacing:.12em; text-transform:uppercase; font-weight:600; color:var(--app-accent); margin:28px 0 6px; }
-  p { margin:8px 0; }
-  .doc-foot { border-top:1px solid var(--border); margin-top:48px; padding-top:24px; font-size:14px; color:var(--muted); display:flex; flex-wrap:wrap; gap:6px 16px; }
-  .doc-foot a { font-weight:500; }
-
-  @media print {
-    body { background:#fff; color:#111; font-size:11pt; }
-    main, main > * { max-width:none; padding:0; }
-    a { color:#111; text-decoration:underline; }
-    h1, .doc-title, h2, h3, footer a { color:#111; }
-    .version, .doc-foot { color:#333; }
-    .crumbs, .langs, .skip, header, .foot-links, .foot-brand { display:none; }
-    footer { border-top:1px solid #ccc; color:#333; padding:16px 0 0; }
-    .wrap { max-width:none; padding:0; }
-    .doc-foot { border-top:1px solid #ccc; }
-    h1, .doc-title, h2, h3 { break-after:avoid; page-break-after:avoid; }
-    p { orphans:3; widows:3; }
-  }
-</style>
+<script>document.documentElement.classList.add('js')</script>
+<link rel="stylesheet" href="/assets/site.css" />
+<script src="/assets/site.js" defer onerror="document.documentElement.classList.remove('js')"></script>
 </head>
-<body>
-<a class="skip" href="#conteudo">Pular para o conteúdo</a>
-<header>
-  <div class="wrap bar">
-    <a class="brand" href="/" aria-label="OakAppWare — início">
-      <img src="/assets/logo.svg" width="171" height="34" alt="OakAppWare" />
-    </a>
-    <nav aria-label="Principal">
-      <a href="/#apps">Apps</a>
-      <a href="/sobre.html">Sobre</a>
-      <a href="/suporte.html">Suporte</a>
-      <a href="/legal.html">Legal</a>
+<body class="tema-tabspro">
+
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <clipPath id="icone-tabspro-palheta"><path d="M512 152C706 152 874 216 868 368C860 536 636 766 556 852Q512 900 470 846C392 756 158 528 156 356C154 206 330 152 512 152Z"/></clipPath>
+    <mask id="icone-tabspro-onda"><rect width="1024" height="1024" fill="#fff"/><path fill="#000" d="M296.0 377.0H296.0A33.0 33.0 0 0 1 329.0 410.0V494.0A33.0 33.0 0 0 1 296.0 527.0H296.0A33.0 33.0 0 0 1 263.0 494.0V410.0A33.0 33.0 0 0 1 296.0 377.0Z"/><path fill="#000" d="M404.0 317.0H404.0A33.0 33.0 0 0 1 437.0 350.0V554.0A33.0 33.0 0 0 1 404.0 587.0H404.0A33.0 33.0 0 0 1 371.0 554.0V350.0A33.0 33.0 0 0 1 404.0 317.0Z"/><path fill="#000" d="M512.0 262.0H512.0A33.0 33.0 0 0 1 545.0 295.0V609.0A33.0 33.0 0 0 1 512.0 642.0H512.0A33.0 33.0 0 0 1 479.0 609.0V295.0A33.0 33.0 0 0 1 512.0 262.0Z"/><path fill="#000" d="M620.0 317.0H620.0A33.0 33.0 0 0 1 653.0 350.0V554.0A33.0 33.0 0 0 1 620.0 587.0H620.0A33.0 33.0 0 0 1 587.0 554.0V350.0A33.0 33.0 0 0 1 620.0 317.0Z"/><path fill="#000" d="M728.0 377.0H728.0A33.0 33.0 0 0 1 761.0 410.0V494.0A33.0 33.0 0 0 1 728.0 527.0H728.0A33.0 33.0 0 0 1 695.0 494.0V410.0A33.0 33.0 0 0 1 728.0 377.0Z"/></mask>
+  </defs>
+  <symbol id="icone-tabspro" viewBox="64 64 896 896"><g transform="rotate(-16 512 512)"><g clip-path="url(#icone-tabspro-palheta)" mask="url(#icone-tabspro-onda)"><rect width="1024" height="1024" fill="#E8702A"/><path d="M296 0H1024V712Z" fill="#F0905A"/></g></g></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-fechar" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-ajuda" viewBox="0 0 24 24"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-1.5 1.5H10l-4.5 4v-4A1.5 1.5 0 0 1 4 14.5z"/><path d="M8.5 9h7M8.5 12h4"/></symbol>
+  <symbol id="i-escudo" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6z"/><path d="M9 12l2.2 2.2L15.5 10"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6.5 3h8l4 4v13.5a.5.5 0 0 1-.5.5h-11.5a.5.5 0 0 1-.5-.5V3.5a.5.5 0 0 1 .5-.5z"/><path d="M14 3v4.5h4.5M9 12h6M9 15.5h6"/></symbol>
+  <symbol id="i-email" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5l8.5 6 8.5-6"/></symbol>
+  <symbol id="i-seta" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+</svg>
+
+<a class="pular" href="#conteudo">Pular para o conteúdo · <span lang="en">Skip to content</span></a>
+
+<header class="topo">
+  <div class="wrap topo-barra">
+    <a class="marca" href="/"><img src="/assets/logo.svg" width="151" height="30" alt="OakAppWare" /><span class="sr-only"> — página inicial</span></a>
+    <nav class="nav" aria-label="Principal">
+      <button class="nav-menu" type="button" aria-expanded="false" aria-controls="nav-links">
+        <svg class="i abre" aria-hidden="true"><use href="#i-menu"/></svg><svg class="i fecha" aria-hidden="true"><use href="#i-fechar"/></svg><span class="nav-menu-txt">Menu</span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/#apps">Apps</a></li>
+        <li><a href="/sobre.html">Sobre</a></li>
+        <li><a href="/legal.html">Legal</a></li>
+      </ul>
+      <a class="nav-suporte" href="/suporte.html"><svg class="i" aria-hidden="true"><use href="#i-ajuda"/></svg>Suporte</a>
     </nav>
   </div>
 </header>
 
-<main id="conteudo">
-  <nav class="crumbs" aria-label="Navegação">
-    <svg viewBox="64 64 896 896" aria-hidden="true"><defs><clipPath id="tp-palheta"><path d="M512 152C706 152 874 216 868 368C860 536 636 766 556 852Q512 900 470 846C392 756 158 528 156 356C154 206 330 152 512 152Z"/></clipPath><mask id="tp-onda"><rect width="1024" height="1024" fill="#fff"/><path fill="#000" d="M296.0 377.0H296.0A33.0 33.0 0 0 1 329.0 410.0V494.0A33.0 33.0 0 0 1 296.0 527.0H296.0A33.0 33.0 0 0 1 263.0 494.0V410.0A33.0 33.0 0 0 1 296.0 377.0Z"/><path fill="#000" d="M404.0 317.0H404.0A33.0 33.0 0 0 1 437.0 350.0V554.0A33.0 33.0 0 0 1 404.0 587.0H404.0A33.0 33.0 0 0 1 371.0 554.0V350.0A33.0 33.0 0 0 1 404.0 317.0Z"/><path fill="#000" d="M512.0 262.0H512.0A33.0 33.0 0 0 1 545.0 295.0V609.0A33.0 33.0 0 0 1 512.0 642.0H512.0A33.0 33.0 0 0 1 479.0 609.0V295.0A33.0 33.0 0 0 1 512.0 262.0Z"/><path fill="#000" d="M620.0 317.0H620.0A33.0 33.0 0 0 1 653.0 350.0V554.0A33.0 33.0 0 0 1 620.0 587.0H620.0A33.0 33.0 0 0 1 587.0 554.0V350.0A33.0 33.0 0 0 1 620.0 317.0Z"/><path fill="#000" d="M728.0 377.0H728.0A33.0 33.0 0 0 1 761.0 410.0V494.0A33.0 33.0 0 0 1 728.0 527.0H728.0A33.0 33.0 0 0 1 695.0 494.0V410.0A33.0 33.0 0 0 1 728.0 377.0Z"/></mask></defs><g transform="rotate(-16 512 512)"><g clip-path="url(#tp-palheta)" mask="url(#tp-onda)"><rect width="1024" height="1024" fill="#E8702A"/><path d="M296 0H1024V712Z" fill="#F0905A"/></g></g></svg>
-    <a href="/index.html">OakAppWare</a> · <a href="/tabspro.html">Tabs Pro</a>
-  </nav>
-  <nav class="langs" aria-label="Idiomas · Languages · Idiomas">
-    <span aria-current="page">PT</span><span aria-hidden="true">·</span>
-    <a href="/tabspro/termos/en/" lang="en" hreflang="en">EN</a><span aria-hidden="true">·</span>
-    <a href="/tabspro/termos/es/" lang="es" hreflang="es">ES</a>
-  </nav>
-  <h1>Termos de Uso — Tabs&nbsp;Pro</h1>
-  <p class="version"><strong>Última atualização: 13 de setembro de 2026</strong></p>
+<main id="conteudo" class="doc-pagina">
+  <div class="documento-wrap doc-grade">
+    <article class="documento">
+      <nav aria-label="Trilha de navegação"><ol class="trilha"><li><a href="/">OakAppWare</a></li><li><a href="/tabspro.html">Tabs Pro</a></li><li><span aria-current="page">Termos de Uso</span></li></ol></nav>
+      <div class="doc-topo" data-chrome>
+        <div class="doc-ident"><span class="tile" aria-hidden="true"><svg><use href="#icone-tabspro"/></svg></span><p><strong>Tabs Pro</strong><span><span class="ponto" aria-hidden="true"></span>Disponível no Google Play</span></p></div>
+        <nav class="langs" aria-label="Idiomas · Languages · Idiomas"><a href="/tabspro/termos/" aria-current="page" lang="pt-BR"><span class="sr-only">Português: </span>PT</a><a href="/tabspro/termos/en/" lang="en" hreflang="en"><span class="sr-only">English: </span>EN</a><a href="/tabspro/termos/es/" lang="es" hreflang="es"><span class="sr-only">Español: </span>ES</a></nav>
+      </div>
+      <h1>Termos de Uso — Tabs&nbsp;Pro</h1>
+      <p class="version"><strong>Última atualização: 13 de setembro de 2026</strong></p>
 
-  <p>Estes Termos de Uso regem a utilização do aplicativo <strong>Tabs Pro</strong> (nome
-  de loja: <em>Tabs Pro: Afinador e Cifras</em>), desenvolvido e publicado pela
-  <strong>OakAppWare</strong>. Ao instalar ou usar o app, você concorda com estes
-  termos. Se não concordar, não use o aplicativo.</p>
+      <p>Estes Termos de Uso regem a utilização do aplicativo <strong>Tabs Pro</strong> (nome
+      de loja: <em>Tabs Pro: Afinador e Cifras</em>), desenvolvido e publicado pela
+      <strong>OakAppWare</strong>. Ao instalar ou usar o app, você concorda com estes
+      termos. Se não concordar, não use o aplicativo.</p>
 
-  <h2>1. O que o Tabs Pro faz</h2>
-  <p>O Tabs Pro é um aplicativo de apoio ao estudo de violão que oferece um
-  afinador cromático e a geração automática de cifras/tablaturas a partir
-  de áudio captado pelo microfone ou de arquivos escolhidos por você. Todo
-  o processamento acontece no seu aparelho.</p>
+      <h2>1. O que o Tabs Pro faz</h2>
+      <p>O Tabs Pro é um aplicativo de apoio ao estudo de violão que oferece um
+      afinador cromático e a geração automática de cifras/tablaturas a partir
+      de áudio captado pelo microfone ou de arquivos escolhidos por você. Todo
+      o processamento acontece no seu aparelho.</p>
 
-  <h2>2. Licença de uso</h2>
-  <p>A OakAppWare concede a você uma licença pessoal, limitada, revogável,
-  não exclusiva e intransferível para usar o app em aparelhos que você
-  controla, conforme as regras da loja onde o obteve (Google Play ou App
-  Store). É vedado copiar, modificar, distribuir, vender, alugar,
-  descompilar ou fazer engenharia reversa do aplicativo, exceto onde a lei
-  expressamente permitir.</p>
+      <h2>2. Licença de uso</h2>
+      <p>A OakAppWare concede a você uma licença pessoal, limitada, revogável,
+      não exclusiva e intransferível para usar o app em aparelhos que você
+      controla, conforme as regras da loja onde o obteve (Google Play ou App
+      Store). É vedado copiar, modificar, distribuir, vender, alugar,
+      descompilar ou fazer engenharia reversa do aplicativo, exceto onde a lei
+      expressamente permitir.</p>
 
-  <h2>3. Transcrição automática: precisão não garantida</h2>
-  <p>A geração de cifras usa análise automática de áudio. Por natureza, esse
-  processo é <strong>aproximado</strong>: acordes, casas, andamento e divisão rítmica
-  podem sair diferentes da execução original, e gravações com ruído,
-  vários instrumentos ou voz reduzem a qualidade do resultado. O app
-  oferece ferramentas de correção (edição de acordes, transposição,
-  ajuste de andamento) justamente porque o resultado automático é um ponto
-  de partida, não uma partitura oficial. A OakAppWare não garante a
-  exatidão das cifras geradas nem sua adequação a qualquer finalidade
-  específica.</p>
+      <h2>3. Transcrição automática: precisão não garantida</h2>
+      <p>A geração de cifras usa análise automática de áudio. Por natureza, esse
+      processo é <strong>aproximado</strong>: acordes, casas, andamento e divisão rítmica
+      podem sair diferentes da execução original, e gravações com ruído,
+      vários instrumentos ou voz reduzem a qualidade do resultado. O app
+      oferece ferramentas de correção (edição de acordes, transposição,
+      ajuste de andamento) justamente porque o resultado automático é um ponto
+      de partida, não uma partitura oficial. A OakAppWare não garante a
+      exatidão das cifras geradas nem sua adequação a qualquer finalidade
+      específica.</p>
 
-  <h2>4. Conteúdo analisado e direitos autorais</h2>
-  <p>Você é o único responsável pelo áudio que submete à análise. Use apenas
-  conteúdo que você tem o direito de utilizar — sua própria execução,
-  gravações autorizadas ou obras em domínio público. As cifras geradas
-  destinam-se ao seu <strong>uso pessoal e de estudo</strong>. Músicas são obras
-  protegidas: publicar, distribuir ou explorar comercialmente cifras de
-  obras de terceiros pode exigir autorização dos titulares, e essa
-  responsabilidade é sua. O Tabs Pro não fornece, não hospeda e não
-  distribui gravações ou cifras de terceiros.</p>
+      <h2>4. Conteúdo analisado e direitos autorais</h2>
+      <p>Você é o único responsável pelo áudio que submete à análise. Use apenas
+      conteúdo que você tem o direito de utilizar — sua própria execução,
+      gravações autorizadas ou obras em domínio público. As cifras geradas
+      destinam-se ao seu <strong>uso pessoal e de estudo</strong>. Músicas são obras
+      protegidas: publicar, distribuir ou explorar comercialmente cifras de
+      obras de terceiros pode exigir autorização dos titulares, e essa
+      responsabilidade é sua. O Tabs Pro não fornece, não hospeda e não
+      distribui gravações ou cifras de terceiros.</p>
 
-  <h2>5. Prévia gratuita e compra única</h2>
-  <p>O app é gratuito e inclui uma prévia com um número limitado de
-  conversões de cifra. Uma futura versão oferecerá o desbloqueio das
-  conversões por <strong>compra única</strong> processada pela Google Play ou pela App
-  Store. Preços podem variar por país e são exibidos pela loja antes da
-  confirmação. Cancelamentos e reembolsos seguem as políticas da loja onde
-  a compra foi feita. O afinador e as cifras já salvas não são afetados
-  pelo limite da prévia.</p>
+      <h2>5. Prévia gratuita e compra única</h2>
+      <p>O app é gratuito e inclui uma prévia com um número limitado de
+      conversões de cifra. Uma futura versão oferecerá o desbloqueio das
+      conversões por <strong>compra única</strong> processada pela Google Play ou pela App
+      Store. Preços podem variar por país e são exibidos pela loja antes da
+      confirmação. Cancelamentos e reembolsos seguem as políticas da loja onde
+      a compra foi feita. O afinador e as cifras já salvas não são afetados
+      pelo limite da prévia.</p>
 
-  <h2>6. Propriedade intelectual</h2>
-  <p>O aplicativo, seu código, o nome Tabs Pro, a marca OakAppWare, o
-  logotipo e as artes são de titularidade da OakAppWare. Componentes de
-  terceiros incorporados ao app (modelo de transcrição e fonte
-  tipográfica) são usados sob suas licenças próprias, listadas na tela
-  <strong>Sobre → Licenças de código aberto</strong> dentro do app.</p>
+      <h2>6. Propriedade intelectual</h2>
+      <p>O aplicativo, seu código, o nome Tabs Pro, a marca OakAppWare, o
+      logotipo e as artes são de titularidade da OakAppWare. Componentes de
+      terceiros incorporados ao app (modelo de transcrição e fonte
+      tipográfica) são usados sob suas licenças próprias, listadas na tela
+      <strong>Sobre → Licenças de código aberto</strong> dentro do app.</p>
 
-  <h2>7. Isenção de garantias e limitação de responsabilidade</h2>
-  <p>O app é fornecido "no estado em que se encontra", sem garantias de
-  qualquer natureza, na máxima extensão permitida pela lei. A OakAppWare
-  não se responsabiliza por danos indiretos decorrentes do uso ou da
-  impossibilidade de uso do app, incluindo decisões tomadas com base em
-  cifras geradas automaticamente. Nada nestes termos exclui direitos que a
-  legislação de proteção ao consumidor lhe assegure de forma irrenunciável.</p>
+      <h2>7. Isenção de garantias e limitação de responsabilidade</h2>
+      <p>O app é fornecido "no estado em que se encontra", sem garantias de
+      qualquer natureza, na máxima extensão permitida pela lei. A OakAppWare
+      não se responsabiliza por danos indiretos decorrentes do uso ou da
+      impossibilidade de uso do app, incluindo decisões tomadas com base em
+      cifras geradas automaticamente. Nada nestes termos exclui direitos que a
+      legislação de proteção ao consumidor lhe assegure de forma irrenunciável.</p>
 
-  <h2>8. Alterações do app e destes termos</h2>
-  <p>A OakAppWare pode atualizar, modificar ou descontinuar funcionalidades a
-  qualquer momento, bem como revisar estes termos. Alterações relevantes
-  serão publicadas nesta página, com nova data no topo. O uso continuado
-  do app após a publicação vale como concordância.</p>
+      <h2>8. Alterações do app e destes termos</h2>
+      <p>A OakAppWare pode atualizar, modificar ou descontinuar funcionalidades a
+      qualquer momento, bem como revisar estes termos. Alterações relevantes
+      serão publicadas nesta página, com nova data no topo. O uso continuado
+      do app após a publicação vale como concordância.</p>
 
-  <h2>9. Privacidade</h2>
-  <p>O tratamento de informações é descrito na
-  <a href="/tabspro/privacidade">Política de Privacidade</a>
-  — em resumo: nenhum dado pessoal é coletado, e todo o áudio é processado
-  somente no seu aparelho.</p>
+      <h2>9. Privacidade</h2>
+      <p>O tratamento de informações é descrito na
+      <a href="/tabspro/privacidade">Política de Privacidade</a>
+      — em resumo: nenhum dado pessoal é coletado, e todo o áudio é processado
+      somente no seu aparelho.</p>
 
-  <h2>10. Lei aplicável e foro</h2>
-  <p>Estes termos são regidos pelas leis da República Federativa do Brasil.
-  Fica eleito o foro do domicílio do usuário para dirimir controvérsias,
-  como assegura a legislação consumerista.</p>
+      <h2>10. Lei aplicável e foro</h2>
+      <p>Estes termos são regidos pelas leis da República Federativa do Brasil.
+      Fica eleito o foro do domicílio do usuário para dirimir controvérsias,
+      como assegura a legislação consumerista.</p>
 
-  <h2>Contato</h2>
-  <p><strong>OakAppWare</strong> — E-mail: <strong><a href="mailto:contato@oakappware.com">contato@oakappware.com</a></strong> — Site:
-  <strong><a href="https://oakappware.com">oakappware.com</a></strong></p>
-
-  <nav class="doc-foot" aria-label="Documentos e contato">
-    <a href="/tabspro/privacidade">Política de Privacidade</a>
-    <a href="/tabspro/suporte">Suporte do Tabs Pro</a>
-    <a href="/tabspro.html">Tabs Pro</a>
-    <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>
-  </nav>
+      <h2>Contato</h2>
+      <p><strong>OakAppWare</strong> — E-mail: <strong><a href="mailto:contato@oakappware.com">contato@oakappware.com</a></strong> — Site:
+      <strong><a href="https://oakappware.com">oakappware.com</a></strong></p>
+    </article>
+    <nav class="doc-lado" aria-labelledby="lado-titulo">
+      <p class="rotulo" id="lado-titulo">Documentos do Tabs Pro</p>
+      <ul class="doc-lista">
+        <li><a href="/tabspro/suporte"><svg class="i" aria-hidden="true"><use href="#i-ajuda"/></svg><span>Suporte</span></a></li>
+        <li><a href="/tabspro/privacidade"><svg class="i" aria-hidden="true"><use href="#i-escudo"/></svg><span>Política de Privacidade</span></a></li>
+        <li><a href="/tabspro/termos" aria-current="page"><svg class="i" aria-hidden="true"><use href="#i-doc"/></svg><span>Termos de Uso</span></a></li>
+      </ul>
+      <p class="doc-lado-rotulo">Contato</p>
+      <a class="doc-email" href="mailto:contato@oakappware.com"><svg class="i" aria-hidden="true"><use href="#i-email"/></svg>contato@oakappware.com</a>
+    </nav>
+  </div>
 </main>
 
-<footer>
+<footer class="rodape">
   <div class="wrap">
-    <a class="foot-brand" href="/" aria-label="OakAppWare — início">
-      <img src="/assets/logo.svg" width="131" height="26" alt="OakAppWare" />
-    </a>
-    OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA — <span style="white-space:nowrap">CNPJ 68.923.016/0001-00</span><br/>
-    SGAS 915, Conjunto B, Bloco D, Sala 103 (Parte CH 528) — Asa Sul, Brasília/DF, CEP 70.390-150<br/>
-    oakappware.com · <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>
-    <nav class="foot-links" aria-label="Rodapé">
-      <a href="/#apps">Apps</a>
-      <a href="/sobre.html">Sobre</a>
-      <a href="/suporte.html">Suporte</a>
-      <a href="/legal.html">Legal</a>
-      <a href="/legal.html#privacidade-site">Privacidade do site</a>
-    </nav>
+    <div class="rodape-grade">
+      <div class="rodape-marca-col">
+        <a class="marca" href="/"><img src="/assets/logo.svg" width="141" height="28" alt="OakAppWare" /><span class="sr-only"> — página inicial</span></a>
+        <address class="empresa">
+          <span class="razao">OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA</span><br />
+          <span class="nw">CNPJ 68.923.016/0001-00</span><br />
+          SGAS 915, Conjunto B, Bloco D, Sala 103 (Parte CH 528) — Asa Sul, Brasília/DF, <span class="nw">CEP 70.390-150</span><br />
+          <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>
+        </address>
+      </div>
+      <nav aria-labelledby="rodape-apps">
+        <h2 id="rodape-apps">Apps</h2>
+        <ul>
+          <li><a href="/tabspro.html">Tabs Pro</a></li>
+          <li><a href="/dicompro.html">DICOM Pro</a></li>
+          <li><a href="/radiologia-odontologica.html">Radiologia odontológica</a></li>
+        </ul>
+      </nav>
+      <nav aria-labelledby="rodape-ajuda">
+        <h2 id="rodape-ajuda">Ajuda</h2>
+        <ul>
+          <li><a href="/suporte.html">Suporte</a></li>
+          <li><a href="/tabspro/suporte">Suporte do Tabs Pro</a></li>
+          <li><a href="/suporte.html#dicompro">Suporte do DICOM Pro</a></li>
+          <li><a href="/sobre.html">Sobre a empresa</a></li>
+        </ul>
+      </nav>
+      <nav class="rodape-legal" aria-labelledby="rodape-legal">
+        <h2 id="rodape-legal">Legal</h2>
+        <ul>
+          <li><a href="/privacidade.html">Privacidade do DICOM Pro</a></li>
+          <li><a href="/termos.html">Termos do DICOM Pro</a></li>
+          <li><a href="/tabspro/privacidade">Privacidade do Tabs Pro</a></li>
+          <li><a href="/tabspro/termos" aria-current="page">Termos do Tabs Pro</a></li>
+          <li><a href="/legal.html#privacidade-site">Privacidade do site</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="rodape-base">
+      <span>oakappware.com · Brasília/DF</span>
+      <span lang="en">Apps for health, education and everyday life.</span>
+    </div>
   </div>
 </footer>
 

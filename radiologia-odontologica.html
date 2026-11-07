@@ -26,237 +26,245 @@
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 <link rel="apple-touch-icon" href="assets/apple-touch-icon-180.png" />
 <link rel="manifest" href="assets/site.webmanifest" />
-<style>
-  @font-face { font-family:"Inter"; font-weight:400; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-400-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-400-normal.woff") format("woff"); }
-  @font-face { font-family:"Inter"; font-weight:500; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-500-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-500-normal.woff") format("woff"); }
-  @font-face { font-family:"Inter"; font-weight:600; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-600-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-600-normal.woff") format("woff"); }
-  @font-face { font-family:"Inter"; font-weight:800; font-style:normal; font-display:swap; src:url("assets/fonts/inter-latin-800-normal.woff2") format("woff2"), url("assets/fonts/inter-latin-800-normal.woff") format("woff"); }
-
-  :root {
-    color-scheme:dark;
-    --bg:#0B0F0C; --surface-2:#161C18; --border:#233029;
-    --text:#F3F6F4; --muted:#A6B3A9; --faint:#7B8B80;
-    --green:#2FD37A; --green-deep:#168A4E; --broto:#8AF5B4;
-    --app-accent:#8EC5FF; --app-border:#1B4F9C; --app-soft:#0D1A2B; --tile-bg:linear-gradient(180deg,#123E74,#0A2540);
-  }
-  * { box-sizing:border-box; margin:0; }
-  body { background:var(--bg); color:var(--text); font:16px/1.65 "Inter",system-ui,-apple-system,"Segoe UI",sans-serif; -webkit-font-smoothing:antialiased; }
-  a { color:var(--green); text-decoration:none; }
-  a:hover, a:focus-visible { color:var(--broto); text-decoration:underline; text-underline-offset:3px; }
-  a:focus-visible { outline:2px solid var(--green); outline-offset:3px; border-radius:2px; }
-  main { max-width:880px; margin:0 auto; padding:34px 24px 8px; }
-  main > * { max-width:832px; }
-  .wrap { max-width:880px; margin:0 auto; padding:0 24px; }
-  .skip { position:absolute; left:-9999px; }
-  .skip:focus { left:0; right:0; top:0; width:auto; z-index:20; background:var(--bg); border:0; border-radius:0; outline:2px solid var(--green); outline-offset:-2px; padding:14px 24px; color:var(--text); font-weight:600; }
-
-  header { border-bottom:1px solid var(--border); }
-  .bar { display:flex; align-items:center; justify-content:space-between; gap:12px 16px; padding:18px 24px; flex-wrap:wrap; }
-  .brand { display:flex; align-items:center; }
-  .brand:hover { text-decoration:none; }
-  .brand img { height:34px; width:auto; display:block; }
-  header nav { display:flex; gap:22px; font-size:14.5px; font-weight:500; }
-  header nav a { color:var(--muted); white-space:nowrap; }
-  header nav a:hover { color:var(--text); text-decoration:none; }
-
-  .phead { display:flex; align-items:center; gap:18px; margin-top:28px; }
-  .ptile { flex:0 0 64px; height:64px; border-radius:15px; background:var(--tile-bg); border:1px solid var(--app-border); display:flex; align-items:center; justify-content:center; }
-  .ptile svg { width:38px; height:38px; }
-  h1.appname { font-weight:600; font-size:28px; line-height:1.2; letter-spacing:.01em; text-wrap:balance; }
-  h1.appname span { color:var(--app-accent); }
-  .pstatus { display:inline-block; margin-top:8px; padding:2px 10px; border:1px solid var(--app-border); border-radius:10px;
-             color:var(--app-accent); font-size:11.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; }
-  .pstatus .nw { white-space:nowrap; }
-  .tagline { color:var(--muted); margin-top:18px; max-width:44em; }
-  .en { color:var(--muted); font-size:14px; margin-top:8px; }
-
-  .card { background:var(--surface-2); border:1px solid var(--border); border-radius:14px; padding:22px 24px; margin-top:22px; }
-  .card h2 { font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--green); margin-bottom:10px; font-weight:600; }
-  .card h3 { font-size:16px; font-weight:600; line-height:1.4; }
-  .card h3 .en { display:block; font-weight:500; margin-top:0; }
-  .card h3 + p { margin-top:6px; }
-  .card p, .card li { max-width:46em; }
-  .card p + p { margin-top:10px; }
-  .card strong { font-weight:600; }
-  .item + .item { margin-top:18px; padding-top:18px; border-top:1px solid var(--border); }
-  ul { padding-left:20px; }
-  li { margin:8px 0; }
-  li .en { display:block; margin-top:0; font-size:13.5px; color:var(--faint); }
-
-  /* Aviso — fica acima da dobra, nas cores do app */
-  .notice { border-color:var(--app-border); border-left-width:4px; background:var(--app-soft); }
-  .notice h2 { color:var(--app-accent); display:flex; align-items:center; gap:8px; }
-  .notice h2 svg { width:15px; height:15px; flex:0 0 auto; }
-  .notice p { color:var(--text); }
-  .notice .en { color:var(--muted); }
-
-  .links { display:flex; gap:14px; flex-wrap:wrap; margin-top:30px; }
-  .links a { display:inline-block; padding:10px 18px; border:1px solid var(--green-deep); border-radius:999px; color:var(--text); font-size:14.5px; font-weight:500; }
-  .links a:hover { border-color:var(--green); text-decoration:none; color:var(--broto); }
-
-  footer { border-top:1px solid var(--border); margin-top:48px; padding:28px 0 44px; color:var(--faint); font-size:13px; line-height:1.85; }
-  footer a { color:var(--muted); }
-  .foot-brand { display:block; margin-bottom:14px; }
-  .foot-brand img { height:26px; width:auto; display:block; }
-  .foot-links { margin-top:10px; display:flex; gap:8px 18px; flex-wrap:wrap; }
-
-  @media (max-width:640px) {
-    header nav { gap:14px; font-size:14px; }
-    h1.appname { font-size:24px; }
-    .card { padding:20px 20px; }
-  }
-
-  @media print {
-    body { background:#fff; color:#111; }
-    main, main > * { max-width:none; padding:0; }
-    a { color:#111; text-decoration:underline; }
-    h1, h2, h3, h1.appname span, .card h2, .notice h2, .notice p, footer a { color:#111; }
-    .card { border-color:#ccc; background:#fff; break-inside:avoid; page-break-inside:avoid; }
-    .notice { border-color:#111; background:#fff; }
-    .ptile { background:#fff; border-color:#ccc; }
-    .ptile path[fill="#FFFFFF"] { fill:#0A2540; }
-    .pstatus { color:#333; border-color:#ccc; }
-    .tagline, .en, li .en, .notice .en, footer { color:#333; }
-    .links a { border-color:#999; color:#111; }
-    header, .foot-links, .skip, .foot-brand { display:none; }
-    footer { border-top:1px solid #ccc; margin-top:24px; }
-  }
-</style>
+<script>document.documentElement.classList.add('js')</script>
+<link rel="stylesheet" href="assets/site.css" />
+<script src="assets/site.js" defer onerror="document.documentElement.classList.remove('js')"></script>
 </head>
-<body>
+<body class="tema-radiologia">
 
-<a class="skip" href="#conteudo">Pular para o conteúdo · <span lang="en">Skip to content</span></a>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="icone-radiologia" viewBox="136 120 752 752"><path d="M176.0,550.0 Q176.0,528.0 197.5,532.8 L476.5,595.2 Q498.0,600.0 498.0,622.0 L498.0,770.0 Q498.0,792.0 476.8,786.0 L197.2,706.0 Q176.0,700.0 176.0,678.0 Z" fill="#2F80ED"/><path d="M848.0,550.0 Q848.0,528.0 826.5,532.8 L547.5,595.2 Q526.0,600.0 526.0,622.0 L526.0,770.0 Q526.0,792.0 547.2,786.0 L826.8,706.0 Q848.0,700.0 848.0,678.0 Z" fill="#2F80ED"/><path d="M379.1,624.0 L374.0,621.3 L368.9,618.5 L363.9,615.5 L358.9,612.5 L354.1,609.3 L349.3,605.9 L344.6,602.5 L340.0,598.9 L335.5,595.2 L331.1,591.4 L326.8,587.5 L322.7,583.4 L318.6,579.3 L314.6,575.0 L310.7,570.7 L307.0,566.2 L303.3,561.7 L299.8,557.1 L296.4,552.3 L293.1,547.5 L290.0,542.6 L287.0,537.7 L284.1,532.6 L281.3,527.5 L278.7,522.3 L276.2,517.0 L273.9,511.7 L271.7,506.3 L269.6,500.9 L267.7,495.4 L265.9,489.9 L264.3,484.3 L262.8,478.7 L261.4,473.0 L260.2,467.3 L259.2,461.6 L258.3,455.8 L257.5,450.1 L256.9,444.3 L256.5,438.5 L256.2,432.7 L256.0,426.8 L256.0,421.0 L256.2,415.2 L256.5,409.4 L256.9,403.6 L257.5,397.8 L258.3,392.0 L259.2,386.3 L260.2,380.6 L261.5,374.9 L262.8,369.2 L264.3,363.6 L265.9,358.0 L267.7,352.5 L269.7,347.0 L271.7,341.6 L273.9,336.2 L276.3,330.9 L278.8,325.6 L281.4,320.4 L284.2,315.3 L287.0,310.2 L290.1,305.3 L293.2,300.4 L296.5,295.6 L299.9,290.8 L303.4,286.2 L307.0,281.7 L310.8,277.2 L314.7,272.9 L318.6,268.6 L322.7,264.5 L326.9,260.5 L331.2,256.5 L335.6,252.7 L340.1,249.0 L344.7,245.5 L349.4,242.0 L354.2,238.7 L359.0,235.5 L364.0,232.4 L369.0,229.4 L374.1,226.6 L379.2,223.9 L384.5,221.4 L389.8,219.0 L395.1,216.7 L400.5,214.6 L406.0,212.6 L411.5,210.7 L417.1,209.0 L422.7,207.5 L428.3,206.0 L434.0,204.8 L439.7,203.7 L445.4,202.7 L451.2,201.9 L457.0,201.2 L462.8,200.7 L468.6,200.3 L474.4,200.1 L480.2,200.0 L486.0,200.1 L491.8,200.3 L497.6,200.7 L503.4,201.2 L509.2,201.9 L515.0,202.7 L520.7,203.7 L526.4,204.9 L532.1,206.1 L537.7,207.6 L543.3,209.1 L548.9,210.9 L554.4,212.7 L559.9,214.7 L565.3,216.9 L570.6,219.2 L575.9,221.6 L581.1,224.1 L586.3,226.8 L591.4,229.7 L596.4,232.6 L601.3,235.7 L606.2,238.9 L610.9,242.3 L615.6,245.7 L620.2,249.3 L624.7,253.0 L629.1,256.8 L633.4,260.7 L637.6,264.8 L641.6,268.9 L645.6,273.2 L649.5,277.5 L653.2,282.0 L656.9,286.5 L660.4,291.2 L663.8,295.9 L667.0,300.7 L670.2,305.6 L673.2,310.6 L676.0,315.6 L678.8,320.8 L681.4,326.0 L683.9,331.2 L686.2,336.6 L688.4,341.9 L690.5,347.4 L706.6,392.9 Q712.0,408.0 704.3,422.0 L692.8,443.2 Q688.0,452.0 693.3,460.5 L720.5,504.7 Q730.0,520.0 723.9,536.9 L718.8,551.2 Q712.0,570.0 712.0,590.0 L712.0,678.0 Q712.0,692.0 698.0,692.0 L685.0,692.0 Q671.0,692.0 671.0,678.0 L671.0,630.0 Q671.0,624.0 665.0,624.0 L662.0,624.0 Q656.0,624.0 656.0,630.0 L656.0,678.0 Q656.0,692.0 642.0,692.0 L629.0,692.0 Q615.0,692.0 615.0,678.0 L615.0,630.0 Q615.0,624.0 609.0,624.0 L606.0,624.0 Q600.0,624.0 600.0,630.0 L600.0,678.0 Q600.0,692.0 586.0,692.0 L573.0,692.0 Q559.0,692.0 559.0,678.0 L559.0,634.0 Q559.0,624.0 549.0,624.0 Z M652.0,444.0 A52.0,52.0 0 1 0 548.0,444.0 A52.0,52.0 0 1 0 652.0,444.0 Z" fill-rule="evenodd" fill="#FFFFFF"/></symbol>
+  <symbol id="i-ajuda" viewBox="0 0 24 24"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-1.5 1.5H10l-4.5 4v-4A1.5 1.5 0 0 1 4 14.5z"/><path d="M8.5 9h7M8.5 12h4"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-fechar" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-aviso" viewBox="0 0 24 24"><path d="M12 3.5l9.5 16.5h-19z"/><path d="M12 10v4.5M12 17.4h.01"/></symbol>
+  <symbol id="i-camadas" viewBox="0 0 24 24"><path d="M12 3.5l8.5 4.5-8.5 4.5-8.5-4.5z"/><path d="M3.5 12l8.5 4.5 8.5-4.5M3.5 16l8.5 4.5 8.5-4.5"/></symbol>
+  <symbol id="i-repetir" viewBox="0 0 24 24"><path d="M4.5 11a7.5 7.5 0 0 1 13-4.5L19.5 8.5M19.5 4v4.5H15M19.5 13a7.5 7.5 0 0 1-13 4.5L4.5 15.5M4.5 20v-4.5H9"/></symbol>
+  <symbol id="i-faisca" viewBox="0 0 24 24"><path d="M12 3l1.9 5.6L19.5 10.5l-5.6 1.9L12 18l-1.9-5.6L4.5 10.5l5.6-1.9z"/><path d="M18.5 16.5l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/></symbol>
+  <symbol id="i-globo" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3z"/></symbol>
+  <symbol id="i-cadeado" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></symbol>
+  <symbol id="i-proibido" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M5.7 5.7l12.6 12.6"/></symbol>
+  <symbol id="i-relogio" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-etiqueta" viewBox="0 0 24 24"><path d="M3.5 12.2V4.5a1 1 0 0 1 1-1h7.7l8.3 8.3a1.2 1.2 0 0 1 0 1.7l-6.8 6.8a1.2 1.2 0 0 1-1.7 0z"/><circle cx="8" cy="8" r="1.4"/></symbol>
+</svg>
 
-<header>
-  <div class="wrap bar">
-    <a class="brand" href="/" aria-label="OakAppWare — início">
-      <img src="assets/logo.svg" width="171" height="34" alt="OakAppWare" />
-    </a>
-    <nav aria-label="Principal">
-      <a href="/#apps">Apps</a>
-      <a href="sobre.html">Sobre</a>
-      <a href="suporte.html">Suporte</a>
-      <a href="legal.html">Legal</a>
+<a class="pular" href="#conteudo">Pular para o conteúdo · <span lang="en">Skip to content</span></a>
+
+<header class="topo">
+  <div class="wrap topo-barra">
+    <a class="marca" href="/"><img src="assets/logo.svg" width="151" height="30" alt="OakAppWare" /><span class="sr-only"> — página inicial</span></a>
+    <nav class="nav" aria-label="Principal">
+      <button class="nav-menu" type="button" aria-expanded="false" aria-controls="nav-links">
+        <svg class="i abre" aria-hidden="true"><use href="#i-menu"/></svg><svg class="i fecha" aria-hidden="true"><use href="#i-fechar"/></svg><span class="nav-menu-txt">Menu</span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/#apps">Apps</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="legal.html">Legal</a></li>
+      </ul>
+      <a class="nav-suporte" href="suporte.html"><svg class="i" aria-hidden="true"><use href="#i-ajuda"/></svg>Suporte</a>
     </nav>
   </div>
 </header>
 
 <main id="conteudo">
 
-  <div class="phead">
-    <div class="ptile">
-      <svg viewBox="136 120 752 752" aria-hidden="true"><path d="M176.0,550.0 Q176.0,528.0 197.5,532.8 L476.5,595.2 Q498.0,600.0 498.0,622.0 L498.0,770.0 Q498.0,792.0 476.8,786.0 L197.2,706.0 Q176.0,700.0 176.0,678.0 Z" fill="#2F80ED"/><path d="M848.0,550.0 Q848.0,528.0 826.5,532.8 L547.5,595.2 Q526.0,600.0 526.0,622.0 L526.0,770.0 Q526.0,792.0 547.2,786.0 L826.8,706.0 Q848.0,700.0 848.0,678.0 Z" fill="#2F80ED"/><path d="M379.1,624.0 L374.0,621.3 L368.9,618.5 L363.9,615.5 L358.9,612.5 L354.1,609.3 L349.3,605.9 L344.6,602.5 L340.0,598.9 L335.5,595.2 L331.1,591.4 L326.8,587.5 L322.7,583.4 L318.6,579.3 L314.6,575.0 L310.7,570.7 L307.0,566.2 L303.3,561.7 L299.8,557.1 L296.4,552.3 L293.1,547.5 L290.0,542.6 L287.0,537.7 L284.1,532.6 L281.3,527.5 L278.7,522.3 L276.2,517.0 L273.9,511.7 L271.7,506.3 L269.6,500.9 L267.7,495.4 L265.9,489.9 L264.3,484.3 L262.8,478.7 L261.4,473.0 L260.2,467.3 L259.2,461.6 L258.3,455.8 L257.5,450.1 L256.9,444.3 L256.5,438.5 L256.2,432.7 L256.0,426.8 L256.0,421.0 L256.2,415.2 L256.5,409.4 L256.9,403.6 L257.5,397.8 L258.3,392.0 L259.2,386.3 L260.2,380.6 L261.5,374.9 L262.8,369.2 L264.3,363.6 L265.9,358.0 L267.7,352.5 L269.7,347.0 L271.7,341.6 L273.9,336.2 L276.3,330.9 L278.8,325.6 L281.4,320.4 L284.2,315.3 L287.0,310.2 L290.1,305.3 L293.2,300.4 L296.5,295.6 L299.9,290.8 L303.4,286.2 L307.0,281.7 L310.8,277.2 L314.7,272.9 L318.6,268.6 L322.7,264.5 L326.9,260.5 L331.2,256.5 L335.6,252.7 L340.1,249.0 L344.7,245.5 L349.4,242.0 L354.2,238.7 L359.0,235.5 L364.0,232.4 L369.0,229.4 L374.1,226.6 L379.2,223.9 L384.5,221.4 L389.8,219.0 L395.1,216.7 L400.5,214.6 L406.0,212.6 L411.5,210.7 L417.1,209.0 L422.7,207.5 L428.3,206.0 L434.0,204.8 L439.7,203.7 L445.4,202.7 L451.2,201.9 L457.0,201.2 L462.8,200.7 L468.6,200.3 L474.4,200.1 L480.2,200.0 L486.0,200.1 L491.8,200.3 L497.6,200.7 L503.4,201.2 L509.2,201.9 L515.0,202.7 L520.7,203.7 L526.4,204.9 L532.1,206.1 L537.7,207.6 L543.3,209.1 L548.9,210.9 L554.4,212.7 L559.9,214.7 L565.3,216.9 L570.6,219.2 L575.9,221.6 L581.1,224.1 L586.3,226.8 L591.4,229.7 L596.4,232.6 L601.3,235.7 L606.2,238.9 L610.9,242.3 L615.6,245.7 L620.2,249.3 L624.7,253.0 L629.1,256.8 L633.4,260.7 L637.6,264.8 L641.6,268.9 L645.6,273.2 L649.5,277.5 L653.2,282.0 L656.9,286.5 L660.4,291.2 L663.8,295.9 L667.0,300.7 L670.2,305.6 L673.2,310.6 L676.0,315.6 L678.8,320.8 L681.4,326.0 L683.9,331.2 L686.2,336.6 L688.4,341.9 L690.5,347.4 L706.6,392.9 Q712.0,408.0 704.3,422.0 L692.8,443.2 Q688.0,452.0 693.3,460.5 L720.5,504.7 Q730.0,520.0 723.9,536.9 L718.8,551.2 Q712.0,570.0 712.0,590.0 L712.0,678.0 Q712.0,692.0 698.0,692.0 L685.0,692.0 Q671.0,692.0 671.0,678.0 L671.0,630.0 Q671.0,624.0 665.0,624.0 L662.0,624.0 Q656.0,624.0 656.0,630.0 L656.0,678.0 Q656.0,692.0 642.0,692.0 L629.0,692.0 Q615.0,692.0 615.0,678.0 L615.0,630.0 Q615.0,624.0 609.0,624.0 L606.0,624.0 Q600.0,624.0 600.0,630.0 L600.0,678.0 Q600.0,692.0 586.0,692.0 L573.0,692.0 Q559.0,692.0 559.0,678.0 L559.0,634.0 Q559.0,624.0 549.0,624.0 Z M652.0,444.0 A52.0,52.0 0 1 0 548.0,444.0 A52.0,52.0 0 1 0 652.0,444.0 Z" fill-rule="evenodd" fill="#FFFFFF"/></svg>
+  <section class="app-topo" aria-labelledby="app-titulo">
+    <div class="wrap">
+      <nav aria-label="Trilha de navegação">
+        <ol class="trilha">
+          <li><a href="/">OakAppWare</a></li>
+          <li><a href="/#apps">Apps</a></li>
+          <li><span aria-current="page">Radiologia odontológica</span></li>
+        </ol>
+      </nav>
+      <div class="app-topo-grade">
+        <div>
+          <div class="app-ident">
+            <span class="tile" aria-hidden="true"><svg><use href="#icone-radiologia"/></svg></span>
+            <div class="chips">
+              <span class="chip chip--breve"><span class="ponto ponto--breve" aria-hidden="true"></span><span>Em andamento · <span lang="en">In progress</span></span></span>
+            </div>
+          </div>
+          <h1 id="app-titulo" class="titulo-longo">Radiologia <span class="pro">odontológica</span><span class="sr-only">:</span> <span class="sub">App de estudo <span class="en" lang="en">· Study app</span></span></h1>
+          <p class="app-tagline">Atlas por exame, quiz com repetição espaçada e análise educacional com IA — em 9 idiomas.
+            <span class="en" lang="en">Dental radiology study app: atlas by exam, spaced-repetition quiz and educational AI analysis — in 9 languages.</span></p>
+          <div class="aviso" id="importante">
+            <h2 class="aviso-titulo"><svg class="i" aria-hidden="true"><use href="#i-aviso"/></svg><span>Importante · <span lang="en">Important</span></span></h2>
+            <p>Este aplicativo é uma ferramenta exclusivamente educacional e não é um dispositivo médico. Ele não realiza diagnósticos e não substitui a avaliação de um cirurgião-dentista ou radiologista qualificado. Não utilize este aplicativo para tomar decisões clínicas sobre pacientes.</p>
+            <p class="en" lang="en">This app is an educational tool only and is not a medical device. It does not provide diagnoses and does not replace evaluation by a qualified dentist or oral radiologist. Do not use this app to make clinical decisions about patients.</p>
+          </div>
+          <div class="app-cta">
+            <a class="btn btn-fantasma" href="suporte.html#outros-apps"><svg class="i" aria-hidden="true"><use href="#i-ajuda"/></svg><span>Suporte · <span lang="en">Support</span><span class="sr-only"> — app de radiologia odontológica</span></span></a>
+            <span class="loja-breve"><span class="ponto ponto--breve" aria-hidden="true"></span><span>Ainda não está nas lojas · <span lang="en">Not in the stores yet</span></span></span>
+          </div>
+          <ul class="chips app-fatos" aria-label="Em resumo">
+            <li><svg class="i" aria-hidden="true"><use href="#i-camadas"/></svg>Atlas por exame</li>
+            <li><svg class="i" aria-hidden="true"><use href="#i-repetir"/></svg>Quiz com repetição espaçada</li>
+            <li><svg class="i" aria-hidden="true"><use href="#i-faisca"/></svg>Análise educacional com IA</li>
+            <li><svg class="i" aria-hidden="true"><use href="#i-globo"/></svg>9 idiomas</li>
+            <li><svg class="i" aria-hidden="true"><use href="#i-proibido"/></svg>Sem anúncios</li>
+          </ul>
+          <p class="lead-en app-fatos-en" lang="en">Atlas by exam · Spaced-repetition quiz · Educational AI analysis · 9 languages · No ads</p>
+        </div>
+        <div class="app-visual" aria-hidden="true">
+          <span class="aneis"></span>
+          <span class="tile tile--g"><svg><use href="#icone-radiologia"/></svg></span>
+        </div>
+      </div>
     </div>
-    <div>
-      <h1 class="appname">Radiologia <span>odontológica</span></h1>
-      <p class="pstatus"><span class="nw">Em andamento</span> · <span class="nw" lang="en">In progress</span></p>
+  </section>
+
+  <section class="secao" id="recursos" aria-labelledby="recursos-titulo">
+    <div class="wrap">
+      <div class="secao-cabeca">
+        <div class="revelar">
+          <p class="rotulo"><span>O que é · <span lang="en">What it is</span></span></p>
+          <h2 id="recursos-titulo" class="titulo-secao">Uma referência educacional de radiologia odontológica.<span class="en-t" lang="en">An educational reference for dental radiology.</span></h2>
+          <p class="lead">Feita para estudantes de odontologia, pós-graduandos e profissionais que querem afiar a interpretação radiográfica.</p>
+          <p class="lead-en" lang="en">Built for dentistry students, residents, and clinicians who want to sharpen their radiographic interpretation skills.</p>
+        </div>
+      </div>
+
+      <ul class="bento">
+        <li class="bento-item bento-item--quatro bento-item--destaque revelar">
+          <span class="bento-ico" aria-hidden="true"><svg class="i"><use href="#i-camadas"/></svg></span>
+          <h3>Estude por tipo de exame <span class="en" lang="en">Study by exam type</span></h3>
+          <p>Cada condição aparece como realmente se apresenta em cada exame: periapical, interproximal, oclusal, panorâmica, cefalométrica e TCFC, com imagens de estudo anotadas e diferenciais de estudo interligados.</p>
+          <p class="en" lang="en">Every condition is shown the way it actually appears in each exam: periapical, bitewing, occlusal, panoramic, cephalometric and CBCT, with annotated study images and cross-linked study differentials.</p>
+          <ul class="chips pequenos" aria-label="Tipos de exame">
+            <li class="chip">Periapical</li><li class="chip">Interproximal</li><li class="chip">Oclusal</li><li class="chip">Panorâmica</li><li class="chip">Cefalométrica</li><li class="chip">TCFC</li>
+          </ul>
+        </li>
+        <li class="bento-item revelar" style="--d:1">
+          <span class="bento-ico" aria-hidden="true"><svg class="i"><use href="#i-repetir"/></svg></span>
+          <h3>Aprenda ativamente <span class="en" lang="en">Learn actively</span></h3>
+          <p>Bancos de questões com repetição espaçada (SM-2) transformam a revisão em hábito diário. Acompanhe sua sequência e continue de onde parou.</p>
+          <p class="en" lang="en">Question banks with spaced repetition (SM-2) turn review into a daily habit. Track your streak and pick up where you left off.</p>
+        </li>
+        <li class="bento-item bento-item--largo revelar">
+          <span class="bento-ico" aria-hidden="true"><svg class="i"><use href="#i-faisca"/></svg></span>
+          <h3>Análise educacional com IA <span class="en" lang="en">Educational AI analysis</span></h3>
+          <p>Envie uma imagem de estudo anonimizada e receba uma descrição sistemática, com hipóteses de estudo ligadas ao atlas — um exercício de interpretação radiográfica, em 9 idiomas.</p>
+          <p class="en" lang="en">Send an anonymized study image and receive a systematic description, with study hypotheses linked to the atlas — a radiographic interpretation exercise, available in 9 languages.</p>
+        </li>
+        <li class="bento-item bento-item--largo revelar" style="--d:1">
+          <span class="bento-ico" aria-hidden="true"><svg class="i"><use href="#i-globo"/></svg></span>
+          <h3>Nove idiomas <span class="en" lang="en">Nine languages</span></h3>
+          <p>Português, inglês, espanhol, francês, alemão, árabe, hindi, chinês e japonês — com suporte completo a escrita da direita para a esquerda.</p>
+          <p class="en" lang="en">Portuguese, English, Spanish, French, German, Arabic, Hindi, Chinese and Japanese — with full right-to-left support.</p>
+        </li>
+        <li class="bento-item bento-item--total bento-item--destaque revelar" id="privacidade">
+          <div class="bento-duas">
+            <div>
+              <span class="bento-ico" aria-hidden="true"><svg class="i"><use href="#i-cadeado"/></svg></span>
+              <h3>Privacidade por concepção <span class="en" lang="en">Privacy by design</span></h3>
+              <p>As imagens enviadas à análise educacional são processadas de forma efêmera: a OakAppWare não as armazena, e os metadados são removidos no servidor antes da análise. Envie apenas imagens anonimizadas. Sem anúncios.</p>
+              <p>O app permite login por e-mail ou Google, e o progresso de estudo acompanha você entre aparelhos. A Política de Privacidade completa será publicada neste site antes do lançamento.</p>
+            </div>
+            <div>
+              <ul class="chips selos" aria-label="Privacidade em resumo">
+                <li class="chip">Processamento efêmero</li><li class="chip">Metadados removidos</li><li class="chip">Só imagens anonimizadas</li><li class="chip">Sem anúncios</li>
+              </ul>
+              <p class="en" lang="en">Images sent to the educational analysis are processed ephemerally: OakAppWare does not store them, and metadata is stripped on the server before analysis. Only send anonymized images. No ads.</p>
+              <p class="en" lang="en">The app lets you sign in with email or Google, and your study progress follows you across devices. The full Privacy Policy will be published on this site before launch.</p>
+            </div>
+          </div>
+        </li>
+      </ul>
     </div>
-  </div>
+  </section>
 
-  <p class="tagline">Atlas por exame, quiz com repetição espaçada e análise educacional com IA — em 9 idiomas.<br/>
-  <span class="en" lang="en">Dental radiology study app: atlas by exam, spaced-repetition quiz and educational AI analysis — in 9 languages.</span></p>
-
-  <div class="card notice">
-    <h2><svg viewBox="0 0 20 18" aria-hidden="true"><path fill="currentColor" d="M10 0l10 18H0L10 0zm-1 6v6h2V6H9zm0 8v2h2v-2H9z"/></svg> Importante · <span lang="en">Important</span></h2>
-    <p>Este aplicativo é uma ferramenta exclusivamente educacional e não é um dispositivo médico. Ele não realiza diagnósticos e não substitui a avaliação de um cirurgião-dentista ou radiologista qualificado. Não utilize este aplicativo para tomar decisões clínicas sobre pacientes.</p>
-    <p class="en" lang="en">This app is an educational tool only and is not a medical device. It does not provide diagnoses and does not replace evaluation by a qualified dentist or oral radiologist. Do not use this app to make clinical decisions about patients.</p>
-  </div>
-
-  <div class="card">
-    <h2>O que é · <span lang="en">What it is</span></h2>
-    <p>Uma referência educacional de radiologia odontológica, feita para estudantes de
-    odontologia, pós-graduandos e profissionais que querem afiar a interpretação radiográfica.</p>
-    <p class="en" lang="en">An educational reference for dental radiology — built for dentistry
-    students, residents, and clinicians who want to sharpen their radiographic interpretation skills.</p>
-  </div>
-
-  <div class="card">
-    <h2>Recursos · <span lang="en">Features</span></h2>
-    <div class="item">
-      <h3>Estude por tipo de exame <span class="en" lang="en">Study by exam type</span></h3>
-      <p>Cada condição aparece como realmente se apresenta em cada exame: periapical,
-      interproximal, oclusal, panorâmica, cefalométrica e TCFC, com imagens de estudo anotadas e
-      diferenciais de estudo interligados.</p>
-      <p class="en" lang="en">Every condition is shown the way it actually appears in each exam:
-      periapical, bitewing, occlusal, panoramic, cephalometric and CBCT, with annotated study images
-      and cross-linked study differentials.</p>
+  <section class="secao" id="andamento" aria-labelledby="andamento-titulo">
+    <div class="wrap">
+      <div class="secao-cabeca">
+        <div class="revelar">
+          <p class="rotulo"><span>Em andamento · <span lang="en">In progress</span></span></p>
+          <h2 id="andamento-titulo" class="titulo-secao">Pré-lançamento para Android e iOS.<span class="en-t" lang="en">Pre-release for Android and iOS.</span></h2>
+        </div>
+      </div>
+      <ul class="bento">
+        <li class="bento-item bento-item--quatro revelar">
+          <span class="bento-ico" aria-hidden="true"><svg class="i"><use href="#i-relogio"/></svg></span>
+          <h3>Ainda não está nas lojas <span class="en" lang="en">Not in the stores yet</span></h3>
+          <p>O app está em pré-lançamento para Android e iOS e ainda não foi publicado nas lojas. A Política de Privacidade, os Termos de Uso e a página de exclusão de conta serão publicados neste site antes do lançamento.</p>
+          <p class="en" lang="en">The app is in pre-release for Android and iOS and has not been published in the stores yet. The Privacy Policy, Terms of Use and account-deletion page will be published on this site before launch.</p>
+        </li>
+        <li class="bento-item revelar" style="--d:1">
+          <span class="bento-ico" aria-hidden="true"><svg class="i"><use href="#i-etiqueta"/></svg></span>
+          <h3>Modelo <span class="en" lang="en">Pricing</span></h3>
+          <p>Gratuito para começar; assinatura premium libera todo o conteúdo.</p>
+          <p class="en" lang="en">Free to start; a premium subscription unlocks all content.</p>
+        </li>
+      </ul>
     </div>
-    <div class="item">
-      <h3>Aprenda ativamente <span class="en" lang="en">Learn actively</span></h3>
-      <p>Bancos de questões com repetição espaçada (SM-2) transformam a revisão em hábito diário.
-      Acompanhe sua sequência e continue de onde parou.</p>
-      <p class="en" lang="en">Question banks with spaced repetition (SM-2) turn review into a daily
-      habit. Track your streak and pick up where you left off.</p>
+  </section>
+
+  <section class="secao" aria-labelledby="contato-titulo">
+    <div class="wrap">
+      <div class="cta-final revelar">
+        <span class="tile" aria-hidden="true"><svg><use href="#icone-radiologia"/></svg></span>
+        <h2 id="contato-titulo">Dúvidas sobre o app?</h2>
+        <p>Quando for publicado, o app ganha página de suporte própria, com perguntas frequentes. Até lá, o canal é o mesmo: <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>.
+          <span class="en" lang="en">Once published, the app gets its own support page, with FAQ. Until then, the channel is the same.</span></p>
+        <p class="aviso"><strong>Ferramenta exclusivamente educacional — não é dispositivo médico, não realiza diagnósticos e não deve ser usada para decisões clínicas sobre pacientes.</strong>
+          <span class="en" lang="en">Educational tool only — not a medical device; it does not provide diagnoses and must not be used for clinical decisions about patients.</span></p>
+        <div class="app-cta">
+          <a class="btn btn-fantasma" href="suporte.html#outros-apps"><span>Suporte · <span lang="en">Support</span></span></a>
+          <a class="btn btn-fantasma" href="legal.html#outros-apps"><span>Documentos legais · <span lang="en">Legal</span></span></a>
+          <a class="btn btn-fantasma" href="/#apps"><span>Todos os aplicativos · <span lang="en">All apps</span></span></a>
+        </div>
+        <p class="assinatura-txt">um app <b>OakAppWare</b></p>
+      </div>
     </div>
-    <div class="item">
-      <h3>Análise educacional com IA <span class="en" lang="en">Educational AI analysis</span></h3>
-      <p>Envie uma imagem de estudo anonimizada e receba uma descrição sistemática, com hipóteses de
-      estudo ligadas ao atlas — um exercício de interpretação radiográfica, em 9 idiomas.</p>
-      <p class="en" lang="en">Send an anonymized study image and receive a systematic description, with
-      study hypotheses linked to the atlas — a radiographic interpretation exercise, available in 9 languages.</p>
-    </div>
-    <div class="item">
-      <h3>Nove idiomas <span class="en" lang="en">Nine languages</span></h3>
-      <p>Português, inglês, espanhol, francês, alemão, árabe, hindi, chinês e japonês — com suporte
-      completo a escrita da direita para a esquerda.</p>
-      <p class="en" lang="en">Portuguese, English, Spanish, French, German, Arabic, Hindi, Chinese and
-      Japanese — with full right-to-left support.</p>
-    </div>
-  </div>
-
-  <div class="card">
-    <h2>Privacidade · <span lang="en">Privacy</span></h2>
-    <p><strong>Privacidade por concepção.</strong> As imagens enviadas à análise educacional são
-    processadas de forma efêmera: a OakAppWare não as armazena, e os metadados são removidos no
-    servidor antes da análise. Envie apenas imagens anonimizadas. Sem anúncios.</p>
-    <p class="en" lang="en"><strong>Privacy by design.</strong> Images sent to the educational
-    analysis are processed ephemerally: OakAppWare does not store them, and metadata is stripped on
-    the server before analysis. Only send anonymized images. No ads.</p>
-    <p>O app permite login por e-mail ou Google, e o progresso de estudo acompanha você entre
-    aparelhos. A Política de Privacidade completa será publicada neste site antes do lançamento.</p>
-    <p class="en" lang="en">The app lets you sign in with email or Google, and your study progress
-    follows you across devices. The full Privacy Policy will be published on this site before launch.</p>
-  </div>
-
-  <div class="card">
-    <h2>Modelo · <span lang="en">Pricing</span></h2>
-    <p>Gratuito para começar; assinatura premium libera todo o conteúdo.</p>
-    <p class="en" lang="en">Free to start; a premium subscription unlocks all content.</p>
-  </div>
-
-  <div class="card">
-    <h2>Em andamento · <span lang="en">In progress</span></h2>
-    <p>O app está em pré-lançamento para Android e iOS e ainda não foi publicado nas lojas. A
-    Política de Privacidade, os Termos de Uso e a página de exclusão de conta serão publicados neste
-    site antes do lançamento.</p>
-    <p class="en" lang="en">The app is in pre-release for Android and iOS and has not been published
-    in the stores yet. The Privacy Policy, Terms of Use and account-deletion page will be published on
-    this site before launch.</p>
-  </div>
-
-  <div class="links">
-    <a href="/#apps">Todos os aplicativos · <span lang="en">All apps</span></a>
-    <a href="suporte.html#outros-apps">Suporte · <span lang="en">Support</span></a>
-    <a href="legal.html#outros-apps">Documentos legais · <span lang="en">Legal</span></a>
-  </div>
+  </section>
 
 </main>
 
-<footer>
+<footer class="rodape">
   <div class="wrap">
-    <a class="foot-brand" href="/" aria-label="OakAppWare — início">
-      <img src="assets/logo.svg" width="131" height="26" alt="OakAppWare" />
-    </a>
-    OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA — <span style="white-space:nowrap">CNPJ 68.923.016/0001-00</span><br/>
-    SGAS 915, Conjunto B, Bloco D, Sala 103 (Parte CH 528) — Asa Sul, Brasília/DF, CEP 70.390-150<br/>
-    oakappware.com · <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>
-    <nav class="foot-links" aria-label="Rodapé">
-      <a href="/#apps">Apps</a>
-      <a href="sobre.html">Sobre</a>
-      <a href="suporte.html">Suporte</a>
-      <a href="legal.html">Legal</a>
-      <a href="legal.html#privacidade-site">Privacidade do site</a>
-    </nav>
+    <div class="rodape-grade">
+      <div class="rodape-marca-col">
+        <a class="marca" href="/"><img src="assets/logo.svg" width="141" height="28" alt="OakAppWare" /><span class="sr-only"> — página inicial</span></a>
+        <address class="empresa">
+          <span class="razao">OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA</span><br />
+          <span class="nw">CNPJ 68.923.016/0001-00</span><br />
+          SGAS 915, Conjunto B, Bloco D, Sala 103 (Parte CH 528) — Asa Sul, Brasília/DF, <span class="nw">CEP 70.390-150</span><br />
+          <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>
+        </address>
+      </div>
+      <nav aria-labelledby="rodape-apps">
+        <h2 id="rodape-apps">Apps</h2>
+        <ul>
+          <li><a href="tabspro.html">Tabs Pro</a></li>
+          <li><a href="dicompro.html">DICOM Pro</a></li>
+          <li><a href="radiologia-odontologica.html">Radiologia odontológica</a></li>
+        </ul>
+      </nav>
+      <nav aria-labelledby="rodape-ajuda">
+        <h2 id="rodape-ajuda">Ajuda</h2>
+        <ul>
+          <li><a href="suporte.html">Suporte</a></li>
+          <li><a href="/tabspro/suporte">Suporte do Tabs Pro</a></li>
+          <li><a href="suporte.html#dicompro">Suporte do DICOM Pro</a></li>
+          <li><a href="sobre.html">Sobre a empresa</a></li>
+        </ul>
+      </nav>
+      <nav class="rodape-legal" aria-labelledby="rodape-legal">
+        <h2 id="rodape-legal">Legal</h2>
+        <ul>
+          <li><a href="privacidade.html">Privacidade do DICOM Pro</a></li>
+          <li><a href="termos.html">Termos do DICOM Pro</a></li>
+          <li><a href="/tabspro/privacidade">Privacidade do Tabs Pro</a></li>
+          <li><a href="/tabspro/termos">Termos do Tabs Pro</a></li>
+          <li><a href="legal.html#privacidade-site">Privacidade do site</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="rodape-base">
+      <span>oakappware.com · Brasília/DF</span>
+      <span lang="en">Apps for health, education and everyday life.</span>
+    </div>
   </div>
 </footer>
 

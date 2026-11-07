@@ -30,234 +30,191 @@
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon-180.png" />
 <link rel="manifest" href="/assets/site.webmanifest" />
-<style>
-  @font-face { font-family:"Inter"; font-weight:400; font-style:normal; font-display:swap; src:url("/assets/fonts/inter-latin-400-normal.woff2") format("woff2"), url("/assets/fonts/inter-latin-400-normal.woff") format("woff"); }
-  @font-face { font-family:"Inter"; font-weight:500; font-style:normal; font-display:swap; src:url("/assets/fonts/inter-latin-500-normal.woff2") format("woff2"), url("/assets/fonts/inter-latin-500-normal.woff") format("woff"); }
-  @font-face { font-family:"Inter"; font-weight:600; font-style:normal; font-display:swap; src:url("/assets/fonts/inter-latin-600-normal.woff2") format("woff2"), url("/assets/fonts/inter-latin-600-normal.woff") format("woff"); }
-  @font-face { font-family:"Inter"; font-weight:800; font-style:normal; font-display:swap; src:url("/assets/fonts/inter-latin-800-normal.woff2") format("woff2"), url("/assets/fonts/inter-latin-800-normal.woff") format("woff"); }
-
-  :root {
-    color-scheme:dark;
-    --bg:#0B0F0C; --surface-2:#161C18; --border:#233029;
-    --text:#F3F6F4; --muted:#A6B3A9; --faint:#7B8B80;
-    --green:#2FD37A; --green-deep:#168A4E; --broto:#8AF5B4;
-    --app-accent:#F0905A; --app-orange:#E8702A; --app-border:#7a4424; --tile-bg:#15171C;
-  }
-  * { box-sizing:border-box; margin:0; }
-  html { scroll-behavior:smooth; }
-  body { background:var(--bg); color:var(--text); font:16px/1.65 "Inter",system-ui,-apple-system,"Segoe UI",sans-serif; -webkit-font-smoothing:antialiased; }
-  a { color:var(--green); text-decoration:none; }
-  a:hover, a:focus-visible { color:var(--broto); text-decoration:underline; text-underline-offset:3px; }
-  a:focus-visible { outline:2px solid var(--green); outline-offset:3px; border-radius:2px; }
-  .wrap { max-width:880px; margin:0 auto; padding:0 24px; }
-  .skip { position:absolute; left:-9999px; }
-  .skip:focus { left:0; right:0; top:0; width:auto; z-index:20; background:var(--bg); border:0; border-radius:0; outline:2px solid var(--green); outline-offset:-2px; padding:14px 24px; color:var(--text); font-weight:600; }
-
-  /* Topo — cabeçalho padrão do site; esta página vive três níveis abaixo
-     da raiz, por isso todos os caminhos são absolutos. */
-  header { border-bottom:1px solid var(--border); }
-  .bar { display:flex; align-items:center; justify-content:space-between; gap:12px 16px; padding:18px 24px; flex-wrap:wrap; }
-  .brand { display:flex; align-items:center; }
-  .brand:hover { text-decoration:none; }
-  .brand img { height:34px; width:auto; display:block; }
-  header nav { display:flex; gap:22px; font-size:14.5px; font-weight:500; }
-  header nav a { color:var(--muted); white-space:nowrap; }
-  header nav a:hover { color:var(--text); text-decoration:none; }
-
-  /* Cabeçalho da página — tinta na cor do Tabs Pro */
-  .pagehead { padding:46px 24px 12px; position:relative; overflow:hidden; }
-  .pagehead::before { content:""; position:absolute; inset:0; pointer-events:none;
-    background:radial-gradient(560px 300px at 20% 24%, rgba(232,112,42,.08), transparent 70%); }
-  .pagehead > * { position:relative; }
-  .crumbs { font-size:14px; color:var(--faint); display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:20px; }
-  .crumbs a { color:var(--muted); font-weight:500; }
-  .crumbs svg { width:16px; height:16px; }
-  .langs { font-size:13px; letter-spacing:.06em; color:var(--faint); display:flex; align-items:center; gap:8px; margin:-8px 0 20px; }
-  .lang a { color:var(--muted); font-weight:500; }
-  .lang a[aria-current] { color:var(--app-accent); font-weight:600; }
-  h1 { font-size:clamp(29px,4.6vw,42px); font-weight:800; letter-spacing:.03em; line-height:1.12; text-wrap:balance; }
-  h1 span { color:var(--app-accent); }
-  .lead { color:var(--text); font-size:18px; font-weight:500; margin-top:16px; max-width:36em; text-wrap:balance; }
-
-  /* Seções */
-  main section { padding:4px 0 18px; }
-  .label { display:flex; align-items:flex-start; gap:10px; font-size:13px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--app-accent); margin:34px 0 16px; }
-  .label svg { width:13px; height:15px; flex:0 0 auto; margin-top:3px; }
-
-  /* Cartões */
-  .card { background:var(--surface-2); border:1px solid var(--border); border-radius:14px; padding:22px 24px; }
-  .card + .card { margin-top:14px; }
-  .card h3 { font-size:17px; font-weight:600; line-height:1.4; letter-spacing:.01em; }
-  .card p, .card li { max-width:46em; }
-  .card h3 + p, .card h3 + ul { margin-top:8px; }
-  .card p + p, .card ul + p, .card p + ul, .card ol + p, .card p + ol { margin-top:10px; }
-  .card strong { color:var(--text); font-weight:600; }
-  .card ul, .card ol { margin:8px 0 0; padding-left:22px; }
-  .card li { margin:7px 0; }
-  .links { margin-top:16px; display:flex; gap:8px 18px; flex-wrap:wrap; font-size:15px; }
-
-  /* Rodapé */
-  footer { border-top:1px solid var(--border); margin-top:48px; padding:28px 0 44px; color:var(--faint); font-size:13px; line-height:1.85; }
-  .foot-brand { display:block; margin-bottom:14px; }
-  .foot-brand img { height:26px; width:auto; display:block; }
-  footer a { color:var(--muted); }
-  .foot-links { margin-top:10px; display:flex; gap:8px 18px; flex-wrap:wrap; }
-
-  @media (max-width:640px) {
-    .pagehead { padding:36px 24px 8px; }
-    header nav { gap:14px; font-size:14px; }
-    .card { padding:20px 20px; }
-  }
-  /* Impressão / salvar em PDF: o corpo é claro sobre escuro; sem isto o Chrome
-     (que imprime sem "gráficos de segundo plano") devolve texto branco no papel. */
-  @media print {
-    body { background:#fff; color:#111; }
-    a { color:#111; text-decoration:underline; }
-    h1, h2, h3, .label, h1 span, footer a { color:#111; }
-    .pagehead::before { display:none; }
-    .pagehead { padding:0 0 8px; }
-    .card { border-color:#ccc; background:#fff; break-inside:avoid; page-break-inside:avoid; }
-    .lead, footer { color:#333; }
-    .card strong { color:#111; }
-    .label svg, .crumbs, .langs { display:none; }
-    header, .foot-links, .skip, .foot-brand { display:none; }
-    footer { border-top:1px solid #ccc; }
-  }
-</style>
+<script>document.documentElement.classList.add('js')</script>
+<link rel="stylesheet" href="/assets/site.css" />
+<script src="/assets/site.js" defer onerror="document.documentElement.classList.remove('js')"></script>
 </head>
-<body>
+<body class="tema-tabspro">
 
-<a class="skip" href="#conteudo">Skip to content</a>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <clipPath id="icone-tabspro-palheta"><path d="M512 152C706 152 874 216 868 368C860 536 636 766 556 852Q512 900 470 846C392 756 158 528 156 356C154 206 330 152 512 152Z"/></clipPath>
+    <mask id="icone-tabspro-onda"><rect width="1024" height="1024" fill="#fff"/><path fill="#000" d="M296.0 377.0H296.0A33.0 33.0 0 0 1 329.0 410.0V494.0A33.0 33.0 0 0 1 296.0 527.0H296.0A33.0 33.0 0 0 1 263.0 494.0V410.0A33.0 33.0 0 0 1 296.0 377.0Z"/><path fill="#000" d="M404.0 317.0H404.0A33.0 33.0 0 0 1 437.0 350.0V554.0A33.0 33.0 0 0 1 404.0 587.0H404.0A33.0 33.0 0 0 1 371.0 554.0V350.0A33.0 33.0 0 0 1 404.0 317.0Z"/><path fill="#000" d="M512.0 262.0H512.0A33.0 33.0 0 0 1 545.0 295.0V609.0A33.0 33.0 0 0 1 512.0 642.0H512.0A33.0 33.0 0 0 1 479.0 609.0V295.0A33.0 33.0 0 0 1 512.0 262.0Z"/><path fill="#000" d="M620.0 317.0H620.0A33.0 33.0 0 0 1 653.0 350.0V554.0A33.0 33.0 0 0 1 620.0 587.0H620.0A33.0 33.0 0 0 1 587.0 554.0V350.0A33.0 33.0 0 0 1 620.0 317.0Z"/><path fill="#000" d="M728.0 377.0H728.0A33.0 33.0 0 0 1 761.0 410.0V494.0A33.0 33.0 0 0 1 728.0 527.0H728.0A33.0 33.0 0 0 1 695.0 494.0V410.0A33.0 33.0 0 0 1 728.0 377.0Z"/></mask>
+  </defs>
+  <symbol id="icone-tabspro" viewBox="64 64 896 896"><g transform="rotate(-16 512 512)"><g clip-path="url(#icone-tabspro-palheta)" mask="url(#icone-tabspro-onda)"><rect width="1024" height="1024" fill="#E8702A"/><path d="M296 0H1024V712Z" fill="#F0905A"/></g></g></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-fechar" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-ajuda" viewBox="0 0 24 24"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-1.5 1.5H10l-4.5 4v-4A1.5 1.5 0 0 1 4 14.5z"/><path d="M8.5 9h7M8.5 12h4"/></symbol>
+  <symbol id="i-escudo" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6z"/><path d="M9 12l2.2 2.2L15.5 10"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6.5 3h8l4 4v13.5a.5.5 0 0 1-.5.5h-11.5a.5.5 0 0 1-.5-.5V3.5a.5.5 0 0 1 .5-.5z"/><path d="M14 3v4.5h4.5M9 12h6M9 15.5h6"/></symbol>
+  <symbol id="i-email" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5l8.5 6 8.5-6"/></symbol>
+  <symbol id="i-seta" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+</svg>
 
-<header>
-  <div class="wrap bar">
-    <a class="brand" href="/" aria-label="OakAppWare — home">
-      <img src="/assets/logo.svg" width="171" height="34" alt="OakAppWare" />
-    </a>
-    <nav aria-label="Main">
-      <a href="/#apps">Apps</a>
-      <a href="/sobre.html">About</a>
-      <a href="/suporte.html">Support</a>
-      <a href="/legal.html">Legal</a>
+<a class="pular" href="#conteudo">Skip to content</a>
+
+<header class="topo">
+  <div class="wrap topo-barra">
+    <a class="marca" href="/"><img src="/assets/logo.svg" width="151" height="30" alt="OakAppWare" /><span class="sr-only"> — home page</span></a>
+    <nav class="nav" aria-label="Main">
+      <button class="nav-menu" type="button" aria-expanded="false" aria-controls="nav-links">
+        <svg class="i abre" aria-hidden="true"><use href="#i-menu"/></svg><svg class="i fecha" aria-hidden="true"><use href="#i-fechar"/></svg><span class="nav-menu-txt">Menu</span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/#apps">Apps</a></li>
+        <li><a href="/sobre.html">About</a></li>
+        <li><a href="/legal.html">Legal</a></li>
+      </ul>
+      <a class="nav-suporte" href="/suporte.html"><svg class="i" aria-hidden="true"><use href="#i-ajuda"/></svg>Support</a>
     </nav>
   </div>
 </header>
 
 <main id="conteudo">
-  <div class="wrap pagehead">
-    <nav class="crumbs" aria-label="Breadcrumb">
-      <svg viewBox="64 64 896 896" aria-hidden="true"><defs><clipPath id="tp-palheta"><path d="M512 152C706 152 874 216 868 368C860 536 636 766 556 852Q512 900 470 846C392 756 158 528 156 356C154 206 330 152 512 152Z"/></clipPath><mask id="tp-onda"><rect width="1024" height="1024" fill="#fff"/><path fill="#000" d="M296.0 377.0H296.0A33.0 33.0 0 0 1 329.0 410.0V494.0A33.0 33.0 0 0 1 296.0 527.0H296.0A33.0 33.0 0 0 1 263.0 494.0V410.0A33.0 33.0 0 0 1 296.0 377.0Z"/><path fill="#000" d="M404.0 317.0H404.0A33.0 33.0 0 0 1 437.0 350.0V554.0A33.0 33.0 0 0 1 404.0 587.0H404.0A33.0 33.0 0 0 1 371.0 554.0V350.0A33.0 33.0 0 0 1 404.0 317.0Z"/><path fill="#000" d="M512.0 262.0H512.0A33.0 33.0 0 0 1 545.0 295.0V609.0A33.0 33.0 0 0 1 512.0 642.0H512.0A33.0 33.0 0 0 1 479.0 609.0V295.0A33.0 33.0 0 0 1 512.0 262.0Z"/><path fill="#000" d="M620.0 317.0H620.0A33.0 33.0 0 0 1 653.0 350.0V554.0A33.0 33.0 0 0 1 620.0 587.0H620.0A33.0 33.0 0 0 1 587.0 554.0V350.0A33.0 33.0 0 0 1 620.0 317.0Z"/><path fill="#000" d="M728.0 377.0H728.0A33.0 33.0 0 0 1 761.0 410.0V494.0A33.0 33.0 0 0 1 728.0 527.0H728.0A33.0 33.0 0 0 1 695.0 494.0V410.0A33.0 33.0 0 0 1 728.0 377.0Z"/></mask></defs><g transform="rotate(-16 512 512)"><g clip-path="url(#tp-palheta)" mask="url(#tp-onda)"><rect width="1024" height="1024" fill="#E8702A"/><path d="M296 0H1024V712Z" fill="#F0905A"/></g></g></svg>
-      <a href="/index.html">OakAppWare</a> · <a href="/tabspro.html">Tabs Pro</a>
-    </nav>
-    <nav class="langs" aria-label="Language">
-      <a href="/tabspro/suporte/" lang="pt-BR" hreflang="pt-BR">PT</a> ·
-      <span aria-current="page">EN</span> ·
-      <a href="/tabspro/suporte/es/" lang="es" hreflang="es">ES</a>
-    </nav>
-    <h1>Tabs<span>&nbsp;Pro</span> Support</h1>
-    <p class="lead">Need help with <strong>Tabs Pro: Afinador e Cifras</strong>? Talk to us:
-    <a href="mailto:contato@oakappware.com">contato@oakappware.com</a> — support is provided in
-    Portuguese or English, and we answer every message.</p>
+  <div class="pagina-cabeca">
+    <div class="wrap">
+      <nav aria-label="Breadcrumb"><ol class="trilha"><li><a href="/">OakAppWare</a></li><li><a href="/tabspro.html">Tabs Pro</a></li><li><span aria-current="page">Support</span></li></ol></nav>
+      <div class="doc-topo" data-chrome>
+        <div class="doc-ident"><span class="tile" aria-hidden="true"><svg><use href="#icone-tabspro"/></svg></span><p><strong>Tabs Pro</strong><span><span class="ponto" aria-hidden="true"></span>Available on Google Play</span></p></div>
+        <nav class="langs" aria-label="Language"><a href="/tabspro/suporte/" lang="pt-BR" hreflang="pt-BR"><span class="sr-only">Português: </span>PT</a><a href="/tabspro/suporte/en/" aria-current="page" lang="en"><span class="sr-only">English: </span>EN</a><a href="/tabspro/suporte/es/" lang="es" hreflang="es"><span class="sr-only">Español: </span>ES</a></nav>
+      </div>
+      <h1>Tabs<span>&nbsp;Pro</span> Support</h1>
+      <p class="lead">Need help with <strong>Tabs Pro: Afinador e Cifras</strong>? Talk to us:
+      <a href="mailto:contato@oakappware.com">contato@oakappware.com</a> — support is provided in
+      Portuguese or English, and we answer every message.</p>
+      <nav aria-label="On this page"><ul class="indice"><li><a href="#faq">Frequently asked questions</a></li><li><a href="#problema">Found a problem?</a></li></ul></nav>
+    </div>
   </div>
+  <div class="wrap doc-grade">
+    <div>
+      <section class="bloco" id="faq" aria-labelledby="faq-titulo">
+        <h2 class="rotulo" id="faq-titulo">Frequently asked questions</h2>
+        <div class="cartoes">
+          <div class="cartao">
+            <h3>The tuner does not detect the string</h3>
+            <ul>
+              <li>Bring the guitar closer to the device and play the open string, one at a time.</li>
+              <li>Reduce the noise around you: the tuner ignores very quiet sounds on
+              purpose, so it does not "tune" the fan.</li>
+              <li>Check that the microphone permission is enabled in the system settings
+              (see below).</li>
+            </ul>
+          </div>
+          <div class="cartao">
+            <h3>I denied the microphone permission. How do I re-enable it?</h3>
+            <ul>
+              <li><strong>iPhone/iPad:</strong> Settings → Apps → Tabs Pro → Microphone.</li>
+              <li><strong>Android:</strong> Settings → Apps → Tabs Pro → Permissions → Microphone.</li>
+            </ul>
+            <p>Without the permission, the tuner and recording become unavailable — but you
+            can still generate chord charts from audio files.</p>
+          </div>
+          <div class="cartao">
+            <h3>Which audio files work?</h3>
+            <p>MP3, M4A/AAC and WAV (16-bit PCM) saved on the device. Songs from
+            streaming services are protected and do not open in any app — in that
+            case, play the song out loud and record it through the microphone. If a WAV does not
+            open, export it as 16-bit PCM or convert it to MP3/M4A.</p>
+          </div>
+          <div class="cartao">
+            <h3>The analysis takes long or the result came out strange</h3>
+            <ul>
+              <li>The analysis covers up to 3 minutes of audio; anything beyond that is
+              ignored. Shorter recordings (30–90 s) give better results.</li>
+              <li>Clean recordings, with a single guitar and no vocals, are the ideal scenario. With
+              a full band, the app approximates the predominant chords.</li>
+              <li>The chord chart is a starting point: tap a chord to correct it, use
+              the half-step transposition and adjust the BPM in the tempo
+              control (or mark the rhythm with the tap button).</li>
+            </ul>
+          </div>
+          <div class="cartao">
+            <h3>What is the free preview?</h3>
+            <p>You can convert 2 songs into chord charts for free. In upcoming
+            versions, a one-time-purchase unlock (processed by the store) enables
+            unlimited conversions. The tuner, playback and the chord charts already saved
+            are not part of the limit.</p>
+          </div>
+          <div class="cartao">
+            <h3>How do I delete my data?</h3>
+            <p>Everything stays only on your device: delete chord charts through the library or
+            uninstall the app to remove everything. Nothing is kept on servers —
+            details in the <a href="/tabspro/privacidade/en/">Privacy Policy</a>.</p>
+          </div>
+        </div>
+      </section>
 
-  <div class="wrap">
-    <section id="faq">
-      <h2 class="label">
-        <svg viewBox="0 0 16 18" aria-hidden="true"><path fill="#F0905A" d="M8 0l7.8 4.5v9L8 18 .2 13.5v-9z"/></svg>
-        Frequently asked questions
-      </h2>
-      <div class="card">
-        <h3>The tuner does not detect the string</h3>
-        <ul>
-          <li>Bring the guitar closer to the device and play the open string, one at a time.</li>
-          <li>Reduce the noise around you: the tuner ignores very quiet sounds on
-          purpose, so it does not "tune" the fan.</li>
-          <li>Check that the microphone permission is enabled in the system settings
-          (see below).</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>I denied the microphone permission. How do I re-enable it?</h3>
-        <ul>
-          <li><strong>iPhone/iPad:</strong> Settings → Apps → Tabs Pro → Microphone.</li>
-          <li><strong>Android:</strong> Settings → Apps → Tabs Pro → Permissions → Microphone.</li>
-        </ul>
-        <p>Without the permission, the tuner and recording become unavailable — but you
-        can still generate chord charts from audio files.</p>
-      </div>
-      <div class="card">
-        <h3>Which audio files work?</h3>
-        <p>MP3, M4A/AAC and WAV (16-bit PCM) saved on the device. Songs from
-        streaming services are protected and do not open in any app — in that
-        case, play the song out loud and record it through the microphone. If a WAV does not
-        open, export it as 16-bit PCM or convert it to MP3/M4A.</p>
-      </div>
-      <div class="card">
-        <h3>The analysis takes long or the result came out strange</h3>
-        <ul>
-          <li>The analysis covers up to 3 minutes of audio; anything beyond that is
-          ignored. Shorter recordings (30–90 s) give better results.</li>
-          <li>Clean recordings, with a single guitar and no vocals, are the ideal scenario. With
-          a full band, the app approximates the predominant chords.</li>
-          <li>The chord chart is a starting point: tap a chord to correct it, use
-          the half-step transposition and adjust the BPM in the tempo
-          control (or mark the rhythm with the tap button).</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>What is the free preview?</h3>
-        <p>You can convert 2 songs into chord charts for free. In upcoming
-        versions, a one-time-purchase unlock (processed by the store) enables
-        unlimited conversions. The tuner, playback and the chord charts already saved
-        are not part of the limit.</p>
-      </div>
-      <div class="card">
-        <h3>How do I delete my data?</h3>
-        <p>Everything stays only on your device: delete chord charts through the library or
-        uninstall the app to remove everything. Nothing is kept on servers —
-        details in the <a href="/tabspro/privacidade/en/">Privacy Policy</a>.</p>
-      </div>
-    </section>
-
-    <section id="problema">
-      <h2 class="label">
-        <svg viewBox="0 0 16 18" aria-hidden="true"><path fill="#F0905A" d="M8 0l7.8 4.5v9L8 18 .2 13.5v-9z"/></svg>
-        Found a problem?
-      </h2>
-      <div class="card">
-        <p>Write to <strong><a href="mailto:contato@oakappware.com">contato@oakappware.com</a></strong> with:</p>
-        <ol>
-          <li>device model and system version (e.g. iPhone 14, iOS 18);</li>
-          <li>app version (<strong>About</strong> screen, on the ⓘ icon in the library);</li>
-          <li>what you were doing and what happened (if possible, with a
-          screenshot).</li>
-        </ol>
-        <p>The more details, the faster we can reproduce and fix it.</p>
-      </div>
-      <div class="links">
-        <a href="/tabspro.html">About Tabs Pro</a>
-        <a href="/tabspro/privacidade/en/">Privacy Policy</a>
-        <a href="/tabspro/termos/en/">Terms of Use</a>
-      </div>
-    </section>
+      <section class="bloco" id="problema" aria-labelledby="problema-titulo">
+        <h2 class="rotulo" id="problema-titulo">Found a problem?</h2>
+        <div class="cartao">
+          <p>Write to <strong><a href="mailto:contato@oakappware.com">contato@oakappware.com</a></strong> with:</p>
+          <ol>
+            <li>device model and system version (e.g. iPhone 14, iOS 18);</li>
+            <li>app version (<strong>About</strong> screen, on the ⓘ icon in the library);</li>
+            <li>what you were doing and what happened (if possible, with a
+            screenshot).</li>
+          </ol>
+          <p>The more details, the faster we can reproduce and fix it.</p>
+        </div>
+      </section>
+    </div>
+    <nav class="doc-lado" aria-labelledby="lado-titulo">
+      <p class="rotulo" id="lado-titulo">Tabs Pro documents</p>
+      <ul class="doc-lista">
+        <li><a href="/tabspro/suporte/en/" aria-current="page"><svg class="i" aria-hidden="true"><use href="#i-ajuda"/></svg><span>Support</span></a></li>
+        <li><a href="/tabspro/privacidade/en/"><svg class="i" aria-hidden="true"><use href="#i-escudo"/></svg><span>Privacy Policy</span></a></li>
+        <li><a href="/tabspro/termos/en/"><svg class="i" aria-hidden="true"><use href="#i-doc"/></svg><span>Terms of Use</span></a></li>
+      </ul>
+      <p class="doc-lado-rotulo">Contact</p>
+      <a class="doc-email" href="mailto:contato@oakappware.com"><svg class="i" aria-hidden="true"><use href="#i-email"/></svg>contato@oakappware.com</a>
+    </nav>
   </div>
 </main>
 
-<footer>
+<footer class="rodape">
   <div class="wrap">
-    <a class="foot-brand" href="/" aria-label="OakAppWare — home">
-      <img src="/assets/logo.svg" width="131" height="26" alt="OakAppWare" />
-    </a>
-    OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA — <span style="white-space:nowrap">CNPJ 68.923.016/0001-00</span><br/>
-    SGAS 915, Conjunto B, Bloco D, Sala 103 (Parte CH 528) — Asa Sul, Brasília/DF, CEP 70.390-150<br/>
-    oakappware.com · <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>
-    <nav class="foot-links" aria-label="Footer">
-      <a href="/#apps">Apps</a>
-      <a href="/sobre.html">About</a>
-      <a href="/suporte.html">Support</a>
-      <a href="/legal.html">Legal</a>
-      <a href="/legal.html#privacidade-site">Site privacy</a>
-    </nav>
+    <div class="rodape-grade">
+      <div class="rodape-marca-col">
+        <a class="marca" href="/"><img src="/assets/logo.svg" width="141" height="28" alt="OakAppWare" /><span class="sr-only"> — home page</span></a>
+        <address class="empresa">
+          <span class="razao">OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA</span><br />
+          <span class="nw">CNPJ 68.923.016/0001-00</span><br />
+          SGAS 915, Conjunto B, Bloco D, Sala 103 (Parte CH 528) — Asa Sul, Brasília/DF, <span class="nw">CEP 70.390-150</span><br />
+          <a href="mailto:contato@oakappware.com">contato@oakappware.com</a>
+        </address>
+      </div>
+      <nav aria-labelledby="rodape-apps">
+        <h2 id="rodape-apps">Apps</h2>
+        <ul>
+          <li><a href="/tabspro.html">Tabs Pro</a></li>
+          <li><a href="/dicompro.html">DICOM Pro</a></li>
+          <li><a href="/radiologia-odontologica.html">Dental radiology</a></li>
+        </ul>
+      </nav>
+      <nav aria-labelledby="rodape-ajuda">
+        <h2 id="rodape-ajuda">Help</h2>
+        <ul>
+          <li><a href="/suporte.html">Support</a></li>
+          <li><a href="/tabspro/suporte/en/" aria-current="page">Tabs Pro Support</a></li>
+          <li><a href="/suporte.html#dicompro">DICOM Pro Support</a></li>
+          <li><a href="/sobre.html">About the company</a></li>
+        </ul>
+      </nav>
+      <nav class="rodape-legal" aria-labelledby="rodape-legal">
+        <h2 id="rodape-legal">Legal</h2>
+        <ul>
+          <li><a href="/privacidade.html">DICOM Pro Privacy</a></li>
+          <li><a href="/termos.html">DICOM Pro Terms</a></li>
+          <li><a href="/tabspro/privacidade/en/">Tabs Pro Privacy</a></li>
+          <li><a href="/tabspro/termos/en/">Tabs Pro Terms</a></li>
+          <li><a href="/legal.html#privacidade-site">Site privacy</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="rodape-base">
+      <span>oakappware.com · Brasília/DF</span>
+      <span>Apps for health, education and everyday life.</span>
+    </div>
   </div>
 </footer>
 
