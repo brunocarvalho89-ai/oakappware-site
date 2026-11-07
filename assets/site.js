@@ -84,6 +84,8 @@
       if (antes) antes.setAttribute('aria-disabled', i === 0 ? 'true' : 'false');
       if (depois) depois.setAttribute('aria-disabled', i === n - 1 ? 'true' : 'false');
       if (aviso && falar) aviso.textContent = (i + 1) + ' de ' + n + ': ' + (janelas[i].getAttribute('data-nome') || '');
+      // Se o endereço já aponta para uma janela, ele acompanha a troca (setas, véu, deslize, Tab).
+      if (/^#janela-/.test(location.hash) && location.hash !== '#' + janelas[i].id) poeEndereco(i);
     }
 
     function pula(x) {
