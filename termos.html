@@ -73,29 +73,33 @@
           <span class="en" lang="en">For teaching, study and reference — not intended for diagnosis, reporting or clinical decision-making.</span></p>
       </div>
       <h1>Termos de Uso</h1>
-      <p class="version">Versão de 10 de outubro de 2026 · <a href="#english" lang="en">English below</a></p>
+      <p class="version">Versão de 19 de outubro de 2026 · <a href="#english" lang="en">English below</a></p>
       <p class="version">Desenvolvido por <strong>OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA</strong> (<span class="nw">CNPJ 68.923.016/0001-00</span>) — Brasília/DF, Brasil. Contato: contato@oakappware.com</p>
 
       <h2>1. O que é o DICOM Pro</h2>
       <p>O DICOM Pro é um visualizador de exames de imagem no padrão DICOM destinado
       a <strong>fins de ensino, estudo e referência</strong>. Ele permite abrir exames
       armazenados no próprio aparelho, navegar pela reconstrução multiplanar (axial,
-      sagital e coronal), ajustar janelamento, aplicar filtros de cor, realizar
-      medições lineares e destacar regiões de alta densidade.</p>
+      sagital e coronal), ajustar janelamento, aplicar filtros e projeções, gerar
+      reconstruções 3D e panorâmicas ilustrativas, realizar medições e anotações,
+      destacar regiões de alta densidade, comparar séries e exportar imagens.</p>
 
       <h2>2. O que o DICOM Pro não é</h2>
       <p>O DICOM Pro <strong>não é destinado a diagnóstico primário, laudo ou decisão
       clínica</strong>. As imagens exibidas passam por processamento (reamostragem,
-      janelamento, filtros e, em aparelhos com pouca memória, redução de resolução —
-      sempre indicada na tela). Qualquer avaliação com finalidade clínica deve ser
+      janelamento, filtros, projeções, reconstruções e, em aparelhos com pouca
+      memória, redução de resolução — sempre indicada na tela). Qualquer avaliação com finalidade clínica deve ser
       feita por profissional habilitado, em equipamento e software adequados a esse
       fim.</p>
 
       <h2>3. Medições</h2>
-      <p>As medições em milímetros são calculadas a partir dos metadados de
-      calibração presentes no próprio exame (produzidos pelo equipamento de origem).
-      A exatidão depende dessa calibração e da resolução com que o exame foi aberto
-      neste aparelho.</p>
+      <p>As medições (distâncias, ângulos, áreas e valores de pixel) são calculadas a
+      partir dos metadados de calibração presentes no próprio exame (produzidos pelo
+      equipamento de origem). A exatidão depende dessa calibração e da resolução com
+      que o exame foi aberto neste aparelho. Em tomografias de feixe cônico (CBCT), os
+      valores exibidos são tons de cinza, não unidades Hounsfield calibradas.
+      Reconstruções 3D e panorâmicas são representações ilustrativas, e a escala da
+      panorâmica é aproximada.</p>
 
       <h2>4. Responsabilidades do usuário</h2>
       <p>Os exames abertos ou salvos no app permanecem no aparelho, sob controle do
@@ -103,7 +107,10 @@
       armazenar os exames e os dados pessoais neles contidos, observando a
       legislação aplicável (incluindo a LGPD — Lei nº 13.709/2018); (b) proteger o
       aparelho com bloqueio de tela; (c) remover exames salvos quando deixarem de
-      ser necessários.</p>
+      ser necessários; (d) antes de exportar, compartilhar ou apresentar imagens,
+      conferir que elas não permitam identificar o paciente — o app não inclui nome,
+      data ou identificação nas imagens exportadas, mas não remove informações
+      gravadas pelo equipamento na própria imagem.</p>
 
       <h2>5. Limitação de responsabilidade</h2>
       <p>O app é fornecido "no estado em que se encontra", sem garantias de
@@ -141,36 +148,44 @@
       <div class="en-block" id="english" lang="en">
         <p class="lang-note">English</p>
         <h2 class="doc-title">Terms of Use</h2>
-        <p class="version">Version of October 10, 2026</p>
+        <p class="version">Version of October 19, 2026</p>
         <p class="version">Developed by <strong>OAKAPPWARE DESENVOLVIMENTO DE SOFTWARE NAO CUSTOMIZAVEL LTDA</strong> (Brazilian company registry <span class="nw">68.923.016/0001-00</span>) — Brasília/DF, Brazil. Contact: contato@oakappware.com</p>
 
         <h3>1. What DICOM Pro is</h3>
         <p>DICOM Pro is a viewer for DICOM imaging exams intended for
         <strong>teaching, study and reference purposes</strong>. It opens exams stored
         on the device itself, provides multiplanar reconstruction (axial, sagittal
-        and coronal), windowing, color filters, linear measurements and highlighting
-        of high-density regions.</p>
+        and coronal), windowing, filters and projections, illustrative 3D and
+        panoramic reconstructions, measurements and annotations, highlighting of
+        high-density regions, series comparison and image export.</p>
 
         <h3>2. What DICOM Pro is not</h3>
         <p>DICOM Pro is <strong>not intended for primary diagnosis, reporting or
         clinical decision-making</strong>. Displayed images undergo processing
-        (resampling, windowing, filters and, on low-memory devices, resolution
-        reduction — always indicated on screen). Any evaluation for clinical
+        (resampling, windowing, filters, projections, reconstructions and, on
+        low-memory devices, resolution reduction — always indicated on screen). Any evaluation for clinical
         purposes must be performed by a licensed professional using equipment and
         software fit for that purpose.</p>
 
         <h3>3. Measurements</h3>
-        <p>Measurements in millimeters are computed from the calibration metadata
-        present in the exam itself (produced by the source equipment). Accuracy
-        depends on that calibration and on the resolution at which the exam was
-        opened on this device.</p>
+        <p>Measurements (distances, angles, areas and pixel values) are computed from
+        the calibration metadata present in the exam itself (produced by the source
+        equipment). Accuracy depends on that calibration and on the resolution at
+        which the exam was opened on this device. In cone-beam CT (CBCT) exams, the
+        values shown are gray levels, not calibrated Hounsfield units. 3D and
+        panoramic reconstructions are illustrative representations, and the
+        panoramic scale is approximate.</p>
 
         <h3>4. User responsibilities</h3>
         <p>Exams opened or saved in the app remain on the device, under the user's
         control. The user is responsible for: (a) having authorization to access and
         store the exams and the personal data they contain, in compliance with
         applicable law; (b) protecting the device with a screen lock; (c) removing
-        saved exams when no longer needed.</p>
+        saved exams when no longer needed; (d) before exporting, sharing or
+        presenting images, making sure they do not allow the patient to be
+        identified — the app does not include name, date or identification in
+        exported images, but does not remove information burned into the image
+        itself by the source equipment.</p>
 
         <h3>5. Limitation of liability</h3>
         <p>The app is provided "as is", without warranties of fitness for a
