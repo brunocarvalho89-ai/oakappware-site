@@ -860,6 +860,7 @@ abbr[title] { text-decoration:none; }
   .barra-loja-txt small { display:block; color:var(--faint); font-weight:500; font-size:12px; }
   .barra-loja .btn-loja { min-height:48px; padding:6px 16px 6px 12px; border-radius:13px; }
   .barra-loja .btn-loja .loja { font-size:16px; }
+  .barra-loja .btn-loja { flex-shrink:0; white-space:nowrap; }
 }
 @media (max-width:560px) {
   .janela-cabeca { padding:20px 20px 0; }
@@ -868,6 +869,7 @@ abbr[title] { text-decoration:none; }
   .novidade { font-size:13.5px; gap:8px; }
   .novidade .opc { display:none; }
   .janela-acoes .btn-loja, .app-cta .btn-loja, .app-cta .btn-fantasma { width:100%; justify-content:center; }
+  .janela-acoes .btn { width:100%; white-space:normal; text-align:center; justify-content:center; }
   .acoes-sec > :last-child:nth-child(odd) { grid-column:1 / -1; }
   .principio { grid-template-columns:minmax(0,1fr); padding:20px; }
   .principio .hex { grid-row:auto; width:32px; height:37px; }
