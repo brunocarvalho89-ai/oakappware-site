@@ -44,6 +44,7 @@
   <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6.5 3h8l4 4v13.5a.5.5 0 0 1-.5.5h-11.5a.5.5 0 0 1-.5-.5V3.5a.5.5 0 0 1 .5-.5z"/><path d="M14 3v4.5h4.5M9 12h6M9 15.5h6"/></symbol>
   <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
   <symbol id="i-fechar" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-baixar" viewBox="0 0 24 24"><path d="M12 3.5v11.5M7 10.5l5 5 5-5M5 20h14"/></symbol>
   <symbol id="i-play" viewBox="0 0 24 24"><path d="M6.2 3.6c0-.9.9-1.4 1.7-1l12.2 7.4c.8.5.8 1.6 0 2.1L7.9 19.4c-.8.5-1.7-.1-1.7-1z"/></symbol>
   <symbol id="i-presente" viewBox="0 0 24 24"><rect x="3.5" y="8" width="17" height="4" rx="1"/><path d="M5 12v8.5h14V12M12 8v12.5M12 8c-1.5-3-5-3.5-5-1.2C7 8 9 8 12 8zm0 0c1.5-3 5-3.5 5-1.2C17 8 15 8 12 8z"/></symbol>
   <symbol id="i-proibido" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M5.7 5.7l12.6 12.6"/></symbol>
@@ -95,7 +96,7 @@
             <span class="tile" aria-hidden="true"><svg><use href="#icone-tabspro"/></svg></span>
             <div class="chips">
               <span class="chip chip--novo"><span>Novo · <span lang="en">New</span></span></span>
-              <span class="chip chip--loja"><span class="ponto" aria-hidden="true"></span><span>Disponível no Google Play · <span lang="en">Available</span></span></span>
+              <span class="chip chip--loja"><span class="ponto" aria-hidden="true"></span><span>Disponível no Google Play e na App Store · <span lang="en">Available on Google Play and the App Store</span></span></span>
             </div>
           </div>
           <h1 id="app-titulo">Tabs<span class="pro">&nbsp;Pro</span><span class="sr-only">:</span> <span class="sub">Afinador e Cifras&nbsp;<span class="en" lang="en">· Tuner &amp; Chords</span></span></h1>
@@ -106,8 +107,11 @@
               <svg class="play" aria-hidden="true"><use href="#i-play"/></svg>
               <span><span class="pre">Baixar no</span><span class="loja">Google Play</span></span>
             </a>
+            <a class="btn-loja" href="https://apps.apple.com/app/id6834423757">
+              <svg class="i" aria-hidden="true"><use href="#i-baixar"/></svg>
+              <span><span class="pre">Baixar na</span><span class="loja">App Store</span><span class="sr-only"> — Tabs Pro: Afinador &amp; Cifras</span></span>
+            </a>
             <a class="btn btn-fantasma" href="/tabspro/suporte"><svg class="i" aria-hidden="true"><use href="#i-ajuda"/></svg>Suporte do Tabs Pro</a>
-            <span class="loja-breve"><span class="ponto ponto--breve" aria-hidden="true"></span><span>App Store em breve · <span lang="en">Coming soon</span></span></span>
           </div>
           <ul class="chips app-fatos" aria-label="Em resumo">
             <li><svg class="i" aria-hidden="true"><use href="#i-presente"/></svg>Gratuito, sem compras no app</li>
@@ -134,8 +138,8 @@
         <div class="revelar">
           <p class="rotulo"><span>O que é · <span lang="en">What it is</span></span></p>
           <h2 id="recursos-titulo" class="titulo-secao">Afinar e tirar a cifra, no mesmo app.<span class="en-t" lang="en">Tune and get the chords, in one app.</span></h2>
-          <p class="lead">O Tabs Pro é o app de violão da OakAppWare, disponível no Google Play para Android (a versão para iOS vem em seguida). Ele faz duas coisas que todo violonista precisa e que normalmente estão separadas em apps diferentes: afina o instrumento e transforma uma música em cifra e tablatura.</p>
-          <p class="lead-en" lang="en">Tabs Pro is OakAppWare’s guitar app, available on Google Play for Android (the iOS version comes next). It does two things every guitarist needs, which usually live in separate apps: it tunes the instrument and turns a song into chords and tablature.</p>
+          <p class="lead">O Tabs Pro é o app de violão da OakAppWare, disponível no Google Play e na App Store. Ele faz duas coisas que todo violonista precisa e que normalmente estão separadas em apps diferentes: afina o instrumento e transforma uma música em cifra e tablatura.</p>
+          <p class="lead-en" lang="en">Tabs Pro is OakAppWare’s guitar app, available on Google Play and the App Store. It does two things every guitarist needs, which usually live in separate apps: it tunes the instrument and turns a song into chords and tablature.</p>
         </div>
       </div>
 
@@ -302,7 +306,10 @@
             <svg class="play" aria-hidden="true"><use href="#i-play"/></svg>
             <span><span class="pre">Baixar no</span><span class="loja">Google Play</span></span>
           </a>
-          <span class="loja-breve"><span class="ponto ponto--breve" aria-hidden="true"></span><span>App Store em breve · <span lang="en">Coming soon</span></span></span>
+          <a class="btn-loja" href="https://apps.apple.com/app/id6834423757">
+            <svg class="i" aria-hidden="true"><use href="#i-baixar"/></svg>
+            <span><span class="pre">Baixar na</span><span class="loja">App Store</span><span class="sr-only"> — Tabs Pro: Afinador &amp; Cifras</span></span>
+          </a>
         </div>
         <p class="assinatura-txt">um app <b>OakAppWare</b></p>
       </div>
@@ -313,8 +320,9 @@
 
 <aside class="barra-loja" data-barra-loja aria-label="Baixar o Tabs Pro">
   <span class="tile" aria-hidden="true"><svg><use href="#icone-tabspro"/></svg></span>
-  <p class="barra-loja-txt">Tabs Pro<small>Afinador e Cifras</small></p>
-  <a class="btn-loja" href="https://play.google.com/store/apps/details?id=com.tuningtabspro.app"><svg class="play" aria-hidden="true"><use href="#i-play"/></svg><span><span class="sr-only">Baixar no </span><span class="loja">Google Play</span></span></a>
+  <p class="barra-loja-txt">Tabs Pro<small><span data-so="android">Afinador e Cifras</span><span data-so="ios">Afinador &amp; Cifras</span></small></p>
+  <a class="btn-loja" data-so="android" href="https://play.google.com/store/apps/details?id=com.tuningtabspro.app"><svg class="play" aria-hidden="true"><use href="#i-play"/></svg><span><span class="sr-only">Baixar no </span><span class="loja">Google Play</span></span></a>
+  <a class="btn-loja" data-so="ios" href="https://apps.apple.com/app/id6834423757"><svg class="i" aria-hidden="true"><use href="#i-baixar"/></svg><span><span class="sr-only">Baixar na </span><span class="loja">App Store</span><span class="sr-only"> — Tabs Pro: Afinador &amp; Cifras</span></span></a>
 </aside>
 
 <footer class="rodape">

@@ -165,6 +165,12 @@
     window.addEventListener('hashchange', function () { doEndereco(true); });
   });
 
+  /* Barra fixa da loja: no iPhone/iPad mostra a App Store; nos demais aparelhos, o Google Play */
+  var ua = navigator.userAgent || '';
+  if (/iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1)) {
+    document.documentElement.classList.add('so-ios');
+  }
+
   /* Página de app: barra fixa da loja (celular) aparece quando o botão principal sai da tela */
   var barra = document.querySelector('[data-barra-loja]');
   var principal = document.querySelector('[data-loja-principal]');

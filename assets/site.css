@@ -144,6 +144,7 @@ code { font:inherit; }
   text-decoration:none; line-height:1.15; transition:background-color .2s, border-color .2s, transform .2s var(--ease); }
 .btn-loja:hover { background:var(--acento-hover); border-color:var(--acento-hover); color:var(--acento-txt); }
 .btn-loja .play { width:22px; height:22px; flex:0 0 auto; fill:currentColor; }
+.btn-loja .i { width:22px; height:22px; stroke-width:2.2; }
 .btn-loja .pre { display:block; font-size:11.5px; font-weight:600; letter-spacing:.07em; text-transform:uppercase; opacity:.86; }
 .btn-loja .loja { display:block; font-size:18px; font-weight:800; letter-spacing:-.005em; }
 .loja-breve { display:inline-flex; align-items:center; gap:8px; min-height:44px; color:var(--muted); font-size:14px; line-height:1.35; }
@@ -527,6 +528,10 @@ abbr[title] { text-decoration:none; }
 .cta-final .app-cta .btn-fantasma { min-height:48px; border-radius:999px; }
 .assinatura-txt b { color:var(--text); font-weight:600; }
 .barra-loja { display:none; }
+.barra-loja [data-so="ios"] { display:none; }
+.so-ios .barra-loja [data-so="android"] { display:none; }
+.so-ios .barra-loja .btn-loja[data-so="ios"] { display:inline-flex; }
+.so-ios .barra-loja small [data-so="ios"] { display:inline; }
 
 /* ===== 7. Páginas internas e documentos ===== */
 .pagina-cabeca { position:relative; isolation:isolate; padding-block:clamp(20px, 3vw, 36px) clamp(28px, 4vw, 48px); }
