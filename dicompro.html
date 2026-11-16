@@ -42,6 +42,7 @@
   <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6.5 3h8l4 4v13.5a.5.5 0 0 1-.5.5h-11.5a.5.5 0 0 1-.5-.5V3.5a.5.5 0 0 1 .5-.5z"/><path d="M14 3v4.5h4.5M9 12h6M9 15.5h6"/></symbol>
   <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
   <symbol id="i-fechar" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-baixar" viewBox="0 0 24 24"><path d="M12 3.5v11.5M7 10.5l5 5 5-5M5 20h14"/></symbol>
   <symbol id="i-play" viewBox="0 0 24 24"><path d="M6.2 3.6c0-.9.9-1.4 1.7-1l12.2 7.4c.8.5.8 1.6 0 2.1L7.9 19.4c-.8.5-1.7-.1-1.7-1z"/></symbol>
   <symbol id="i-aviso" viewBox="0 0 24 24"><path d="M12 3.5l9.5 16.5h-19z"/><path d="M12 10v4.5M12 17.4h.01"/></symbol>
   <symbol id="i-planos" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="2.5"/><path d="M12 3.5v17M3.5 12h17"/></symbol>
@@ -92,7 +93,7 @@
           <div class="app-ident">
             <span class="tile" aria-hidden="true"><svg><use href="#icone-dicompro"/></svg></span>
             <div class="chips">
-              <span class="chip chip--loja"><span class="ponto" aria-hidden="true"></span><span>Disponível no Google Play · <span lang="en">Available</span></span></span>
+              <span class="chip chip--loja"><span class="ponto" aria-hidden="true"></span><span>Disponível no Google&nbsp;Play e na App&nbsp;Store · <span lang="en">Available on Google&nbsp;Play and the App&nbsp;Store</span></span></span>
             </div>
           </div>
           <h1 id="app-titulo">DICOM<span class="pro">&nbsp;Pro</span><span class="sr-only">:</span> <span class="sub">Visualizador de exames DICOM&nbsp;<span class="en nw" lang="en">· DICOM exam viewer</span></span></h1>
@@ -108,8 +109,11 @@
               <svg class="play" aria-hidden="true"><use href="#i-play"/></svg>
               <span><span class="pre">Baixar no</span><span class="loja">Google Play</span></span>
             </a>
+            <a class="btn-loja" href="https://apps.apple.com/app/id6832764222">
+              <svg class="i" aria-hidden="true"><use href="#i-baixar"/></svg>
+              <span><span class="pre">Baixar na</span><span class="loja">App Store</span><span class="sr-only"> — DICOM Pro</span></span>
+            </a>
             <a class="btn btn-fantasma" href="suporte.html#dicompro"><svg class="i" aria-hidden="true"><use href="#i-ajuda"/></svg>Suporte do DICOM Pro</a>
-            <span class="loja-breve"><span class="ponto ponto--breve" aria-hidden="true"></span><span>App Store em breve · <span lang="en">Coming soon</span></span></span>
           </div>
           <ul class="chips app-fatos" aria-label="Em resumo">
             <li><svg class="i" aria-hidden="true"><use href="#i-aparelho"/></svg>Processamento no aparelho</li>
@@ -145,7 +149,7 @@
           <h3>Reconstrução multiplanar <span class="en" lang="en">Multiplanar reconstruction</span></h3>
           <p>Axial, sagital e coronal lado a lado, com eixos móveis: as linhas de eixo coloridas ligam um plano ao outro, e as alças servem para mover, angular e ajustar a espessura.</p>
           <p class="en" lang="en">Axial, sagittal and coronal side by side, with movable axes: colored axis lines link one plane to another, and handles let you move, angle and adjust thickness.</p>
-          <ul class="chips pequenos" aria-label="Planos">
+          <ul class="chips pequenos" aria-label="Planos de reconstrução">
             <li class="chip">Axial</li><li class="chip">Sagital</li><li class="chip">Coronal</li>
           </ul>
         </li>
@@ -304,7 +308,10 @@
             <svg class="play" aria-hidden="true"><use href="#i-play"/></svg>
             <span><span class="pre">Baixar no</span><span class="loja">Google Play</span><span class="sr-only"> — DICOM Pro</span></span>
           </a>
-          <span class="loja-breve"><span class="ponto ponto--breve" aria-hidden="true"></span><span>App Store em breve · <span lang="en">Coming soon</span></span></span>
+          <a class="btn-loja" href="https://apps.apple.com/app/id6832764222">
+            <svg class="i" aria-hidden="true"><use href="#i-baixar"/></svg>
+            <span><span class="pre">Baixar na</span><span class="loja">App Store</span><span class="sr-only"> — DICOM Pro</span></span>
+          </a>
         </div>
         <p class="assinatura-txt">um app <b>OakAppWare</b></p>
       </div>
